@@ -1,0 +1,146 @@
+{
+ "size": "small",
+ "seed": 2,
+ "blocks": "half",
+ "method": "NUTS",
+ "backend": "NUMBA",
+ "n_matches": 3040,
+ "n_managers": 61,
+ "n_states": 337,
+ "n_clubs": 47,
+ "n_international": 100,
+ "runtime_s": 62.1,
+ "sampling": {
+  "draws": 1000,
+  "tune": 1000,
+  "chains": 4,
+  "cores": 4,
+  "target_accept": 0.9,
+  "mode": "NUMBA"
+ },
+ "vectors": {
+  "mu": {
+   "cov50": 0.2459016393442623,
+   "cov90": 0.7704918032786885,
+   "n": 61,
+   "corr_mean_truth": 0.7577384771543081
+  },
+  "theta": {
+   "cov50": 0.5934718100890207,
+   "cov90": 0.9436201780415431,
+   "n": 337,
+   "corr_mean_truth": 0.6751262806426681
+  },
+  "strength": {
+   "cov50": 0.55,
+   "cov90": 0.95,
+   "n": 160,
+   "corr_mean_truth": 0.9826128288832383
+  },
+  "h": {
+   "cov50": 0.25,
+   "cov90": 1.0,
+   "n": 8,
+   "corr_mean_truth": 0.8111156033235538
+  }
+ },
+ "scalars": {
+  "sigma": {
+   "truth": 1.2,
+   "mean": 1.2018893714259515,
+   "q05": 1.1751373436731871,
+   "q95": 1.2290717244113554,
+   "in50": true,
+   "in90": true
+  },
+  "tau": {
+   "truth": 0.12,
+   "mean": 0.203618744618627,
+   "q05": 0.14685016516900873,
+   "q95": 0.2578975744905049,
+   "in50": false,
+   "in90": false
+  },
+  "gamma": {
+   "truth": 0.7,
+   "mean": 1.2606847201414921,
+   "q05": 0.4208067592286579,
+   "q95": 2.635601372593438,
+   "in50": false,
+   "in90": true
+  },
+  "beta": {
+   "truth": -0.1,
+   "mean": -0.11833574486287846,
+   "q05": -0.15968994457162905,
+   "q95": -0.07841292113017152,
+   "in50": false,
+   "in90": true
+  },
+  "b_value": {
+   "truth": 0.25,
+   "mean": 0.23231374482342637,
+   "q05": 0.087174082601073,
+   "q95": 0.37000341281195437,
+   "in50": true,
+   "in90": true
+  },
+  "sigma_mu": {
+   "truth": 0.15,
+   "mean": 0.07211274979518427,
+   "q05": 0.005824095475704342,
+   "q95": 0.15664119744699298,
+   "in50": false,
+   "in90": true
+  },
+  "sigma_kappa": {
+   "truth": 0.2,
+   "mean": 0.09972741070948282,
+   "q05": 0.014790352693991423,
+   "q95": 0.1765502318368451,
+   "in50": false,
+   "in90": false,
+   "comparable": false
+  },
+  "lambda_int": {
+   "truth": 0.6,
+   "mean": 0.4125962408645426,
+   "q05": -0.1942476737544344,
+   "q95": 0.9907640618604792,
+   "in50": true,
+   "in90": true
+  },
+  "sigma_int": {
+   "truth": 0.45,
+   "mean": 0.4450311684133833,
+   "q05": 0.3947566158774238,
+   "q95": 0.49990403578902115,
+   "in50": true,
+   "in90": true
+  },
+  "delta_1": {
+   "truth": 0.08,
+   "mean": 0.06628481509387683,
+   "q05": -0.021302613362473643,
+   "q95": 0.15584624004504063,
+   "in50": true,
+   "in90": true
+  },
+  "delta_2": {
+   "truth": 0.03,
+   "mean": 0.03075093186449007,
+   "q05": -0.05998102743569308,
+   "q95": 0.12346707731644335,
+   "in50": true,
+   "in90": true
+  }
+ },
+ "realised_noise_sd": 1.2098072545129441,
+ "note": "lambda[l,s] is simulated but cancels in y, so it is not estimated. kappa alone is not identified separately from b_between; club-season strength (centred within league-season) is scored instead.",
+ "diagnostics": {
+  "divergences": 0,
+  "max_rhat": 1.0073222494116465,
+  "min_ess_bulk": 459.74920408827893,
+  "min_ess_tail": 639.8529956550838
+ }
+}

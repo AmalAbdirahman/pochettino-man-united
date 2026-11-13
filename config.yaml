@@ -77,6 +77,37 @@ features:
   name_match_min_votes: 3
   name_match_min_share: 0.8
 
+# Synthetic recovery test (prompt 2). Truth values are for simulation only.
+simulation:
+  sizes:
+    tiny:  {leagues: 1, seasons: 2, clubs: 10, pool_clubs: 12}
+    small: {leagues: 2, seasons: 4, clubs: 20, pool_clubs: 24}
+    full:  {leagues: 5, seasons: 12, clubs: 20, pool_clubs: 26}
+  truth:
+    sigma: 1.2              # match noise sd at w = 1
+    h0: 0.30                # mean home advantage (npxG diff per 90)
+    sigma_h: 0.08
+    no_crowd_season: 6      # season index with home advantage near zero
+    no_crowd_h: 0.05
+    sigma_kappa: 0.20       # club effect sd
+    b_value: 0.25           # effect of log squad value
+    alpha: 0.5              # league offset per standardised league Elo (cancels in y)
+    sigma_lambda: 0.05
+    sigma_mu: 0.15          # long-run manager level sd
+    tau: 0.12               # stationary sd of the manager deviation
+    gamma: 0.7              # OU decay per year (half-life ln2/gamma ~ 1 year)
+    delta: [0.08, 0.03]     # tenure year 1, year 2 (3+ = 0)
+    beta: -0.10             # recent luck coefficient
+    lambda_int: 0.6
+    sigma_int: 0.45
+    red_card_prob: 0.10
+    sack_prob: 0.7          # bottom-3 clubs at each half-season sack with this probability
+    leave_prob: 0.20        # any manager leaves at season end
+    rehire_prob: 0.5        # vacancy filled from unemployed managers (any league)
+    n_international: 15
+    intl_matches_per_block: 5
+  sampling: {draws: 1000, tune: 1000, chains: 4, cores: 4, target_accept: 0.9, mode: NUMBA}
+
 paths:
   raw: data/raw
   processed: data/processed

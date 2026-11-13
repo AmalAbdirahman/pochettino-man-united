@@ -1,6 +1,7 @@
 # Source data with restrictive terms (FotMob etc.): never committed
 data/raw/
-data/processed/*.parquet
+data/processed/*
+!data/processed/.gitkeep
 
 # Secrets
 .env

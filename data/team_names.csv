@@ -1,0 +1,340 @@
+source,alias,tm_id,tm_name
+football_data,Ajaccio,1147,AC Ajaccio
+football_data,Ajaccio GFCO,3558,GFC Ajaccio
+football_data,Alaves,1108,Deportivo Alavés
+football_data,Almeria,3302,UD Almería
+football_data,Amiens,1416,Amiens SC
+football_data,Angers,1420,Angers SCO
+football_data,Arsenal,11,Arsenal FC
+football_data,Aston Villa,405,Aston Villa
+football_data,Atalanta,800,Atalanta BC
+football_data,Ath Bilbao,621,Athletic Bilbao
+football_data,Ath Madrid,13,Atlético de Madrid
+football_data,Augsburg,167,FC Augsburg
+football_data,Auxerre,290,AJ Auxerre
+football_data,Barcelona,131,FC Barcelona
+football_data,Bastia,595,SC Bastia
+football_data,Bayern Munich,27,Bayern Munich
+football_data,Benevento,4171,Benevento Calcio
+football_data,Betis,150,Real Betis Balompié
+football_data,Bielefeld,10,Arminia Bielefeld
+football_data,Bochum,80,VfL Bochum
+football_data,Bologna,1025,Bologna Football Club 1909
+football_data,Bordeaux,40,FC Girondins Bordeaux
+football_data,Bournemouth,989,AFC Bournemouth
+football_data,Brentford,1148,Brentford FC
+football_data,Brescia,19,Brescia Calcio
+football_data,Brest,3911,Stade Brestois 29
+football_data,Brighton,1237,Brighton & Hove Albion
+football_data,Burnley,1132,Burnley FC
+football_data,Cadiz,2687,Cádiz CF
+football_data,Caen,1162,SM Caen
+football_data,Cagliari,1390,Cagliari Calcio
+football_data,Cardiff,603,Cardiff City
+football_data,Carpi,4102,AC Carpi
+football_data,Celta,940,Celta de Vigo
+football_data,Cesena,1429,Cesena FC
+football_data,Chelsea,631,Chelsea FC
+football_data,Chievo,862,Chievo Verona
+football_data,Clermont,3524,Clermont Foot 63
+football_data,Como,1047,Como 1907
+football_data,Cordoba,993,Córdoba CF
+football_data,Coventry,990,Coventry City
+football_data,Cremonese,2239,US Cremonese
+football_data,Crotone,4083,FC Crotone
+football_data,Crystal Palace,873,Crystal Palace
+football_data,Darmstadt,105,SV Darmstadt 98
+football_data,Dijon,2969,Dijon FCO
+football_data,Dortmund,16,Borussia Dortmund
+football_data,Eibar,1533,SD Eibar
+football_data,Ein Frankfurt,24,Eintracht Frankfurt
+football_data,Elche,1531,Elche CF
+football_data,Elversberg,64,SV 07 Elversberg
+football_data,Empoli,749,FC Empoli
+football_data,Espanol,714,RCD Espanyol Barcelona
+football_data,Everton,29,Everton FC
+football_data,Evian Thonon Gaillard,14171,Thonon Évian Grand Genève FC
+football_data,FC Koln,3,1.FC Köln
+football_data,Fiorentina,430,ACF Fiorentina
+football_data,Fortuna Dusseldorf,38,Fortuna Düsseldorf
+football_data,Freiburg,60,SC Freiburg
+football_data,Frosinone,8970,Frosinone Calcio
+football_data,Fulham,931,Fulham FC
+football_data,Genoa,252,Genoa CFC
+football_data,Getafe,3709,Getafe CF
+football_data,Girona,12321,Girona FC
+football_data,Granada,16795,Granada CF
+football_data,Greuther Furth,65,SpVgg Greuther Fürth
+football_data,Guingamp,855,EA Guingamp
+football_data,Hamburg,41,Hamburger SV
+football_data,Hannover,42,Hannover 96
+football_data,Heidenheim,2036,1. Fußballclub Heidenheim 1846
+football_data,Hertha,44,Hertha BSC
+football_data,Hoffenheim,533,TSG 1899 Hoffenheim
+football_data,Holstein Kiel,269,Holstein Kiel
+football_data,Huddersfield,1110,Huddersfield Town
+football_data,Huesca,5358,SD Huesca
+football_data,Hull,3008,Hull City
+football_data,Ingolstadt,4795,FC Ingolstadt 04
+football_data,Inter,46,Inter Milan
+football_data,Ipswich,677,Ipswich Town
+football_data,Juventus,506,Juventus FC
+football_data,La Coruna,897,Deportivo de La Coruña
+football_data,Las Palmas,472,UD Las Palmas
+football_data,Lazio,398,Società Sportiva Lazio S.p.A.
+football_data,Le Havre,738,Le Havre AC
+football_data,Le Mans,1164,Le Mans FC
+football_data,Lecce,1005,US Lecce
+football_data,Leeds,399,Leeds United
+football_data,Leganes,1244,CD Leganés
+football_data,Leicester,1003,Leicester City
+football_data,Lens,826,RC Lens
+football_data,Levante,3368,Levante UD
+football_data,Leverkusen,15,Bayer 04 Leverkusen
+football_data,Lille,1082,LOSC Lille
+football_data,Liverpool,31,Liverpool FC
+football_data,Lorient,1158,FC Lorient
+football_data,Luton,1031,Luton Town
+football_data,Lyon,1041,Olympique Lyon
+football_data,M'gladbach,18,Borussia Mönchengladbach
+football_data,Mainz,39,1.FSV Mainz 05
+football_data,Malaga,1084,Málaga CF
+football_data,Mallorca,237,RCD Mallorca
+football_data,Man City,281,Manchester City
+football_data,Man United,985,Manchester United
+football_data,Marseille,244,Olympique Marseille
+football_data,Metz,347,FC Metz
+football_data,Middlesbrough,641,Middlesbrough FC
+football_data,Milan,5,AC Milan
+football_data,Monaco,162,AS Monaco
+football_data,Montpellier,969,Montpellier HSC
+football_data,Monza,2919,AC Monza
+football_data,Nancy,1159,AS Nancy-Lorraine
+football_data,Nantes,995,FC Nantes
+football_data,Napoli,6195,SSC Napoli
+football_data,Newcastle,762,Newcastle United
+football_data,Nice,417,OGC Nice
+football_data,Nimes,1160,Nîmes Olympique
+football_data,Norwich,1123,Norwich City
+football_data,Nott'm Forest,703,Nottingham Forest
+football_data,Nurnberg,4,1.FC Nuremberg
+football_data,Osasuna,331,CA Osasuna
+football_data,Oviedo,2497,Real Oviedo
+football_data,Paderborn,127,SC Paderborn 07
+football_data,Palermo,458,Palermo FC
+football_data,Paris FC,10004,Paris FC
+football_data,Paris SG,583,Paris Saint-Germain
+football_data,Parma,130,Parma Calcio 1913
+football_data,Pescara,2921,Delfino Pescara 1936
+football_data,Pisa,4172,Pisa Sporting Club
+football_data,QPR,1039,Queens Park Rangers
+football_data,RB Leipzig,23826,RB Leipzig
+football_data,Real Madrid,418,Real Madrid
+football_data,Reims,1421,Stade Reims
+football_data,Rennes,273,Stade Rennais FC
+football_data,Roma,12,Associazione Sportiva Roma
+football_data,Salernitana,380,US Salernitana 1919
+football_data,Sampdoria,1038,UC Sampdoria
+football_data,Santander,630,Racing Santander
+football_data,Sassuolo,6574,US Sassuolo
+football_data,Schalke 04,33,FC Schalke 04
+football_data,Sevilla,368,Sevilla FC
+football_data,Sheffield United,350,Sheffield United
+football_data,Sociedad,681,Real Sociedad
+football_data,Southampton,180,Southampton FC
+football_data,Sp Gijon,2448,Sporting Gijón
+football_data,Spal,2722,SPAL
+football_data,Spezia,3522,Spezia Calcio
+football_data,St Etienne,618,AS Saint-Étienne
+football_data,St Pauli,35,FC St. Pauli
+football_data,Stoke,512,Stoke City
+football_data,Strasbourg,667,RC Strasbourg Alsace
+football_data,Stuttgart,79,VfB Stuttgart
+football_data,Sunderland,289,Sunderland AFC
+football_data,Swansea,2288,Swansea City
+football_data,Torino,416,Torino FC
+football_data,Tottenham,148,Tottenham Hotspur
+football_data,Toulouse,415,FC Toulouse
+football_data,Troyes,1095,ESTAC Troyes
+football_data,Udinese,410,Udinese Calcio
+football_data,Union Berlin,89,1.FC Union Berlin
+football_data,Valencia,1049,Valencia CF
+football_data,Valladolid,366,Real Valladolid CF
+football_data,Vallecano,367,Rayo Vallecano
+football_data,Venezia,607,Venezia FC
+football_data,Verona,276,Hellas Verona
+football_data,Villarreal,1050,Villarreal CF
+football_data,Watford,1010,Watford FC
+football_data,Werder Bremen,86,SV Werder Bremen
+football_data,West Brom,984,West Bromwich Albion
+football_data,West Ham,379,West Ham United
+football_data,Wolfsburg,82,VfL Wolfsburg
+football_data,Wolves,543,Wolverhampton Wanderers
+understat,AC Milan,5,AC Milan
+understat,Ajaccio,1147,AC Ajaccio
+understat,Alaves,1108,Deportivo Alavés
+understat,Almeria,3302,UD Almería
+understat,Amiens,1416,Amiens SC
+understat,Angers,1420,Angers SCO
+understat,Arminia Bielefeld,10,Arminia Bielefeld
+understat,Arsenal,11,Arsenal FC
+understat,Aston Villa,405,Aston Villa
+understat,Atalanta,800,Atalanta BC
+understat,Athletic Club,621,Athletic Bilbao
+understat,Atletico Madrid,13,Atlético de Madrid
+understat,Augsburg,167,FC Augsburg
+understat,Auxerre,290,AJ Auxerre
+understat,Barcelona,131,FC Barcelona
+understat,Bayer Leverkusen,15,Bayer 04 Leverkusen
+understat,Bayern Munich,27,Bayern Munich
+understat,Benevento,4171,Benevento Calcio
+understat,Bochum,80,VfL Bochum
+understat,Bologna,1025,Bologna Football Club 1909
+understat,Bordeaux,40,FC Girondins Bordeaux
+understat,Borussia Dortmund,16,Borussia Dortmund
+understat,Borussia M.Gladbach,18,Borussia Mönchengladbach
+understat,Bournemouth,989,AFC Bournemouth
+understat,Brentford,1148,Brentford FC
+understat,Brescia,19,Brescia Calcio
+understat,Brest,3911,Stade Brestois 29
+understat,Brighton,1237,Brighton & Hove Albion
+understat,Burnley,1132,Burnley FC
+understat,Cadiz,2687,Cádiz CF
+understat,Caen,1162,SM Caen
+understat,Cagliari,1390,Cagliari Calcio
+understat,Cardiff,603,Cardiff City
+understat,Carpi,4102,AC Carpi
+understat,Celta Vigo,940,Celta de Vigo
+understat,Cesena,1429,Cesena FC
+understat,Chelsea,631,Chelsea FC
+understat,Chievo,862,Chievo Verona
+understat,Clermont Foot,3524,Clermont Foot 63
+understat,Como,1047,Como 1907
+understat,Cordoba,993,Córdoba CF
+understat,Cremonese,2239,US Cremonese
+understat,Crotone,4083,FC Crotone
+understat,Crystal Palace,873,Crystal Palace
+understat,Darmstadt,105,SV Darmstadt 98
+understat,Deportivo La Coruna,897,Deportivo de La Coruña
+understat,Dijon,2969,Dijon FCO
+understat,Eibar,1533,SD Eibar
+understat,Eintracht Frankfurt,24,Eintracht Frankfurt
+understat,Elche,1531,Elche CF
+understat,Empoli,749,FC Empoli
+understat,Espanyol,714,RCD Espanyol Barcelona
+understat,Everton,29,Everton FC
+understat,Evian Thonon Gaillard,14171,Thonon Évian Grand Genève FC
+understat,FC Cologne,3,1.FC Köln
+understat,FC Heidenheim,2036,1. Fußballclub Heidenheim 1846
+understat,Fiorentina,430,ACF Fiorentina
+understat,Fortuna Duesseldorf,38,Fortuna Düsseldorf
+understat,Freiburg,60,SC Freiburg
+understat,Frosinone,8970,Frosinone Calcio
+understat,Fulham,931,Fulham FC
+understat,GFC Ajaccio,3558,GFC Ajaccio
+understat,Genoa,252,Genoa CFC
+understat,Getafe,3709,Getafe CF
+understat,Girona,12321,Girona FC
+understat,Granada,16795,Granada CF
+understat,Greuther Fuerth,65,SpVgg Greuther Fürth
+understat,Guingamp,855,EA Guingamp
+understat,Hamburger SV,41,Hamburger SV
+understat,Hannover 96,42,Hannover 96
+understat,Hertha Berlin,44,Hertha BSC
+understat,Hoffenheim,533,TSG 1899 Hoffenheim
+understat,Holstein Kiel,269,Holstein Kiel
+understat,Huddersfield,1110,Huddersfield Town
+understat,Hull,3008,Hull City
+understat,Ingolstadt,4795,FC Ingolstadt 04
+understat,Inter,46,Inter Milan
+understat,Ipswich,677,Ipswich Town
+understat,Juventus,506,Juventus FC
+understat,Las Palmas,472,UD Las Palmas
+understat,Lazio,398,Società Sportiva Lazio S.p.A.
+understat,Le Havre,738,Le Havre AC
+understat,Lecce,1005,US Lecce
+understat,Leeds,399,Leeds United
+understat,Leganes,1244,CD Leganés
+understat,Leicester,1003,Leicester City
+understat,Lens,826,RC Lens
+understat,Levante,3368,Levante UD
+understat,Lille,1082,LOSC Lille
+understat,Liverpool,31,Liverpool FC
+understat,Lorient,1158,FC Lorient
+understat,Luton,1031,Luton Town
+understat,Lyon,1041,Olympique Lyon
+understat,Mainz 05,39,1.FSV Mainz 05
+understat,Malaga,1084,Málaga CF
+understat,Mallorca,237,RCD Mallorca
+understat,Manchester City,281,Manchester City
+understat,Manchester United,985,Manchester United
+understat,Marseille,244,Olympique Marseille
+understat,Metz,347,FC Metz
+understat,Middlesbrough,641,Middlesbrough FC
+understat,Monaco,162,AS Monaco
+understat,Montpellier,969,Montpellier HSC
+understat,Monza,2919,AC Monza
+understat,Nancy,1159,AS Nancy-Lorraine
+understat,Nantes,995,FC Nantes
+understat,Napoli,6195,SSC Napoli
+understat,Newcastle United,762,Newcastle United
+understat,Nice,417,OGC Nice
+understat,Nimes,1160,Nîmes Olympique
+understat,Norwich,1123,Norwich City
+understat,Nottingham Forest,703,Nottingham Forest
+understat,Nuernberg,4,1.FC Nuremberg
+understat,Osasuna,331,CA Osasuna
+understat,Paderborn,127,SC Paderborn 07
+understat,Palermo,458,Palermo FC
+understat,Paris FC,10004,Paris FC
+understat,Paris Saint Germain,583,Paris Saint-Germain
+understat,Parma,130,Parma Calcio 1913
+understat,Parma Calcio 1913,130,Parma Calcio 1913
+understat,Pescara,2921,Delfino Pescara 1936
+understat,Pisa,4172,Pisa Sporting Club
+understat,Queens Park Rangers,1039,Queens Park Rangers
+understat,RasenBallsport Leipzig,23826,RB Leipzig
+understat,Rayo Vallecano,367,Rayo Vallecano
+understat,Real Betis,150,Real Betis Balompié
+understat,Real Madrid,418,Real Madrid
+understat,Real Oviedo,2497,Real Oviedo
+understat,Real Sociedad,681,Real Sociedad
+understat,Real Valladolid,366,Real Valladolid CF
+understat,Reims,1421,Stade Reims
+understat,Rennes,273,Stade Rennais FC
+understat,Roma,12,Associazione Sportiva Roma
+understat,SC Bastia,595,SC Bastia
+understat,SD Huesca,5358,SD Huesca
+understat,SPAL 2013,2722,SPAL
+understat,Saint-Etienne,618,AS Saint-Étienne
+understat,Salernitana,380,US Salernitana 1919
+understat,Sampdoria,1038,UC Sampdoria
+understat,Sassuolo,6574,US Sassuolo
+understat,Schalke 04,33,FC Schalke 04
+understat,Sevilla,368,Sevilla FC
+understat,Sheffield United,350,Sheffield United
+understat,Southampton,180,Southampton FC
+understat,Spezia,3522,Spezia Calcio
+understat,Sporting Gijon,2448,Sporting Gijón
+understat,St. Pauli,35,FC St. Pauli
+understat,Stoke,512,Stoke City
+understat,Strasbourg,667,RC Strasbourg Alsace
+understat,Sunderland,289,Sunderland AFC
+understat,Swansea,2288,Swansea City
+understat,Torino,416,Torino FC
+understat,Tottenham,148,Tottenham Hotspur
+understat,Toulouse,415,FC Toulouse
+understat,Troyes,1095,ESTAC Troyes
+understat,Udinese,410,Udinese Calcio
+understat,Union Berlin,89,1.FC Union Berlin
+understat,Valencia,1049,Valencia CF
+understat,Venezia,607,Venezia FC
+understat,Verona,276,Hellas Verona
+understat,VfB Stuttgart,79,VfB Stuttgart
+understat,Villarreal,1050,Villarreal CF
+understat,Watford,1010,Watford FC
+understat,Werder Bremen,86,SV Werder Bremen
+understat,West Bromwich Albion,984,West Bromwich Albion
+understat,West Ham,379,West Ham United
+understat,Wolfsburg,82,VfL Wolfsburg
+understat,Wolverhampton Wanderers,543,Wolverhampton Wanderers

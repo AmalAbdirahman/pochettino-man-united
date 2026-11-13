@@ -1,0 +1,7 @@
+# Hand mappings for clubs with no big-five league game in the Transfermarkt data (2012-13 to 2025-26).
+# tm_id and tm_name are taken from Transfermarkt player valuations (current_club_id / current_club_name).
+source,alias,tm_id,tm_name
+football_data,Coventry,990,Coventry City
+football_data,Elversberg,64,SV 07 Elversberg
+football_data,Le Mans,1164,Le Mans FC
+football_data,Santander,630,Racing Santander

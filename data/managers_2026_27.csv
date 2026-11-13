@@ -1,0 +1,125 @@
+# Head coaches in the 2026-27 big-five league seasons (Transfermarkt data stops on 2026-07-06).
+# club = football-data.co.uk team name (mapped through data/team_names.csv).
+# start = first day in charge (blank: in charge before 2026-07-01); end = last day (blank: still in charge).
+# role: permanent, caretaker, or vacant (caretaker not named in the source).
+# Extracted on 2026-11-13 from the Wikipedia season articles (CC BY-SA 4.0), pages current to 2026-11-08,
+# plus the Crystal Palace and Manchester United season articles. verified=no: check by hand before the freeze.
+league,club,manager,start,end,role,source_url,verified
+ENG,Arsenal,Mikel Arteta,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Aston Villa,Unai Emery,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Bournemouth,Marco Rose,2026-06-01,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Brentford,Keith Andrews,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Brighton,Fabian Hürzeler,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Chelsea,Xabi Alonso,2026-07-01,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Coventry,Frank Lampard,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Crystal Palace,Pierre Sage,2026-06-15,2026-11-12,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Crystal_Palace_F.C._season,no
+ENG,Crystal Palace,,2026-11-13,,vacant,https://en.wikipedia.org/wiki/2026%E2%80%9327_Crystal_Palace_F.C._season,no
+ENG,Everton,David Moyes,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Fulham,Álvaro Arbeloa,2026-07-07,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Hull,Sergej Jakirović,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Ipswich,Gary O'Neil,2026-06-23,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Leeds,Daniel Farke,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Liverpool,Andoni Iraola,2026-06-04,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Man City,Enzo Maresca,2026-06-29,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Man United,Michael Carrick,,2026-11-12,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+ENG,Man United,,2026-11-13,2026-11-17,vacant,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+ENG,Man United,Mauricio Pochettino,2026-11-18,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+ENG,Newcastle,Matthias Jaissle,2026-08-05,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Nott'm Forest,Oliver Glasner,2026-07-06,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Sunderland,Régis Le Bris,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ENG,Tottenham,Roberto De Zerbi,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Premier_League,no
+ESP,Alaves,Quique Sánchez Flores,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Ath Bilbao,Edin Terzić,2026-07-01,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Ath Madrid,Diego Simeone,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Barcelona,Hansi Flick,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Celta,Claudio Giráldez,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,La Coruna,Antonio Hidalgo,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Elche,Martín Anselmi,2026-06-13,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Espanol,Manolo González,,2026-10-27,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Espanol,Sergio García,2026-10-27,2026-10-27,caretaker,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Espanol,Eder Sarabia,2026-10-28,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Getafe,José Bordalás,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Levante,Luís Castro,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Malaga,Juan Francisco Funes,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Osasuna,Luis Miguel Ramis,2026-06-10,2026-10-12,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Osasuna,Jagoba Arrasate,2026-10-12,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Santander,José Alberto,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Vallecano,Beñat San José,2026-06-18,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Betis,Manuel Pellegrini,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Real Madrid,José Mourinho,2026-06-13,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Sociedad,Pellegrino Matarazzo,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Sevilla,Luis García,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Valencia,Carlos Corberán,,2026-09-12,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Valencia,Óscar Sánchez,2026-09-13,2026-09-22,caretaker,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Valencia,Javier Aguirre,2026-09-23,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+ESP,Villarreal,Iñigo Pérez,2026-06-01,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_La_Liga,no
+GER,Augsburg,Manuel Baum,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,Union Berlin,Mauro Lustrinelli,2026-07-01,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,Werder Bremen,Daniel Thioune,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,Dortmund,Niko Kovač,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,Elversberg,Vincent Wagner,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,Ein Frankfurt,Adi Hütter,2026-05-31,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,Freiburg,Julian Schuster,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,M'gladbach,Eugen Polanski,,2026-09-12,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,M'gladbach,Jan-Moritz Lichte,2026-09-13,2026-09-22,caretaker,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,M'gladbach,Alexander Blessin,2026-09-23,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,Hamburg,Merlin Polzin,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,Hoffenheim,Christian Ilzer,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,FC Koln,René Wagner,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,RB Leipzig,Martín Demichelis,2026-06-22,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,Leverkusen,Carles Martínez Novell,2026-06-04,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,Mainz,Urs Fischer,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,Bayern Munich,Vincent Kompany,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,Paderborn,Ralf Kettemann,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,Schalke 04,Miron Muslić,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+GER,Stuttgart,Sebastian Hoeneß,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Bundesliga,no
+ITA,Atalanta,Maurizio Sarri,2026-06-15,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Bologna,Domenico Tedesco,2026-06-02,2026-09-15,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Bologna,Raffaele Palladino,2026-09-16,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Cagliari,Fabio Pisacane,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Como,Cesc Fàbregas,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Fiorentina,Fabio Grosso,2026-06-08,2026-09-06,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Fiorentina,Paolo Vanoli,2026-09-07,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Frosinone,Massimiliano Alvini,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Genoa,Daniele De Rossi,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Inter,Cristian Chivu,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Juventus,Luciano Spalletti,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Lazio,Gennaro Gattuso,2026-06-23,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Lecce,Eusebio Di Francesco,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Milan,Ruben Amorim,2026-06-16,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Monza,Ivan Jurić,2026-06-29,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Napoli,Massimiliano Allegri,2026-07-03,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Parma,Carlos Cuesta,,2026-09-27,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Parma,,2026-09-28,2026-09-28,vacant,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Parma,Alberto Gilardino,2026-09-29,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Roma,Gian Piero Gasperini,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Sassuolo,Alberto Aquilani,2026-06-12,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Torino,Ignazio Abate,2026-06-12,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Udinese,Kosta Runjaić,,2026-11-01,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Udinese,Paolo Zanetti,2026-11-02,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Venezia,Giovanni Stroppa,,2026-10-13,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+ITA,Venezia,Davide Nicola,2026-10-14,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Serie_A,no
+FRA,Angers,Stéphane Gilli,2026-06-09,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Auxerre,Will Still,2026-06-12,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Brest,Julien Lachuer,2026-06-27,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Le Havre,Didier Digard,,2026-10-31,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Le Havre,,2026-11-01,2026-11-11,vacant,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Le Havre,Valérien Ismaël,2026-11-12,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Le Mans,Patrick Videira,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Lens,Dino Toppmöller,2026-06-16,2026-09-15,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Lens,Yannick Cahuzac,2026-09-15,2026-11-10,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Lens,,2026-11-11,,vacant,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Lille,Davide Ancelotti,2026-06-01,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Lorient,Alexandre Dujeux,2026-06-09,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Lyon,Paulo Fonseca,,2026-11-04,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Lyon,,2026-11-05,2026-11-09,vacant,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Lyon,Carlos Vicens,2026-11-10,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Marseille,Bruno Génésio,2026-07-01,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Monaco,Filipe Luís,2026-07-06,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Nice,Olivier Pantaloni,2026-06-17,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Paris FC,Liam Rosenior,2026-07-07,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Paris SG,Luis Enrique,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Rennes,Franck Haise,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Strasbourg,Hugo Oliveira,2026-07-12,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Toulouse,Jens Berthel Askou,2026-05-21,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no
+FRA,Troyes,Stéphane Dumont,,,permanent,https://en.wikipedia.org/wiki/2026%E2%80%9327_Ligue_1,no

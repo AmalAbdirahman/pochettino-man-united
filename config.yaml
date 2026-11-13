@@ -43,6 +43,40 @@ detectability:
   alpha_z: 1.96
   power_z: 0.84
 
+# Downloads (prompt 1). Terms checked 2026-11-13; see docs/data_sources.md.
+# Raw files stay in data/raw/ (git-ignored); only derived figures are published.
+sources:
+  understat_archive:          # frozen 2026-04-18; Understat offline since ~2026-11-02
+    base: https://github.com/peteowen1/pannadata/releases/download/understat-latest
+    files: [understat_shots.parquet, understat_metadata.parquet, understat-manifest.parquet]
+  transfermarkt:              # transfermarkt-datasets (CC0 by author), frozen 2026-07-06
+    base: https://pub-e682421888d945d684bcae8890b0ec20.r2.dev/data
+    files: [games.csv.gz, club_games.csv.gz, game_events.csv.gz, game_lineups.csv.gz,
+            player_valuations.csv.gz, clubs.csv.gz, competitions.csv.gz]
+  football_data:              # football-data.co.uk results; HxG/AxG only from 2026-27 (provider unstated)
+    base: https://football-data.co.uk/mmz4281
+    leagues: {ENG: E0, ESP: SP1, GER: D1, ITA: I1, FRA: F1}
+  clubelo:                    # league-average Elo only; one snapshot per season start
+    base: http://api.clubelo.com
+    snapshot_day: "08-01"
+
+leagues:                      # canonical code -> code in each source
+  ENG: {transfermarkt: GB1, clubelo: ENG}
+  ESP: {transfermarkt: ES1, clubelo: ESP}
+  GER: {transfermarkt: L1, clubelo: GER}
+  ITA: {transfermarkt: IT1, clubelo: ITA}
+  FRA: {transfermarkt: FR1, clubelo: FRA}
+
+features:
+  data_cutoff: 2026-11-13
+  min_minutes_11v11: 10         # drop matches with a red card earlier than this
+  squad_value_date: "08-01"     # pre-season valuation date
+  squad_value_window_days: 365  # only valuations this recent count
+  squad_value_min_players: 15   # fewer valued players -> squad value missing (promoted clubs)
+  tenure_cap_years: 3           # tenure year 1, 2, 3+
+  name_match_min_votes: 3
+  name_match_min_share: 0.8
+
 paths:
   raw: data/raw
   processed: data/processed

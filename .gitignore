@@ -1,0 +1,19 @@
+# Source data with restrictive terms (FotMob etc.): never committed
+data/raw/
+data/processed/*.parquet
+
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+
+# IDE
+.idea/

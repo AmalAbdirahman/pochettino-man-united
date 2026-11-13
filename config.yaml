@@ -1,0 +1,50 @@
+# Settings for the Pochettino at United model. Method: docs/methods.md (version 2).
+# Only values known at setup are here; later steps add their own sections.
+
+model_version: 2
+
+appointment:
+  manager: Mauricio Pochettino
+  club: Manchester United
+  announced: 2026-11-13
+  starts: 2026-11-18
+  contract_until: 2029-06-30
+  outgoing_manager: Michael Carrick
+  season: 2026-27
+
+scope:
+  leagues: [ENG-Premier League, ESP-La Liga, GER-Bundesliga, ITA-Serie A, FRA-Ligue 1]
+  first_season: 2014-15
+  league_matches_only: true
+
+outcome:
+  metric: npxg_diff_per90           # home npxG minus away npxG, per 90
+  truncate_at_first_red: true
+  rows_per_match: 1                 # home team's view, never mirrored rows
+
+luck:
+  window_matches: 10                # goals minus npxG over previous league matches
+
+manager_drift:
+  block: half_season                # fallback: season
+  fallback_block: season
+
+international:
+  friendly_weight: 0.5
+  competitive_weight: 1.0
+  lambda_prior_mean: 0.5
+  lambda_prior_sd: 0.5
+
+finishing:
+  shot_noise_factor: 0.85           # Var(G - X) ~ 0.85 * X
+  phi_prior_sd: 0.05
+
+detectability:
+  alpha_z: 1.96
+  power_z: 0.84
+
+paths:
+  raw: data/raw
+  processed: data/processed
+  docs_data: docs/data
+  forecasts: docs/forecasts

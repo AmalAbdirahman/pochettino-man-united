@@ -13,7 +13,7 @@ dependencies = [
     "pandas",
     "numpy",
     "scipy",
-    "statsmodels",
+    "statsmodels>=0.14.5",  # 0.14.4 fails to import with scipy 1.18
     "pymc",
     "numba",
     "arviz",

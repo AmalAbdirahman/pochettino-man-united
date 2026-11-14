@@ -189,6 +189,17 @@ Outputs: points for the rest of the season with an interval; final-position dist
 
 **Weak points:** other teams' strengths are fixed; January transfers and injuries are not modelled; points intervals will be wide (say so).
 
+### 5d. Implementation notes (version 2.2, prompt 6)
+
+What the code does where it differs from 5a to 5c. The same list is stored in every frozen forecast file.
+
+- **Manager terms are not fitted inside the log-link model.** The attack/defence model (`strength_model.py`) is a recency-weighted quasi-Poisson GLM without manager terms. United's manager terms come from the section 1 posterior (npxG difference per 90) and are split half to attack and half to defence on the log scale.
+- **What is stripped.** United's fitted strength spans Amorim, an interim coach and Carrick, so the stripped term is the recency-weighted average of (manager effect + tenure effect) over the same matches, draw by draw.
+- **No match-level shock.** The back-test on 482 past mid-season appointments (`docs/data/backtest.json`) scored the simulation without the shock better on mean log score and CRPS, so the shock is off (section 8.3). Goal calibration (non-penalty goals per npxG) also did not help and is off.
+- **2026-27 npxG for other clubs** is football-data xG minus the 2025-26 penalty goal rate per team-match.
+- **The luck term (beta) is not used** in the forecast; its posterior mean is about 0.016.
+- **The back-test covers the strength and simulation machinery only**, not the manager terms; that needs a manager-model refit at each appointment.
+
 ---
 
 ## 6. Detectability

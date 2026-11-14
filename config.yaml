@@ -135,6 +135,49 @@ profile:
   seed: 20261118
   interval: 0.90
 
+# Frozen forecast (prompt 6)
+forecast:
+  league: ENG
+  season: 2026-27
+  first_league_match: 2026-11-22     # Liverpool (away); the forecast must be frozen before this date
+  window_start: 2025-07-01           # attack/defence fit uses league matches from here, recency-weighted
+  half_life_days: 180
+  rate_season: 2025-26               # season used for the penalty goal rate
+  posterior: fit_base.nc
+  draws: 4000                        # = all posterior draws of the manager model
+  seed: 20261122
+  interval_levels: [0.5, 0.8]
+  shock: false                       # chosen by the back-test (best mean log score, all leagues)
+  calibrate: false
+  model_choice: >-
+    Back-test (docs/data/backtest.json, 482 appointments): the xG simulation without the match-level
+    shock and without goal calibration had the best mean log score; the shock did not help, so it is off
+    (methods 8.3: keep a component only if it helps).
+  squad_freeze_note: >-
+    Squad frozen at 2026-11-13 (data/united_squad_2026_27.csv). January transfers, injuries and
+    suspensions are not modelled. Other clubs keep their current strength and manager all season.
+  deviations:
+    - "5a: manager effects are not fitted inside the log-link model. The attack/defence model is fitted
+       without manager terms; United's manager terms come from the prompt-3 npxG-difference posterior and
+       are split half to attack and half to defence on the log scale (united_effects.split_effect)."
+    - "5b: United's fitted strength spans Amorim, an interim coach and Carrick, so the stripped term is the
+       recency-weighted average of their (effect + tenure) over the same matches, not Carrick's alone."
+    - "Recent-luck term (beta) not used in the forecast; its posterior mean is about 0.016 per goal."
+    - "2026-27 npxG for clubs other than United: football-data xG minus the 2025-26 penalty goal rate per
+       team-match (penalties per match are not in that source)."
+    - "Dixon-Coles low-score correction not used."
+    - "5c: the match-level xG shock is switched off because the back-test did not support it."
+
+# Back-test of the forecast machinery (prompt 6)
+backtest:
+  seasons: [2015-16, 2016-17, 2017-18, 2018-19, 2019-20, 2020-21, 2021-22, 2022-23, 2023-24, 2024-25]
+  min_before: 6
+  min_after: 8
+  window_days: 450
+  half_life_days: 180
+  draws: 2000
+  seed: 20261115
+
 paths:
   raw: data/raw
   processed: data/processed

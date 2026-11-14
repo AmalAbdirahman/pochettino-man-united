@@ -22,6 +22,7 @@ dependencies = [
     "pyarrow",
     "pyyaml",
     "tabulate",
+    "h5netcdf",
 ]
 
 [project.optional-dependencies]

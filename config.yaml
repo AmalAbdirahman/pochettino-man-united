@@ -108,6 +108,18 @@ simulation:
     intl_matches_per_block: 5
   sampling: {draws: 1000, tune: 1000, chains: 4, cores: 4, target_accept: 0.9, mode: NUMBA}
 
+# Real-data fit (prompt 3)
+fit:
+  manager: Mauricio Pochettino
+  outgoing: Michael Carrick
+  club_tm_name: Manchester United
+  now: 2026-11-18                 # date at which "current" effects are evaluated
+  spells:                         # leave-one-out refits: Pochettino's league spells by TM club name
+    spurs: Tottenham Hotspur
+    psg: Paris Saint-Germain
+    chelsea: Chelsea FC
+  sampling: {draws: 1000, tune: 1500, chains: 4, cores: 4, target_accept: 0.95, mode: NUMBA}
+
 paths:
   raw: data/raw
   processed: data/processed

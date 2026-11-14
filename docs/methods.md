@@ -233,3 +233,72 @@ The frozen forecast is never edited.
 3. Constant club effect, unless the drifting version is used.
 4. Style fit is untested until the back-test says otherwise.
 5. Mixing xG providers without calibration.
+
+---
+
+<!-- RESULTS:START -->
+## 10. Results (generated from docs/data/model_summary.json; do not edit by hand)
+
+Data to 2026-11-13; effects evaluated at 2026-11-18. Units: non-penalty xG difference per 90 minutes (11 v 11); positive = better.
+
+### Implementation notes (version 2.1)
+- The league offset lambda cancels exactly in a within-league xG difference, so it is not estimated; cross-league comparisons rest on managers who moved between leagues and on the priors.
+- Squad value enters as a club mean (b_between) plus the within-club change (b_value), so b_value is not biased by persistent club differences; kappa alone is not identified, only club strength.
+- Synthetic recovery (docs/recovery.md): 90% intervals covered about 85-87% of true manager and club values at full size, so treat intervals as slightly too narrow.
+
+### Pochettino
+
+- Long-run level mu: +0.00 (90% -0.10 to +0.10); P(above average) 52%; posterior mean above 61% of the 605 managers in the data.
+- Current effect theta (now): +0.03 (90% -0.34 to +0.40).
+
+| block | team | theta (mean) | 90% interval |
+|---|---|---|---|
+| 2014-H1 | Tottenham Hotspur | -0.25 | -0.54 to +0.05 |
+| 2014-H2 | Tottenham Hotspur | -0.21 | -0.48 to +0.08 |
+| 2015-H1 | Tottenham Hotspur | +0.10 | -0.19 to +0.37 |
+| 2015-H2 | Tottenham Hotspur | +0.32 | +0.04 to +0.60 |
+| 2016-H1 | Tottenham Hotspur | +0.35 | +0.07 to +0.63 |
+| 2016-H2 | Tottenham Hotspur | +0.44 | +0.16 to +0.73 |
+| 2017-H1 | Tottenham Hotspur | +0.45 | +0.19 to +0.72 |
+| 2017-H2 | Tottenham Hotspur | +0.36 | +0.09 to +0.64 |
+| 2018-H1 | Tottenham Hotspur | +0.20 | -0.08 to +0.48 |
+| 2018-H2 | Tottenham Hotspur | -0.01 | -0.29 to +0.28 |
+| 2019-H1 | Tottenham Hotspur | -0.17 | -0.48 to +0.14 |
+| 2020-H2 | Paris Saint-Germain | -0.29 | -0.57 to +0.00 |
+| 2021-H1 | Paris Saint-Germain | -0.19 | -0.48 to +0.09 |
+| 2021-H2 | Paris Saint-Germain | -0.03 | -0.31 to +0.25 |
+| 2023-H1 | Chelsea FC | -0.04 | -0.32 to +0.23 |
+| 2023-H2 | Chelsea FC | -0.01 | -0.28 to +0.26 |
+| 2024-H1 | United States | +0.01 | -0.32 to +0.33 |
+| 2024-H2 | United States | -0.03 | -0.36 to +0.34 |
+| 2025-H1 | United States | +0.02 | -0.33 to +0.37 |
+| 2025-H2 | United States | +0.02 | -0.35 to +0.37 |
+| 2026-H1 | United States | +0.03 | -0.34 to +0.40 |
+
+### Spell contributions and the USA spell
+
+| fit | mu | theta now | divergences | max R-hat |
+|---|---|---|---|---|
+| base | +0.00 (90% -0.10 to +0.10) | +0.03 (90% -0.34 to +0.40) | 78 | 1.037 |
+| no_usa | +0.00 (90% -0.10 to +0.10) | -0.01 (90% -0.42 to +0.43) | 84 | 1.015 |
+| drop_spurs | -0.01 (90% -0.12 to +0.08) | +0.02 (90% -0.37 to +0.39) | 76 | 1.010 |
+| drop_psg | +0.01 (90% -0.07 to +0.11) | +0.03 (90% -0.36 to +0.40) | 100 | 1.040 |
+| drop_chelsea | not run | | | |
+
+### Carrick and United
+
+- Carrick mu: -0.01 (90% -0.13 to +0.10); current theta: -0.04 (90% -0.39 to +0.31).
+- United club strength relative to league average: 2023-24 +0.32 (90% +0.18 to +0.45); 2024-25 +0.24 (90% +0.11 to +0.37); 2025-26 +0.21 (90% +0.07 to +0.34).
+
+### Shared parameters
+
+- Drift: gamma +0.85 (90% +0.65 to +1.11); half-life +0.8 (90% +0.6 to +1.1) years; tau +0.25 (90% +0.24 to +0.27); sigma_mu +0.06 (90% +0.01 to +0.12).
+- Tenure (vs year 3+): year 1 -0.03 (90% -0.07 to +0.01); year 2 -0.01 (90% -0.05 to +0.02).
+- Recent luck beta: +0.016 (90% -0.005 to +0.037).
+- Squad value: within-club +0.15 (90% +0.11 to +0.19); between clubs +0.48 (90% +0.45 to +0.52) per unit log value.
+- Home advantage (global mean) +0.29 (90% +0.27 to +0.31); match noise sigma +0.98 (90% +0.98 to +0.99).
+- International scale lambda_int: +0.26 (90% -0.35 to +0.93) (only Pochettino's USA matches; mostly prior).
+
+League offsets: not estimated: they cancel exactly in a within-league xG difference.
+
+<!-- RESULTS:END -->

@@ -1,0 +1,39 @@
+# Pochettino's USA matches. Elo before each match = Elo after minus the Elo change, from World
+# Football Elo Ratings (eloratings.net), hand-collected. expected uses +100 home advantage;
+# residual = result (1/0.5/0) minus expected. weight: 1 competitive, 0.5 friendly (F).
+manager,team,date,opponent,competition,venue,goals_for,goals_against,elo_before,opp_elo_before,expected,result,residual,weight
+Mauricio Pochettino,United States,2024-10-12,Panama,F,H,2,0,1726,1730,0.6347,1,0.3653,0.5
+Mauricio Pochettino,United States,2024-10-15,Mexico,F,A,0,2,1737,1792,0.2906,0,-0.2906,0.5
+Mauricio Pochettino,United States,2024-11-14,Jamaica,NL,A,1,0,1728,1605,0.5331,1,0.4669,1.0
+Mauricio Pochettino,United States,2024-11-18,Jamaica,NL,H,4,2,1747,1586,0.8179,1,0.1821,1.0
+Mauricio Pochettino,United States,2025-01-18,Venezuela,F,H,3,1,1758,1744,0.6584,1,0.3416,0.5
+Mauricio Pochettino,United States,2025-01-22,Costa Rica,F,H,3,0,1768,1653,0.7752,1,0.2248,0.5
+Mauricio Pochettino,United States,2025-03-20,Panama,NL,H,0,1,1776,1711,0.7211,0,-0.7211,1.0
+Mauricio Pochettino,United States,2025-03-23,Canada,NL,H,1,2,1747,1753,0.6321,0,-0.6321,1.0
+Mauricio Pochettino,United States,2025-06-07,Turkey,F,H,1,2,1722,1837,0.4784,0,-0.4784,0.5
+Mauricio Pochettino,United States,2025-06-10,Switzerland,F,H,0,4,1712,1826,0.4799,0,-0.4799,0.5
+Mauricio Pochettino,United States,2025-06-15,Trinidad & Tobago,GC,H,5,0,1694,1396,0.9081,1,0.0919,1.0
+Mauricio Pochettino,United States,2025-06-19,Saudi Arabia,GC,H,1,0,1703,1609,0.7534,1,0.2466,1.0
+Mauricio Pochettino,United States,2025-06-22,Haiti,GC,H,2,1,1715,1473,0.8775,1,0.1225,1.0
+Mauricio Pochettino,United States,2025-06-29,Costa Rica,GC,H,2,2,1721,1684,0.6875,0.5,-0.1875,1.0
+Mauricio Pochettino,United States,2025-07-02,Guatemala,GC,H,2,1,1712,1533,0.8329,1,0.1671,1.0
+Mauricio Pochettino,United States,2025-07-06,Mexico,GC,H,1,2,1720,1837,0.4756,0,-0.4756,1.0
+Mauricio Pochettino,United States,2025-09-06,South Korea,F,H,0,2,1696,1754,0.5602,0,-0.5602,0.5
+Mauricio Pochettino,United States,2025-09-09,Japan,F,H,2,0,1679,1882,0.356,1,0.644,0.5
+Mauricio Pochettino,United States,2025-10-10,Ecuador,F,H,1,1,1698,1933,0.3149,0.5,0.1851,0.5
+Mauricio Pochettino,United States,2025-10-14,Australia,F,H,2,1,1702,1803,0.4986,1,0.5014,0.5
+Mauricio Pochettino,United States,2025-11-15,Paraguay,F,H,2,1,1712,1832,0.4712,1,0.5288,0.5
+Mauricio Pochettino,United States,2025-11-18,Uruguay,F,H,5,1,1723,1914,0.372,1,0.628,0.5
+Mauricio Pochettino,United States,2026-03-28,Belgium,F,H,2,5,1747,1849,0.4971,0,-0.4971,0.5
+Mauricio Pochettino,United States,2026-03-31,Portugal,F,H,0,2,1730,1975,0.3027,0,-0.3027,0.5
+Mauricio Pochettino,United States,2026-05-31,Senegal,F,H,3,2,1721,1879,0.4173,1,0.5827,0.5
+Mauricio Pochettino,United States,2026-06-06,Germany,F,H,1,2,1733,1925,0.3706,0,-0.3706,0.5
+Mauricio Pochettino,United States,2026-06-12,Paraguay,WC,H,4,1,1726,1833,0.4899,1,0.5101,1.0
+Mauricio Pochettino,United States,2026-06-19,Australia,WC,H,2,0,1780,1838,0.5602,1,0.4398,1.0
+Mauricio Pochettino,United States,2026-06-25,Turkey,WC,H,2,3,1820,1813,0.6493,0,-0.6493,1.0
+Mauricio Pochettino,United States,2026-07-01,Bosnia & Herz.,WC,H,2,0,1781,1622,0.8162,1,0.1838,1.0
+Mauricio Pochettino,United States,2026-07-06,Belgium,WC,H,1,4,1798,1909,0.4842,0,-0.4842,1.0
+Mauricio Pochettino,United States,2026-09-26,Peru,F,H,4,1,1747,1699,0.701,1,0.299,0.5
+Mauricio Pochettino,United States,2026-09-29,Chile,F,H,4,2,1757,1710,0.6998,1,0.3002,0.5
+Mauricio Pochettino,United States,2026-10-03,Mexico,F,H,3,0,1766,1910,0.437,1,0.563,0.5
+Mauricio Pochettino,United States,2026-10-06,Canada,F,H,1,0,1786,1745,0.6925,1,0.3075,0.5

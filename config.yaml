@@ -38,6 +38,9 @@ international:
 finishing:
   shot_noise_factor: 0.85           # Var(G - X) ~ 0.85 * X
   phi_prior_sd: 0.05
+  squad_file: data/united_squad_2026_27.csv
+  share_season: 2025-26             # npxG shares from each player's npxG per club league match in this season
+  interval: 0.90
 
 detectability:
   alpha_z: 1.96
@@ -119,6 +122,18 @@ fit:
     psg: Paris Saint-Germain
     chelsea: Chelsea FC
   sampling: {draws: 1000, tune: 1500, chains: 4, cores: 4, target_accept: 0.95, mode: NUMBA}
+
+# United profile (prompt 4)
+profile:
+  team_tm_id: 985
+  understat_season: 2025-26         # archive frozen 2026-04-18
+  understat_league: ENG
+  fotmob_season: 2026-27            # local-only FotMob notes, never published
+  reference_date: 2026-11-13        # recency weights are measured from here
+  half_life_days: 180
+  bootstrap: 2000
+  seed: 20261118
+  interval: 0.90
 
 paths:
   raw: data/raw

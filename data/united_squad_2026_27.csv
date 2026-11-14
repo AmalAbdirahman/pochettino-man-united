@@ -1,0 +1,37 @@
+# Manchester United first-team squad 2026-27, as listed on Wikipedia on 2026-11-14 (squad statistics table,
+# as of 2026-11-08). understat_id matched by name in the Understat archive; empty = no big-five league shots.
+# verified=no: check by hand before the freeze.
+number,player,position,understat_id,source_url,verified
+1,Senne Lammens,GK,,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+2,Diogo Dalot,DF,7281,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+3,Noussair Mazraoui,DF,10696,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+4,Matthijs de Ligt,DF,7902,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+5,Harry Maguire,DF,1687,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+6,Lisandro Martínez,DF,10802,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+7,Mason Mount,MF,7768,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+8,Bruno Fernandes,MF,1228,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+9,Marcus Rashford,FW,556,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+10,Matheus Cunha,FW,7080,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+11,Joshua Zirkzee,FW,8044,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+12,Karl Darlow,GK,780,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+13,Patrick Dorgu,DF,11944,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+15,Leny Yoro,DF,10564,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+16,Amad Diallo,FW,8127,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+17,Andrey Santos,MF,11808,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+18,Youri Tielemans,MF,5956,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+19,Bryan Mbeumo,FW,6552,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+20,Carlos Baleba,MF,10527,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+22,Tom Heaton,GK,1651,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+23,Luke Shaw,DF,1006,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+25,Manuel Ugarte,MF,11766,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+26,Ayden Heaven,DF,13080,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+27,Tynan Thompson,FW,,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+30,Benjamin Šeško,FW,11974,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+31,Shea Lacey,FW,14198,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+37,Kobbie Mainoo,MF,11174,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+38,Jack Fletcher,MF,13150,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+39,Tyler Fletcher,MF,,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+41,Harry Amass,DF,12559,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+45,Dermot Mee,GK,,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+56,Jaydan Kamason,DF,,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no
+57,Dan Armer,DF,,https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season,no

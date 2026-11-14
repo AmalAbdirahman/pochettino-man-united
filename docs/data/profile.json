@@ -1,0 +1,526 @@
+{
+  "reference_date": "2026-11-13",
+  "half_life_days": 180,
+  "interval": 0.9,
+  "finishing": {
+    "f_U": {
+      "mean": 1.0000844611807538,
+      "sd": 0.01460672344947318,
+      "lo": 0.9760585391370107,
+      "hi": 1.0241103832244969,
+      "level": 0.9
+    },
+    "share_season": "2025-26",
+    "players_without_history": [
+      "Senne Lammens",
+      "Karl Darlow",
+      "Tynan Thompson",
+      "Tyler Fletcher",
+      "Dermot Mee",
+      "Jaydan Kamason",
+      "Dan Armer"
+    ],
+    "players": [
+      {
+        "player": "Benjamin Šeško",
+        "position": "FW",
+        "goals_np": 32,
+        "npxg": 27.09,
+        "shots": 162,
+        "phi_raw": 0.1812,
+        "phi_mean": 0.0134,
+        "phi_sd": 0.0481,
+        "npxg_share": 0.1549
+      },
+      {
+        "player": "Bryan Mbeumo",
+        "position": "FW",
+        "goals_np": 41,
+        "npxg": 43.02,
+        "shots": 336,
+        "phi_raw": -0.0469,
+        "phi_mean": -0.0053,
+        "phi_sd": 0.0471,
+        "npxg_share": 0.1456
+      },
+      {
+        "player": "Marcus Rashford",
+        "position": "FW",
+        "goals_np": 86,
+        "npxg": 89.29,
+        "shots": 665,
+        "phi_raw": -0.0369,
+        "phi_mean": -0.0077,
+        "phi_sd": 0.0445,
+        "npxg_share": 0.125
+      },
+      {
+        "player": "Bruno Fernandes",
+        "position": "MF",
+        "goals_np": 54,
+        "npxg": 58.67,
+        "shots": 727,
+        "phi_raw": -0.0796,
+        "phi_mean": -0.0117,
+        "phi_sd": 0.0462,
+        "npxg_share": 0.1096
+      },
+      {
+        "player": "Matheus Cunha",
+        "position": "FW",
+        "goals_np": 53,
+        "npxg": 49.37,
+        "shots": 481,
+        "phi_raw": 0.0736,
+        "phi_mean": 0.0093,
+        "phi_sd": 0.0467,
+        "npxg_share": 0.0888
+      },
+      {
+        "player": "Amad Diallo",
+        "position": "FW",
+        "goals_np": 12,
+        "npxg": 10.15,
+        "shots": 103,
+        "phi_raw": 0.1818,
+        "phi_mean": 0.0053,
+        "phi_sd": 0.0493,
+        "npxg_share": 0.0801
+      },
+      {
+        "player": "Joshua Zirkzee",
+        "position": "FW",
+        "goals_np": 21,
+        "npxg": 22.26,
+        "shots": 175,
+        "phi_raw": -0.0565,
+        "phi_mean": -0.0035,
+        "phi_sd": 0.0484,
+        "npxg_share": 0.0528
+      },
+      {
+        "player": "Patrick Dorgu",
+        "position": "DF",
+        "goals_np": 8,
+        "npxg": 8.48,
+        "shots": 85,
+        "phi_raw": -0.0567,
+        "phi_mean": -0.0014,
+        "phi_sd": 0.0494,
+        "npxg_share": 0.0352
+      },
+      {
+        "player": "Diogo Dalot",
+        "position": "DF",
+        "goals_np": 5,
+        "npxg": 9.45,
+        "shots": 135,
+        "phi_raw": -0.4711,
+        "phi_mean": -0.0127,
+        "phi_sd": 0.0493,
+        "npxg_share": 0.0331
+      },
+      {
+        "player": "Andrey Santos",
+        "position": "MF",
+        "goals_np": 11,
+        "npxg": 9.45,
+        "shots": 68,
+        "phi_raw": 0.164,
+        "phi_mean": 0.0044,
+        "phi_sd": 0.0493,
+        "npxg_share": 0.0319
+      },
+      {
+        "player": "Mason Mount",
+        "position": "MF",
+        "goals_np": 30,
+        "npxg": 28.8,
+        "shots": 310,
+        "phi_raw": 0.0418,
+        "phi_mean": 0.0033,
+        "phi_sd": 0.048,
+        "npxg_share": 0.029
+      },
+      {
+        "player": "Youri Tielemans",
+        "position": "MF",
+        "goals_np": 25,
+        "npxg": 19.58,
+        "shots": 349,
+        "phi_raw": 0.2768,
+        "phi_mean": 0.0151,
+        "phi_sd": 0.0486,
+        "npxg_share": 0.0275
+      },
+      {
+        "player": "Matthijs de Ligt",
+        "position": "DF",
+        "goals_np": 16,
+        "npxg": 13.8,
+        "shots": 124,
+        "phi_raw": 0.1594,
+        "phi_mean": 0.0062,
+        "phi_sd": 0.049,
+        "npxg_share": 0.0224
+      },
+      {
+        "player": "Leny Yoro",
+        "position": "DF",
+        "goals_np": 2,
+        "npxg": 4.53,
+        "shots": 29,
+        "phi_raw": -0.5589,
+        "phi_mean": -0.0074,
+        "phi_sd": 0.0497,
+        "npxg_share": 0.0172
+      },
+      {
+        "player": "Harry Maguire",
+        "position": "DF",
+        "goals_np": 15,
+        "npxg": 18.23,
+        "shots": 231,
+        "phi_raw": -0.177,
+        "phi_mean": -0.009,
+        "phi_sd": 0.0487,
+        "npxg_share": 0.0162
+      },
+      {
+        "player": "Manuel Ugarte",
+        "position": "MF",
+        "goals_np": 1,
+        "npxg": 2.04,
+        "shots": 40,
+        "phi_raw": -0.5106,
+        "phi_mean": -0.0031,
+        "phi_sd": 0.0499,
+        "npxg_share": 0.0089
+      },
+      {
+        "player": "Luke Shaw",
+        "position": "DF",
+        "goals_np": 3,
+        "npxg": 5.27,
+        "shots": 92,
+        "phi_raw": -0.4312,
+        "phi_mean": -0.0066,
+        "phi_sd": 0.0496,
+        "npxg_share": 0.006
+      },
+      {
+        "player": "Carlos Baleba",
+        "position": "MF",
+        "goals_np": 3,
+        "npxg": 4.42,
+        "shots": 91,
+        "phi_raw": -0.3213,
+        "phi_mean": -0.0041,
+        "phi_sd": 0.0497,
+        "npxg_share": 0.0057
+      },
+      {
+        "player": "Ayden Heaven",
+        "position": "DF",
+        "goals_np": 0,
+        "npxg": 0.28,
+        "shots": 5,
+        "phi_raw": -1.0,
+        "phi_mean": -0.0008,
+        "phi_sd": 0.05,
+        "npxg_share": 0.0036
+      },
+      {
+        "player": "Kobbie Mainoo",
+        "position": "MF",
+        "goals_np": 3,
+        "npxg": 1.65,
+        "shots": 32,
+        "phi_raw": 0.8191,
+        "phi_mean": 0.004,
+        "phi_sd": 0.0499,
+        "npxg_share": 0.0022
+      },
+      {
+        "player": "Noussair Mazraoui",
+        "position": "DF",
+        "goals_np": 1,
+        "npxg": 2.71,
+        "shots": 36,
+        "phi_raw": -0.6313,
+        "phi_mean": -0.005,
+        "phi_sd": 0.0498,
+        "npxg_share": 0.0018
+      },
+      {
+        "player": "Shea Lacey",
+        "position": "FW",
+        "goals_np": 0,
+        "npxg": 0.06,
+        "shots": 3,
+        "phi_raw": -1.0,
+        "phi_mean": -0.0002,
+        "phi_sd": 0.05,
+        "npxg_share": 0.001
+      },
+      {
+        "player": "Lisandro Martínez",
+        "position": "DF",
+        "goals_np": 3,
+        "npxg": 2.27,
+        "shots": 31,
+        "phi_raw": 0.324,
+        "phi_mean": 0.0021,
+        "phi_sd": 0.0498,
+        "npxg_share": 0.0009
+      },
+      {
+        "player": "Jack Fletcher",
+        "position": "MF",
+        "goals_np": 0,
+        "npxg": 0.04,
+        "shots": 1,
+        "phi_raw": -1.0,
+        "phi_mean": -0.0001,
+        "phi_sd": 0.05,
+        "npxg_share": 0.0006
+      },
+      {
+        "player": "Senne Lammens",
+        "position": "GK",
+        "goals_np": 0,
+        "npxg": 0.0,
+        "shots": 0,
+        "phi_raw": null,
+        "phi_mean": 0.0,
+        "phi_sd": 0.05,
+        "npxg_share": 0.0
+      },
+      {
+        "player": "Karl Darlow",
+        "position": "GK",
+        "goals_np": 0,
+        "npxg": 0.0,
+        "shots": 0,
+        "phi_raw": null,
+        "phi_mean": 0.0,
+        "phi_sd": 0.05,
+        "npxg_share": 0.0
+      },
+      {
+        "player": "Tom Heaton",
+        "position": "GK",
+        "goals_np": 0,
+        "npxg": 0.06,
+        "shots": 1,
+        "phi_raw": -1.0,
+        "phi_mean": -0.0002,
+        "phi_sd": 0.05,
+        "npxg_share": 0.0
+      },
+      {
+        "player": "Tynan Thompson",
+        "position": "FW",
+        "goals_np": 0,
+        "npxg": 0.0,
+        "shots": 0,
+        "phi_raw": null,
+        "phi_mean": 0.0,
+        "phi_sd": 0.05,
+        "npxg_share": 0.0
+      },
+      {
+        "player": "Tyler Fletcher",
+        "position": "MF",
+        "goals_np": 0,
+        "npxg": 0.0,
+        "shots": 0,
+        "phi_raw": null,
+        "phi_mean": 0.0,
+        "phi_sd": 0.05,
+        "npxg_share": 0.0
+      },
+      {
+        "player": "Harry Amass",
+        "position": "DF",
+        "goals_np": 0,
+        "npxg": 0.09,
+        "shots": 3,
+        "phi_raw": -1.0,
+        "phi_mean": -0.0003,
+        "phi_sd": 0.05,
+        "npxg_share": 0.0
+      },
+      {
+        "player": "Dermot Mee",
+        "position": "GK",
+        "goals_np": 0,
+        "npxg": 0.0,
+        "shots": 0,
+        "phi_raw": null,
+        "phi_mean": 0.0,
+        "phi_sd": 0.05,
+        "npxg_share": 0.0
+      },
+      {
+        "player": "Jaydan Kamason",
+        "position": "DF",
+        "goals_np": 0,
+        "npxg": 0.0,
+        "shots": 0,
+        "phi_raw": null,
+        "phi_mean": 0.0,
+        "phi_sd": 0.05,
+        "npxg_share": 0.0
+      },
+      {
+        "player": "Dan Armer",
+        "position": "DF",
+        "goals_np": 0,
+        "npxg": 0.0,
+        "shots": 0,
+        "phi_raw": null,
+        "phi_mean": 0.0,
+        "phi_sd": 0.05,
+        "npxg_share": 0.0
+      }
+    ]
+  },
+  "profile": [
+    {
+      "source": "understat",
+      "season": "2025-26",
+      "publishable": true,
+      "matches": 28,
+      "first": "2025-08-17",
+      "last": "2026-04-13",
+      "metrics": [
+        {
+          "metric": "npxg_for_pm",
+          "label": "npxG for per match",
+          "game_state": "all",
+          "value": 1.800464984235705,
+          "lo": 1.5583790372244526,
+          "hi": 2.0466196462581268,
+          "percentile": 84.21052631578948,
+          "rank": 4,
+          "n_teams": 20
+        },
+        {
+          "metric": "npxg_against_pm",
+          "label": "npxG against per match",
+          "game_state": "all",
+          "value": 1.3328409039204148,
+          "lo": 1.0931087541050126,
+          "hi": 1.5827774234665046,
+          "percentile": 26.31578947368421,
+          "rank": 15,
+          "n_teams": 20
+        },
+        {
+          "metric": "shots_for_pm",
+          "label": "Shots for per match",
+          "game_state": "all",
+          "value": 16.11181737696931,
+          "lo": 14.341579255560712,
+          "hi": 17.99866835544056,
+          "percentile": 100.0,
+          "rank": 1,
+          "n_teams": 20
+        },
+        {
+          "metric": "shots_against_pm",
+          "label": "Shots against per match",
+          "game_state": "all",
+          "value": 11.258926301663356,
+          "lo": 10.054032447294249,
+          "hi": 12.49432680410354,
+          "percentile": 26.31578947368421,
+          "rank": 15,
+          "n_teams": 20
+        },
+        {
+          "metric": "setpiece_share_for",
+          "label": "Set-piece share of npxG for",
+          "game_state": "all",
+          "value": 0.18784175358562819,
+          "lo": 0.1455099215327168,
+          "hi": 0.23053789568682248,
+          "percentile": 10.526315789473685,
+          "rank": 18,
+          "n_teams": 20
+        },
+        {
+          "metric": "setpiece_share_against",
+          "label": "Set-piece share of npxG against",
+          "game_state": "all",
+          "value": 0.25710168768193487,
+          "lo": 0.17605313271043932,
+          "hi": 0.3490929262117957,
+          "percentile": 63.1578947368421,
+          "rank": 8,
+          "n_teams": 20
+        },
+        {
+          "metric": "npxg_per_shot_for_close",
+          "label": "npxG per shot for",
+          "game_state": "level or one goal",
+          "value": 0.10630739399853373,
+          "lo": 0.09322648664948716,
+          "hi": 0.12027670391043542,
+          "percentile": 26.31578947368421,
+          "rank": 15,
+          "n_teams": 20
+        },
+        {
+          "metric": "npxg_per_shot_against_close",
+          "label": "npxG per shot against",
+          "game_state": "level or one goal",
+          "value": 0.11848463242582385,
+          "lo": 0.10323213274232076,
+          "hi": 0.13487139947470034,
+          "percentile": 57.89473684210526,
+          "rank": 9,
+          "n_teams": 20
+        },
+        {
+          "metric": "ppda",
+          "label": "PPDA (own pressing; lower = more pressing)",
+          "game_state": "all",
+          "value": 10.638667913843017,
+          "lo": 9.447830331941272,
+          "hi": 11.88868088995738,
+          "percentile": 21.05263157894737,
+          "rank": 16,
+          "n_teams": 20
+        },
+        {
+          "metric": "deep_for_pm",
+          "label": "Deep completions for per match",
+          "game_state": "all",
+          "value": 7.633832105015454,
+          "lo": 6.1110781789025035,
+          "hi": 9.128563139303711,
+          "percentile": 78.94736842105263,
+          "rank": 5,
+          "n_teams": 20
+        },
+        {
+          "metric": "deep_against_pm",
+          "label": "Deep completions against per match",
+          "game_state": "all",
+          "value": 6.756145923406467,
+          "lo": 5.652583291610034,
+          "hi": 7.797767371343516,
+          "percentile": 31.57894736842105,
+          "rank": 14,
+          "n_teams": 20
+        }
+      ]
+    }
+  ],
+  "withheld": [
+    "fotmob 2026-27: local-only FotMob data, not published",
+    "understat+fotmob 2025-26 and 2026-27: local-only FotMob data, not published"
+  ]
+}

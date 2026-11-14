@@ -12,5 +12,6 @@ URL, download time and SHA-256 of every raw file.
 | FotMob (hand-collected notes) | United 2026-27 match stats | 10 league matches | Not for republication. | United's 2026-27 npxG, local only. |
 | [ClubElo](http://clubelo.com) | League-average Elo at season start | Pending | No terms found. API returned HTTP 502 on 2026-11-13. | League bridge prior only (never team-level Elo). |
 | Wikipedia season articles (CC BY-SA 4.0) | 2026-27 head coaches and changes | To 2026-11-08 | CC BY-SA 4.0 | `data/managers_2026_27.csv`, one URL per row. Not yet verified by hand. |
+| Wikipedia, 2026-27 Manchester United season (CC BY-SA 4.0) | United first-team squad as of 2026-11-08 | 33 players | CC BY-SA 4.0 | `data/united_squad_2026_27.csv` (finishing, prompt 4), Understat ids matched by name. Not yet verified by hand. |
 
 Not used: FBref (Opta advanced data removed in January 2026).

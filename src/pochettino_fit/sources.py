@@ -34,6 +34,22 @@ def load_understat_shots(raw: Path) -> pd.DataFrame:
     return out.reset_index(drop=True)
 
 
+def load_understat_player_shots(raw: Path) -> pd.DataFrame:
+    """Non-penalty, non-own-goal shots with shooter id, shooter's team and season."""
+    s = pd.read_parquet(raw / "understat_archive" / "understat_shots.parquet")
+    s = s[s.league_code.isin(BIG5)].drop_duplicates("id")
+    s = s[(s.situation != "Penalty") & (s.result != "OwnGoal")]
+    return pd.DataFrame({
+        "player_id": s.player_id.astype(int),
+        "player": s.player,
+        "team": s.h_team.where(s.h_a == "h", s.a_team),
+        "understat_id": s.match_id.astype(int),
+        "season": s.season.astype(int).map(season_label),
+        "npxg": pd.to_numeric(s.x_g),
+        "goal": (s.result == "Goal").astype(int),
+    }).reset_index(drop=True)
+
+
 def load_understat_matches(raw: Path) -> pd.DataFrame:
     m = pd.read_parquet(raw / "understat_archive" / "understat_metadata.parquet")
     m = m[m.league_code.isin(BIG5)].drop_duplicates("understat_id")

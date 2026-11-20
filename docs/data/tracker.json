@@ -16,5 +16,6 @@
     "sigma": 0.9843877308025807,
     "method": "normal update between refits (methods section 7)"
   },
-  "note": "Actual npxG and chance-quality values come from FotMob and are kept local (not for republication); this file holds results and our own model outputs only."
+  "publication": "derived_only",
+  "note": "FotMob xG and chance-quality values are kept local (not for republication). This file holds results, the frozen bands and our own model outputs only."
 }

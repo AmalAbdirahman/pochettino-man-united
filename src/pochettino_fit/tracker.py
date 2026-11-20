@@ -5,7 +5,9 @@ python -m pochettino_fit.tracker
 Reads the ORIGINAL frozen forecast (the earliest file in docs/forecasts/, never written to) and the local
 FotMob notes for United. Every gameweek after the freeze is matched to its frozen fixture by opponent and
 venue. Writes data/processed/tracker_local.json (everything) and docs/data/tracker.json (publishable
-fields only: FotMob-derived values stay local unless tracker.publish_fotmob_values is true).
+fields only: FotMob values always stay local). tracker.publication picks what else is public:
+derived_only (results, frozen bands and our model outputs) or results_only (results and frozen bands;
+nothing computed from FotMob xG). See docs/tracker_plan.md.
 
 His effect is updated with a normal update between full refits (methods 7): each match gives one noisy
 observation of his effect, actual npxG difference minus the frozen baseline-run expectation, with the
@@ -25,6 +27,14 @@ from pochettino_fit.config import ROOT, load_config
 from pochettino_fit.features import name_key
 
 FOTMOB_FIELDS = ("actual_npxg_diff", "observed_effect", "chance_quality_conceded")
+# our model outputs that are computed from FotMob xG (published under derived_only, dropped under results_only)
+MODEL_FIELDS = ("effect", "inside_interval", "inside_interval_share")
+MODES = ("derived_only", "results_only")
+NOTES = {
+    "derived_only": "FotMob xG and chance-quality values are kept local (not for republication). "
+                    "This file holds results, the frozen bands and our own model outputs only.",
+    "results_only": "Results and the frozen bands only. Nothing computed from FotMob xG is published.",
+}
 STRIP = ("afc", "fc", "&", "and", "hove", "albion")
 
 
@@ -132,13 +142,14 @@ def track(frozen: dict[str, Any], fm: pd.DataFrame, levels: list[float]) -> dict
     return out
 
 
-def publishable(out: dict[str, Any], publish_fotmob: bool) -> dict[str, Any]:
-    if publish_fotmob:
-        return out
-    pub = {k: v for k, v in out.items() if k not in FOTMOB_FIELDS}
-    pub["matches"] = [{k: v for k, v in r.items() if k not in FOTMOB_FIELDS} for r in out["matches"]]
-    pub["note"] = ("Actual npxG and chance-quality values come from FotMob and are kept local "
-                   "(not for republication); this file holds results and our own model outputs only.")
+def publishable(out: dict[str, Any], mode: str) -> dict[str, Any]:
+    """The public tracker file. FotMob values are dropped in every mode; there is no mode that keeps them."""
+    if mode not in MODES:
+        raise ValueError(f"tracker.publication must be one of {MODES}, not {mode!r}")
+    drop = FOTMOB_FIELDS + (MODEL_FIELDS if mode == "results_only" else ())
+    pub = {k: v for k, v in out.items() if k not in drop}
+    pub["matches"] = [{k: v for k, v in r.items() if k not in drop} for r in out["matches"]]
+    pub["publication"], pub["note"] = mode, NOTES[mode]
     return pub
 
 
@@ -150,7 +161,7 @@ def main() -> None:
     out = {"frozen_forecast": path.name, "frozen_on": frozen["frozen_on"],
            **track(frozen, fm, cfg["forecast"]["interval_levels"])}
     guarded_write(ROOT / cfg["paths"]["processed"] / "tracker_local.json", out, fdir)
-    pub = publishable(out, cfg["tracker"]["publish_fotmob_values"])
+    pub = publishable(out, cfg["tracker"]["publication"])
     guarded_write(ROOT / cfg["paths"]["docs_data"] / "tracker.json", pub, fdir)
     e = out["effect"]
     print(f"{len(out['matches'])} matches since the freeze; effect {e['mean']:+.3f} "

@@ -198,7 +198,7 @@ style:
 
 # Tracker (prompt 7)
 tracker:
-  publish_fotmob_values: false     # true would put FotMob-derived npxG and chance quality in docs/data
+  publication: derived_only        # or results_only. FotMob values are never published in either mode (docs/tracker_plan.md)
 
 paths:
   raw: data/raw

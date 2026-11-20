@@ -85,11 +85,16 @@ def test_effect_update_matches_conjugate_formula() -> None:
 def test_publishable_drops_fotmob_values() -> None:
     rows = BEFORE + [(3, "Liverpool", "away", 1, 1, 1, 0.9, 1.4, 10, 1)]
     out = T.track(frozen(), notes(rows), [0.8])
-    pub = T.publishable(out, publish_fotmob=False)
-    text = json.dumps(pub)
-    assert "actual_npxg_diff" not in text and "chance_quality" not in text and "observed_effect" not in text
-    assert pub["matches"][0]["points"] == 1 and "effect" in pub
-    assert T.publishable(out, publish_fotmob=True) is out
+    for mode in T.MODES:
+        text = json.dumps(T.publishable(out, mode))
+        assert "actual_npxg_diff" not in text and "chance_quality" not in text and "observed_effect" not in text
+    pub = T.publishable(out, "derived_only")
+    assert pub["matches"][0]["points"] == 1 and "effect" in pub and "inside_interval" in pub["matches"][0]
+    strict = T.publishable(out, "results_only")
+    assert strict["matches"][0]["points"] == 1 and "cumulative_points" in strict
+    assert not any(f in json.dumps(strict) for f in T.MODEL_FIELDS)
+    with pytest.raises(ValueError):
+        T.publishable(out, "everything")
 
 
 def test_tracker_refuses_to_write_into_forecasts(tmp_path: Path) -> None:

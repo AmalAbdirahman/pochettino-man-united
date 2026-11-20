@@ -244,7 +244,7 @@ The frozen forecast is never edited.
 - Cumulative points are compared with the sum of the frozen per-fixture points draws (1,000 draws stored per fixture, shared across fixtures so their correlation is kept); PIT is reported with the mid-point rule for ties.
 - His effect: normal update between refits. Each match gives one observation, actual npxG difference minus the frozen baseline-run expectation, with variance σ² at full weight. The FotMob notes have no red-card minutes, so there is no 11 v 11 truncation here (a full refit uses the match table and does truncate).
 - Chance quality conceded (npxG per shot against, big chances against, npxG against per match) is compared with United's 2026-27 matches before the appointment.
-- FotMob-derived values (actual npxG, the per-match effect observation, chance quality) stay in `data/processed/tracker_local.json`; `docs/data/tracker.json` holds results and our own model outputs only, unless `tracker.publish_fotmob_values` is set.
+- FotMob-derived values (actual npxG, the per-match effect observation, chance quality) stay in `data/processed/tracker_local.json`; `docs/data/tracker.json` holds results and our own model outputs only, in every mode. `tracker.publication: results_only` also drops our outputs computed from FotMob xG (see docs/tracker_plan.md).
 
 ---
 

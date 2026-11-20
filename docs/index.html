@@ -570,11 +570,11 @@ function drawCumulative(tr, box) {
 
 function trackerSection(tr, fc) {
   const body = $("tracker-body"); body.replaceChildren();
-  const e = tr.effect;
+  const e = tr.effect || null;
   $("tracker-seal").textContent = "vs " + seal(fc);
   if (!tr.matches.length) {
     body.append(el("div", `No league matches since the freeze yet. The first is on ${dateText(fc.first_league_match)}. The tracker updates after every league match.`, "empty"));
-    ledger(body, [
+    if (e) ledger(body, [
       ["His effect, before any match at United", sgn(e.mean), `npxG difference per 90, 80% ${range(e["80"], 2, true)}`],
       ["Chance his effect is positive", pct(e.p_positive), "from his record before United"]]);
     return;
@@ -582,10 +582,11 @@ function trackerSection(tr, fc) {
   const c = tr.cumulative_points, t = el("div", undefined, "lead"); body.append(t);
   leadFig(t, "Points since the freeze", String(c.actual),
     `frozen 80% band ${range(c["80"], 0)} · ${c.inside_80 ? "inside the band" : "outside the band, a miss"}`);
-  ledger(t, [
+  if (e) ledger(t, [
     ["Matches inside their npxG interval", pct(tr.inside_interval_share), `${pct(tr.matches[0].interval)} intervals, so expect about ${pct(tr.matches[0].interval)}`],
     ["His effect, updated", sgn(e.mean), `80% ${range(e["80"], 2, true)}, before United ${sgn(e.prior_mean)}`],
     ["Chance his effect is positive", pct(e.p_positive), "after the matches so far"]]);
+  else ledger(t, [["Expected points so far (frozen)", fmt(tr.matches.reduce((a, m) => a + m.expected_points, 0), 1), "sum over the matches played"]]);
   const card = el("div", undefined, "card"); body.append(card);
   const lg = el("div", undefined, "legend"); card.append(lg);
   legend(lg, [["Actual points", css("--accent"), "line"], ["Frozen median", css("--muted"), "line"], ["Frozen 50% band", css("--neutral-band"), "rect"], ["Frozen 80% band", css("--neutral-band-2"), "rect"]]);
@@ -594,7 +595,8 @@ function trackerSection(tr, fc) {
   const tw = el("div", undefined, "table-wrap"), tbl = el("table"); tw.append(tbl); card.append(tw);
   table(tbl, ["#", "Opponent", "Score", "Points", "Expected points", "Frozen npxG expectation", "npxG check"],
     tr.matches.map((m, i) => [String(i + 1), `${m.opponent} (${m.venue})`, `${m.goals_for}–${m.goals_against}`, String(m.points),
-      fmt(m.expected_points, 2), sgn(m.forecast_npxg_diff_mean), m.inside_interval ? "Inside interval" : "Miss, outside interval"]), [0, 3, 4, 5]);
+      fmt(m.expected_points, 2), sgn(m.forecast_npxg_diff_mean),
+      m.inside_interval === undefined ? "not published" : m.inside_interval ? "Inside interval" : "Miss, outside interval"]), [0, 3, 4, 5]);
   if (tr.note) body.append(el("p", tr.note, "note"));
 }
 

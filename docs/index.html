@@ -49,6 +49,9 @@ section { padding: 56px 0 8px; }
 h2 { font-size: 1.75rem; line-height: 1.2; margin: 0 0 8px; font-weight: 500; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
 h3 { font-size: 1.0625rem; margin: 40px 0 8px; font-weight: 500; }
 .sub { color: var(--text-2); margin: 0 0 20px; max-width: 40rem; }
+.headline { list-style: none; padding: 0; margin: 12px 0 16px; max-width: 44rem; display: grid; gap: 12px; }
+.headline li { padding-left: 16px; border-left: 2px solid var(--hair); font-size: 1.0625rem; line-height: 1.55; }
+.headline li:first-child { border-left-color: var(--accent); }
 .note { color: var(--muted); font-size: 0.875rem; max-width: 40rem; margin: 0 0 12px; }
 .card { background: var(--surface); border: 1px solid var(--hair); border-radius: 12px; padding: 20px; margin: 12px 0; }
 .num, .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
@@ -123,6 +126,12 @@ footer { border-top: 1px solid var(--hair); margin-top: 56px; padding: 24px 0 48
     <code>python -m http.server 8000 --directory docs</code>, then open <code>http://localhost:8000</code>.</div>
 
   <main>
+    <section id="summary" aria-labelledby="summary-h">
+      <h2 id="summary-h">In short</h2>
+      <ul class="headline" id="headline"></ul>
+      <p class="note">Generated from the frozen forecast (docs/forecasts/2026-11-20.json) and the style fit (docs/data/fit.json).</p>
+    </section>
+
     <section id="fit" aria-labelledby="fit-h">
       <h2 id="fit-h">1. The fit</h2>
       <p class="sub" id="fit-lede"></p>
@@ -617,8 +626,28 @@ function methodSection(bt, fit, fc, manifest) {
 // ---------- load ----------
 async function getJSON(p) { const r = await fetch(p, { cache: "no-cache" }); if (!r.ok) throw new Error(p + " " + r.status); return r.json(); }
 let DATA = null;
+// Headline: every figure comes from the JSON files; the wording follows the numbers.
+function headline(fc, fit) {
+  const c = fc.contribution.points, p = fc.pochettino, d = fc.detectability;
+  const zero = c["80"][0] <= 0 && c["80"][1] >= 0;
+  const lv = fit.interval;
+  const clear = Object.values(fit.metrics)
+    .filter((m) => m.delta_sd_units.interval[0] > 0 || m.delta_sd_units.interval[1] < 0)
+    .sort((a, b) => Math.abs(b.delta_sd_units.mean) - Math.abs(a.delta_sd_units.mean));
+  const lines = [
+    `Compared with an average new coach, Pochettino adds an estimated ${sgn(c.mean, 1)} points over the rest of the season (80% range ${range(c["80"], 0, true)})${zero ? ", which cannot be told apart from zero" : ""}.`,
+    `The frozen forecast has United finishing on ${fmt(p.final_points.median, 0)} points (80% range ${range(p.final_points["80"], 0)}), with a median position of ${fmt(p.median_position, 0)}th.`,
+    clear.length
+      ? `The clearest style change the model predicts is ${clear[0].label}: from ${fmt(clear[0].united_now.mean, 1)} now to ${fmt(clear[0].united_under_pochettino.mean, 1)} under him${clear.length > 1 ? `, the largest of ${clear.length} changes` : ", the only change"} whose ${pct(lv)} interval excludes zero.`
+      : `No predicted style change has a ${pct(lv)} interval that excludes zero.`,
+    `Telling an effect of 0.10 npxG per 90 apart from zero would take about ${Math.round(d.matches_needed["0.10"]).toLocaleString("en-GB")} matches; the rest of this season is ${fc.united_now.remaining}.`,
+  ];
+  $("headline").replaceChildren(...lines.map((t) => el("li", t)));
+}
+
 function render() {
   const { fit, summary, fc, tr, bt, manifest, spread } = DATA;
+  headline(fc, fit);
   fitSection(fit, summary);
   forecastSection(fc, manifest.original_forecast);
   paradoxNote(fc, spread);

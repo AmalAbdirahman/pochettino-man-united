@@ -11,6 +11,20 @@ in this order, using public data and a statistical model (not AI):
 
 The page reads every number from the JSON files in `docs/`. Nothing on it is typed by hand.
 
+## In short
+
+Static copy of the page's generated summary (2026-11-20). Sources: the frozen forecast
+`docs/forecasts/2026-11-20.json` (points, position, detectability) and the style fit `docs/data/fit.json`
+(style change). The page builds these sentences from those files; if they ever disagree, the files win.
+
+- Compared with an average new coach, Pochettino adds an estimated +0.6 points over the rest of the season
+  (80% range −5 to +6), which cannot be told apart from zero.
+- The frozen forecast has United finishing on 50 points (80% range 39 to 61), with a median position of 11th.
+- The clearest style change the model predicts is PPDA (lower = more pressing): from 11.6 now to 9.0 under
+  him, the largest of 2 changes whose 80% interval excludes zero.
+- Telling an effect of 0.10 npxG per 90 apart from zero would take about 760 matches; the rest of this season
+  is 28.
+
 Inspired by the way Liverpool's research team judged managers on underlying performance relative to
 resources, not results or reputation (Ian Graham, *How to Win the Premier League*).
 

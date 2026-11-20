@@ -48,11 +48,11 @@ y_k = h_{l,s} + (S_{H,k} − S_{A,k}) + (θ_{m(H),b} − θ_{m(A),b}) + (δ_{τ(
 
 S_{c,k} = λ_{l,s} + κ_c + b_V · log V_{c,s−1}
 
-- **λ_{l,s}: league-season offset.** Within a league, teams only play each other, so the data cannot say how strong one league is compared with another. The bridge is a prior: λ_{l,s} ~ N(α · Ē_{l,s}, σ_λ²), where Ē_{l,s} is that league's average ClubElo at season start. A league average is not driven by any single manager, so it does not have the feedback problem of team-level Elo (below).
+- **λ_{l,s}: league-season offset.** Both teams in a league match share it, so it cancels exactly in the outcome y (a within-league xG difference) and **is not estimated**. No league bridge is used: no ClubElo or other league rating enters the model (the ClubElo download failed and the column is empty). What remains league-specific is home advantage h(l, s).
 - **κ_c: club effect.** Structure, recruitment, facilities. Optional extension: let κ drift slowly, with the same process as the manager effect, since clubs change (United's structure since 2024).
 - **log V_{c,s−1}: pre-season squad value** from the previous summer. Lagged, so a manager's own success raising player values does not leak in. The log reflects diminishing returns.
 
-**Why not team-level Elo any more.** ClubElo is a smoothed record of results.
+**Why not team-level Elo.** ClubElo is a smoothed record of results.
 1. It already contains the club effect, so subtracting it leaves κ_c measuring only the gap between a club's xG and its results.
 2. It catches up with a good manager during his spell, so his residuals shrink in years two and three even if performance stays the same. The tenure "fade" would then be fake.
 Estimating strength inside one model avoids both.
@@ -60,11 +60,11 @@ Estimating strength inside one model avoids both.
 ### 1b. Identification
 
 - Manager vs club: identified because managers move between clubs (the data form connected networks of managers and clubs). A manager who only ever coached one club is identified only through priors.
-- Level constraints: κ_c sums to zero within each league; λ carries the league level.
-- League vs league: identified only through the Elo-anchored prior on λ. State this on the page.
+- Level constraints: κ_c sums to zero within each league.
+- League vs league: not needed for y, because y never compares teams from different leagues. Comparing **managers** across leagues rests on one assumption: a manager's effect, measured as xG difference per 90 against the clubs in his league, means the same in every league. Managers who moved between leagues (Pochettino: Premier League to Ligue 1 and back) connect the leagues' manager effects through the shared pooling prior, not through a league rating.
 
 **Weak points**
-- The league bridge is the weakest link. If the league-average Elo is off, every cross-league comparison shifts, including Pochettino's PSG spell against his Premier League spells. Test: refit with α fixed at plus and minus one standard error and report how much his estimate moves.
+- The cross-league assumption is the weakest link. An effect of +0.2 xG difference per 90 against Ligue 1 opponents may not be worth +0.2 against Premier League opponents (PSG faced weaker opposition on average, which compresses or stretches the room for a manager to add xG difference). The model cannot test this; the leave-one-spell-out refits (section 8) show how much his estimate depends on each spell, including PSG.
 - Squad value is a market estimate, not a wage bill.
 - The model is additive and linear in xG difference. Very lopsided matches may not fit.
 
@@ -176,6 +176,8 @@ log E[npxG_{i vs j}] = μ + h·home + a_i − d_j + θ^a_{m(i)} − θ^d_{m(j)} 
 
 The log link keeps rates positive (an additive model can predict negative xG for a weak attack against a strong defence).
 
+**xG providers in the strength window.** The strength window combines Understat xG (all league matches to 18 April 2026) with FotMob-based xG (2026-27). The two providers never cover the same season here, so no calibration between them was possible. A shared shift between providers (one rating every chance a little higher) largely cancels in an xG difference and in attack against defence; a difference in spread (one provider separating good and poor chances more sharply) does not cancel, and would make 2026-27 strengths look more or less extreme than earlier ones. Recorded after the freeze in docs/deviations.md; the frozen forecast is unchanged.
+
 ### 5b. Replacing the outgoing manager
 
 United's current attack and defence estimates were formed under Carrick, so they contain his effect and his tenure stage. Strip them out first:
@@ -254,17 +256,17 @@ The frozen forecast is never edited.
    - PIT histogram (flat = calibrated).
    - Log score and CRPS against simpler models: no manager effect; no time drift; no luck term.
 3. **Ablation:** keep a component only if it improves the back-test.
-4. **Sensitivity:** league bridge (α ± 1 se), with and without the USA spell, half-season vs season blocks.
+4. **Sensitivity (as run):** refits without the USA spell and without each club spell in turn (Spurs, PSG, Chelsea), reported in docs/data/model_summary.json and on the page. There is no league-bridge sensitivity because no league bridge is estimated (section 1a). Half-season against season blocks: **not run**.
 
 ---
 
 ## 9. Biggest remaining risks
 
-1. The league bridge: cross-league comparisons rest on the Elo-anchored prior.
+1. Cross-league comparisons of managers rest on the assumption that an effect in xG difference means the same in every league (section 1b); no league rating anchors it.
 2. Little information: three club spells plus the USA; most of his forecast effect comes from the prior and older spells.
 3. Constant club effect, unless the drifting version is used.
 4. Style fit is untested until the back-test says otherwise.
-5. Mixing xG providers without calibration.
+5. Mixing xG providers without calibration: Understat to 18 April 2026, FotMob-based xG for 2026-27, no overlapping season (section 5a).
 
 ---
 

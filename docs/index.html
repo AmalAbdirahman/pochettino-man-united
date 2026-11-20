@@ -200,7 +200,8 @@ footer { border-top: 1px solid var(--hair); margin-top: 56px; padding: 24px 0 48
       <h3>Limits</h3>
       <ul class="plain" id="limits">
         <li>Public data only, league matches only. No cups or European games.</li>
-        <li>xG models differ by source; this uses Understat up to April 2026 and FotMob-based figures for 2026-27.</li>
+        <li>xG providers are mixed without calibration: the strength window combines Understat xG (to 18 April 2026) with FotMob-based xG for 2026-27, and no season is covered by both. A shared shift between them largely cancels in xG differences; a difference in spread does not.</li>
+        <li>Comparing managers across leagues assumes an effect in xG difference means the same in every league. No league rating is used.</li>
         <li>The model cannot see staff, injuries, the dressing room or January transfers.</li>
       </ul>
 
@@ -211,7 +212,6 @@ footer { border-top: 1px solid var(--hair); margin-top: 56px; padding: 24px 0 48
         <li>football-data.co.uk: results, shots and corners.</li>
         <li>FotMob: United's 2026-27 match statistics, used locally only. Never republished; this page shows only model outputs derived from them.</li>
         <li>Wikipedia (CC BY-SA 4.0): 2026-27 head coaches and United's squad.</li>
-        <li>ClubElo: league-average ratings, as a bridge between leagues.</li>
       </ul>
       <p class="note">Independent analysis. Not affiliated with any club, league or data provider.</p>
     </section>

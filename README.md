@@ -60,15 +60,18 @@ repository. The tracker needs them, so a fresh clone can run everything except t
 ## Data and terms
 
 See [docs/data_sources.md](docs/data_sources.md). In short: Understat (via an archive to April 2026),
-transfermarkt-datasets (CC0), football-data.co.uk, ClubElo, Wikipedia (CC BY-SA 4.0) and FotMob. Raw
-data stays in `data/raw/` and is never committed. FotMob data is never republished. The page shows only
+transfermarkt-datasets (CC0), football-data.co.uk, Wikipedia (CC BY-SA 4.0) and FotMob. Raw
+data stays in `data/raw/` and is never committed. ClubElo is listed in the sources table but **not used**:
+no league rating enters the model. FotMob data is never republished. The page shows only
 results and our own model outputs derived from it. All club and player names refer to real public match
 data, and there are no photos, crests, logos or broadcaster branding.
 
 ## Limits
 
 - Public data only, league matches only.
-- xG models differ by source.
+- xG providers are mixed without calibration: Understat to 18 April 2026, FotMob-based xG for 2026-27,
+  no overlapping season (see [docs/deviations.md](docs/deviations.md)).
+- Comparing managers across leagues assumes an effect in xG difference means the same in every league.
 - The model cannot see staff, injuries, the dressing room or January transfers.
 - The style metrics have no possession, field tilt or big chances.
 - Whether style fit predicts results has not been back-tested, so the fit section is descriptive only.

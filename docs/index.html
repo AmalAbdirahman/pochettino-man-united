@@ -622,7 +622,7 @@ function methodSection(bt, fit, fc, manifest) {
   const ul = $("limits");
   ul.querySelectorAll("li.gen").forEach((li) => li.remove());
   for (const s of [...fit.limits, fc.squad_freeze]) ul.append(el("li", s, "gen"));
-  $("footer").textContent = `Built from commit ${manifest.built_from_commit}. Original forecast: ${manifest.original_forecast}${manifest.revisions.length ? "; dated revisions: " + manifest.revisions.join(", ") : "; no revisions"}.`;
+  $("footer").textContent = `Data built from commit ${manifest.built_from_commit}${manifest.uncommitted_changes ? " plus uncommitted changes" : ""}. Original forecast: ${manifest.original_forecast}${manifest.revisions.length ? "; dated revisions: " + manifest.revisions.join(", ") : "; no revisions"}.`;
 }
 
 // ---------- load ----------

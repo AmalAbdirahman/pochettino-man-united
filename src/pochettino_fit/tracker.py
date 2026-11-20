@@ -24,6 +24,7 @@ from scipy.stats import norm
 
 from pochettino_fit import sources as S
 from pochettino_fit.config import ROOT, load_config
+from pochettino_fit.export import refresh_manifest
 from pochettino_fit.features import name_key
 
 FOTMOB_FIELDS = ("actual_npxg_diff", "observed_effect", "chance_quality_conceded")
@@ -169,6 +170,7 @@ def main() -> None:
     if "cumulative_points" in out:
         c = out["cumulative_points"]
         print(f"points {c['actual']} vs frozen 80% band {c['80']} (PIT {c['pit']:.2f})")
+    refresh_manifest(cfg)
 
 
 if __name__ == "__main__":

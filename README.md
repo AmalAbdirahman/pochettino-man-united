@@ -62,8 +62,9 @@ python -m pochettino_fit.profile          # United profile and finishing skill
 python -m pochettino_fit.style --fit      # style fit -> docs/data/fit.json
 python -m pochettino_fit.backtest         # back-test -> docs/data/backtest.json
 python -m pochettino_fit.forecast         # preview only; --freeze refuses to overwrite or to run after the first match
-python -m pochettino_fit.tracker          # after each new match -> docs/data/tracker.json
-python -m pochettino_fit.export           # docs/data/manifest.json for the page
+python -m pochettino_fit.spread           # re-runs the frozen forecast in memory -> docs/data/forecast_spread.json
+python -m pochettino_fit.tracker          # after each new match -> docs/data/tracker.json (see docs/tracker_plan.md)
+python -m pochettino_fit.export           # manifest only; every step above that writes docs/data refreshes it
 pytest -q
 python -m http.server 8000 --directory docs   # then open http://localhost:8000
 ```

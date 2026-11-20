@@ -178,6 +178,8 @@ def main() -> None:
     path.write_text(json.dumps(out, indent=2), encoding="utf-8")
     print_table(out)
     print("written", path)
+    from pochettino_fit.export import refresh_manifest
+    refresh_manifest(cfg)
 
 
 if __name__ == "__main__":

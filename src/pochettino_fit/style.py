@@ -18,6 +18,7 @@ import numpy as np
 import pandas as pd
 
 from pochettino_fit.config import ROOT, load_config
+from pochettino_fit.export import refresh_manifest
 from pochettino_fit.style_model import BY_NAME, METRICS, StyleMetric, prepare, raw_values, sample
 
 
@@ -190,6 +191,7 @@ def main() -> None:
     path.write_text(json.dumps(res, indent=2, ensure_ascii=False), encoding="utf-8")
     print("\n".join(res["plain_english"]))
     print("written", path)
+    refresh_manifest(cfg)
 
 
 if __name__ == "__main__":

@@ -22,3 +22,22 @@ def test_manifest_lists_original_and_revisions(tmp_path: Path) -> None:
     m = manifest(f, d)
     assert m["original_forecast"] == "forecasts/2026-11-20.json"
     assert m["revisions"] == ["forecasts/2026-12-30.json"] and m["data"]["fit"] == "data/fit.json"
+
+
+def test_page_loads_only_listed_data() -> None:
+    """Every manifest.data.<name> the page fetches must be in PAGE_DATA, and the reverse."""
+    import re
+
+    from pochettino_fit.config import ROOT
+
+    html = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
+    used = set(re.findall(r"manifest\.data\.(\w+)", html))
+    assert used == {f.removesuffix(".json") for f in PAGE_DATA}
+
+
+def test_build_steps_refresh_the_manifest() -> None:
+    from pochettino_fit.config import ROOT
+
+    for step in ("style", "summary", "spread", "backtest", "tracker"):
+        src = (ROOT / "src" / "pochettino_fit" / f"{step}.py").read_text(encoding="utf-8")
+        assert "refresh_manifest(" in src, step

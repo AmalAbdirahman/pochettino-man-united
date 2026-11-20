@@ -18,6 +18,7 @@ import pandas as pd
 from pochettino_fit import forecast as F
 from pochettino_fit import season_sim as sim
 from pochettino_fit.config import ROOT, load_config
+from pochettino_fit.export import refresh_manifest
 from pochettino_fit.strength_model import fit_strength, recency
 from pochettino_fit.united_effects import manager_draws
 
@@ -82,6 +83,7 @@ def main() -> None:
     path = ROOT / cfg["paths"]["docs_data"] / "forecast_spread.json"
     Path(path).write_text(json.dumps(res, indent=2), encoding="utf-8")
     print(json.dumps(res, indent=2))
+    refresh_manifest(cfg)
 
 
 if __name__ == "__main__":

@@ -14,6 +14,7 @@ import pandas as pd
 import xarray as xr
 
 from pochettino_fit.config import ROOT
+from pochettino_fit.export import refresh_manifest
 from pochettino_fit.fit import VARIANTS, theta_now
 from pochettino_fit.simulate import block_of
 
@@ -143,6 +144,7 @@ def write_summary(cfg: dict[str, Any]) -> str:
     out = ROOT / "docs" / "data" / "model_summary.json"
     out.write_text(json.dumps(summary, indent=1, default=float), encoding="utf-8")
     update_methods(summary)
+    refresh_manifest(cfg)
     return results_markdown(summary)
 
 

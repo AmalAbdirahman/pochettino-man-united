@@ -138,6 +138,12 @@ def load_football_data(raw: Path, league: str, season_code: str) -> pd.DataFrame
         "away_reds": d.get("AR"),
         "home_xg_fd": d.get("HxG"),
         "away_xg_fd": d.get("AxG"),
+        "home_shots": d.get("HS"),
+        "away_shots": d.get("AS"),
+        "home_sot": d.get("HST"),
+        "away_sot": d.get("AST"),
+        "home_corners": d.get("HC"),
+        "away_corners": d.get("AC"),
     })
     out["season"] = out.date.map(season_of_date)
     return out.reset_index(drop=True)

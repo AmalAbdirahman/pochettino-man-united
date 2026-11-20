@@ -25,8 +25,11 @@ def out_dir(cfg: dict[str, Any]) -> Path:
     return ROOT / cfg["paths"]["processed"] / "style"
 
 
-def load_rows(cfg: dict[str, Any]) -> pd.DataFrame:
-    return pd.read_parquet(ROOT / cfg["paths"]["processed"] / "team_matches.parquet")
+SOURCES = {"understat": "team_matches.parquet", "fd": "fd_team_matches.parquet"}
+
+
+def load_rows(cfg: dict[str, Any]) -> dict[str, pd.DataFrame]:
+    return {k: pd.read_parquet(ROOT / cfg["paths"]["processed"] / f) for k, f in SOURCES.items()}
 
 
 def fit_metric(t: pd.DataFrame, m: StyleMetric, cfg: dict[str, Any], seed: int) -> None:
@@ -50,7 +53,7 @@ def fit_all(cfg: dict[str, Any]) -> None:
     out_dir(cfg).mkdir(parents=True, exist_ok=True)
     t = load_rows(cfg)
     for i, m in enumerate(METRICS):
-        fit_metric(t, m, cfg, cfg["style"]["seed"] + i)
+        fit_metric(t[m.source], m, cfg, cfg["style"]["seed"] + i)
 
 
 # ---------- summary ----------
@@ -87,8 +90,10 @@ def metric_summary(f: Any, m: StyleMetric, lv: float, min_n: int) -> dict[str, A
     return out
 
 
-def correlation(t: pd.DataFrame, names: list[str]) -> np.ndarray:
-    cols = {n: raw_values(t, BY_NAME[n])[0] for n in names}
+def correlation(t: dict[str, pd.DataFrame], names: list[str]) -> np.ndarray:
+    """Pairwise correlation over team-matches, joining the two sources on match and team."""
+    cols = {n: raw_values(t[BY_NAME[n].source], BY_NAME[n])[0].set_axis(
+        pd.MultiIndex.from_frame(t[BY_NAME[n].source][["match_id", "team"]])) for n in names}
     return pd.DataFrame(cols).replace([np.inf, -np.inf], np.nan).corr().to_numpy()
 
 
@@ -110,12 +115,12 @@ def mean_delta(fs: dict[str, Any], names: list[str], out: str, inc: str) -> np.n
     return np.array(v)
 
 
-def distance(fs: dict[str, Any], t: pd.DataFrame, names: list[str], cfg: dict[str, Any],
+def distance(fs: dict[str, Any], t: dict[str, pd.DataFrame], names: list[str], cfg: dict[str, Any],
              lv: float) -> dict[str, Any]:
     rinv = np.linalg.inv(correlation(t, names))
     delta = np.column_stack([fs[n]["theta_keep"][:, 0] - fs[n]["theta_keep"][:, 1] for n in names])
     d2 = np.einsum("ij,jk,ik->i", delta, rinv, delta)
-    ch = real_changes(t)
+    ch = real_changes(t["fd"])
     ds = [mean_delta(fs, names, r.outgoing, r.incoming) for r in ch.itertuples()]
     ref = np.array([d @ rinv @ d for d in ds if d is not None])
     dm = delta.mean(0)
@@ -144,9 +149,10 @@ def plain_english(res: dict[str, Any], cfg: dict[str, Any]) -> list[str]:
     for n in cfg["style"]["weakness"]:
         s = mets[n]
         out.append(f"Weakness check, {s['label']}: P(improves under him) = {s['p_improves']:.2f}.")
-    n_out = res["matches_in_style_data"][fc["outgoing"]]
-    out.append(f"{fc['outgoing']} has only {n_out} matches in the style data, so his effect is shrunk "
-               "towards an average manager and Delta is mostly Pochettino's own effect.")
+    n = {k: v[fc["outgoing"]] for k, v in res["matches_in_style_data"].items()}
+    out.append(f"{fc['outgoing']} has {n['fd']} matches for shots and corners (football-data) but only "
+               f"{n['understat']} for the Understat metrics, so his effect there is shrunk towards an "
+               "average manager and Delta is mostly Pochettino's own effect.")
     return out
 
 
@@ -155,12 +161,14 @@ def summarise(cfg: dict[str, Any]) -> dict[str, Any]:
     lv = sc["interval"]
     fs = {m.name: np.load(out_dir(cfg) / f"{m.name}.npz") for m in METRICS}
     t = load_rows(cfg)
-    counts = t.manager.value_counts()
+    counts = {k: v.manager.value_counts() for k, v in t.items()}
     res: dict[str, Any] = {
         "model": "methods 4a; one partially pooled fit per metric on Understat team-matches", "interval": lv,
         "reference_league_season": sc["reference_league_season"],
-        "matches_in_style_data": {fc["manager"]: int(counts.get(fc["manager"], 0)),
-                                  fc["outgoing"]: int(counts.get(fc["outgoing"], 0))},
+        "matches_in_style_data": {src: {mg: int(c.get(mg, 0)) for mg in (fc["manager"], fc["outgoing"])}
+                                  for src, c in counts.items()},
+        "sources": {"understat": "Understat archive, big five, 2014-15 to 2026-04-18",
+                    "fd": f"football-data.co.uk, big five, 2014-15 to {cfg['features']['data_cutoff']}"},
         "metrics": {m.name: metric_summary(fs[m.name], m, lv, sc["min_matches_percentile"]) for m in METRICS}}
     res["distance"] = distance(fs, t, sc["distance_metrics"], cfg, lv)
     res["weakness_check"] = {n: res["metrics"][n] for n in sc["weakness"]}

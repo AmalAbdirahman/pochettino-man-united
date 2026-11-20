@@ -1,4 +1,4 @@
-"""Style model (methods section 4a), one metric at a time, on Understat team-match rows.
+"""Style model (methods section 4a), one metric at a time, on Understat or football-data team-match rows.
 
 z_k = lambda[league, season] + kappa[club] + theta[manager] + eps,  eps ~ N(0, sigma^2 / w_k)
 
@@ -28,11 +28,14 @@ class StyleMetric:
     den: str | None = None
     log: bool = False
     better: str = ""          # "lower"/"higher" for weakness metrics (from United's point of view)
+    source: str = "understat"  # "understat" (archive to 2026-04-18) or "fd" (football-data, to the cut-off)
 
 
 METRICS = [
-    StyleMetric("shots_for", "Shots for per match", "shots_for"),
-    StyleMetric("shots_against", "Shots against per match", "shots_against", better="lower"),
+    StyleMetric("shots_for", "Shots for per match", "shots_for", source="fd"),
+    StyleMetric("shots_against", "Shots against per match", "shots_against", better="lower", source="fd"),
+    StyleMetric("corners_for", "Corners for per match", "corners_for", source="fd"),
+    StyleMetric("corners_against", "Corners against per match", "corners_against", source="fd"),
     StyleMetric("npxg_per_shot_for", "npxG per shot for (level or one-goal states)", "npxg_close_for",
                 "shots_close_for"),
     StyleMetric("npxg_per_shot_against", "npxG per shot against (level or one-goal states)",

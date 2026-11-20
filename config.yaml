@@ -190,8 +190,9 @@ style:
   seed: 20261121
   sampling: {draws: 1000, tune: 1000, chains: 4, cores: 4, target_accept: 0.9, mode: NUMBA}
   limits:
-    - "Understat team-match data only (archive ends 2026-04-18): no possession, field tilt or big chances,
-       and none of Carrick's 2026-27 matches."
+    - "Shots and corners come from football-data.co.uk up to the data cut-off (Carrick: 29 matches); every other
+       metric comes from the Understat archive, which ends 2026-04-18 (Carrick: 10 matches, none in 2026-27)."
+    - "No possession, field tilt or big chances: neither source has them."
     - "Manager style effects are static (no drift, no tenure term), unlike the outcome model."
     - "Style fit predicting results is a hypothesis that has not been back-tested: description only."
 

@@ -25,7 +25,10 @@ CHECKED = ("united_now", "baseline", "pochettino", "contribution")
 
 
 def rerun(cfg: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any], int]:
-    """Same steps and random-number order as forecast.run; returns the summary, the raw runs and United's index."""
+    """Same steps and random-number order as forecast.run.
+
+    Returns the summary, the raw runs and United's index.
+    """
     fc = cfg["forecast"]
     rng = np.random.default_rng(fc["seed"])
     m, pen_rate, pen_xg = F.league_matches(cfg)

@@ -27,7 +27,7 @@ from pochettino_fit.config import ROOT, load_config
 from pochettino_fit.features import name_key
 
 FOTMOB_FIELDS = ("actual_npxg_diff", "observed_effect", "chance_quality_conceded")
-# our model outputs that are computed from FotMob xG (published under derived_only, dropped under results_only)
+# our model outputs computed from FotMob xG (published under derived_only, dropped under results_only)
 MODEL_FIELDS = ("effect", "inside_interval", "inside_interval_share")
 MODES = ("derived_only", "results_only")
 NOTES = {

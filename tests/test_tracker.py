@@ -87,7 +87,7 @@ def test_publishable_drops_fotmob_values() -> None:
     out = T.track(frozen(), notes(rows), [0.8])
     for mode in T.MODES:
         text = json.dumps(T.publishable(out, mode))
-        assert "actual_npxg_diff" not in text and "chance_quality" not in text and "observed_effect" not in text
+        assert not any(f in text for f in ("actual_npxg_diff", "chance_quality", "observed_effect"))
     pub = T.publishable(out, "derived_only")
     assert pub["matches"][0]["points"] == 1 and "effect" in pub and "inside_interval" in pub["matches"][0]
     strict = T.publishable(out, "results_only")

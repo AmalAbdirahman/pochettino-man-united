@@ -223,6 +223,16 @@ After each United league match: add it, refit (or approximate with a normal upda
 
 The frozen forecast is never edited.
 
+### 7a. Implementation notes (version 2.3, prompt 7)
+
+- The tracker reads the earliest file in `docs/forecasts/` (the original) and refuses to write anywhere in that folder.
+- New matches come from the local FotMob notes; each gameweek after the freeze is matched to its frozen fixture by opponent and venue.
+- The frozen per-fixture npxG interval covers the expected value only. Actual matches are checked against a predictive interval at the same level: sd = √(sd_expected² + σ²), normal approximation.
+- Cumulative points are compared with the sum of the frozen per-fixture points draws (1,000 draws stored per fixture, shared across fixtures so their correlation is kept); PIT is reported with the mid-point rule for ties.
+- His effect: normal update between refits. Each match gives one observation, actual npxG difference minus the frozen baseline-run expectation, with variance σ² at full weight. The FotMob notes have no red-card minutes, so there is no 11 v 11 truncation here (a full refit uses the match table and does truncate).
+- Chance quality conceded (npxG per shot against, big chances against, npxG against per match) is compared with United's 2026-27 matches before the appointment.
+- FotMob-derived values (actual npxG, the per-match effect observation, chance quality) stay in `data/processed/tracker_local.json`; `docs/data/tracker.json` holds results and our own model outputs only, unless `tracker.publish_fotmob_values` is set.
+
 ---
 
 ## 8. Validation

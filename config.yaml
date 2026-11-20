@@ -147,6 +147,7 @@ forecast:
   draws: 4000                        # = all posterior draws of the manager model
   seed: 20261122
   interval_levels: [0.5, 0.8]
+  fixture_draws_kept: 1000            # per-fixture United points draws stored for the tracker
   shock: false                       # chosen by the back-test (best mean log score, all leagues)
   calibrate: false
   model_choice: >-
@@ -177,6 +178,10 @@ backtest:
   half_life_days: 180
   draws: 2000
   seed: 20261115
+
+# Tracker (prompt 7)
+tracker:
+  publish_fotmob_values: false     # true would put FotMob-derived npxG and chance quality in docs/data
 
 paths:
   raw: data/raw

@@ -102,7 +102,7 @@ def simulate_run(st: Strength, par: dict[str, np.ndarray], eff: np.ndarray, fu: 
     pos = {t: i for i, t in enumerate(teams)}
     tab = sim.season_table(gh, ga, fix.home_team.map(pos).to_numpy(), fix.away_team.map(pos).to_numpy(),
                            len(teams), base, noise.tie)
-    return {"table": tab, "lh": lh, "la": la}
+    return {"table": tab, "lh": lh, "la": la, "gh": gh, "ga": ga}
 
 
 def run_summary(r: dict[str, Any], ui: int, levels: list[float]) -> dict[str, Any]:
@@ -117,20 +117,31 @@ def run_summary(r: dict[str, Any], ui: int, levels: list[float]) -> dict[str, An
             "median_position": float(np.median(pos))}
 
 
-def united_fixtures(r: dict[str, Any], fix: pd.DataFrame, utd: int, names: dict[int, str],
-                    lv: float) -> list[dict[str, Any]]:
-    """Expected npxG difference (United minus opponent) per remaining fixture, with interval."""
+def united_fixtures(runs: dict[str, Any], fix: pd.DataFrame, utd: int, names: dict[int, str],
+                    lv: float, n_keep: int) -> list[dict[str, Any]]:
+    """Per remaining United fixture: expected npxG difference (United minus opponent) in both runs, and
+    United's points in the first n_keep simulation draws as a digit string (for the tracker's
+    cumulative band; draws are shared across fixtures, so the string keeps their correlation)."""
+    r, b = runs["pochettino"], runs["baseline"]
     out = []
     for k, row in enumerate(fix.itertuples()):
         if utd not in (row.home_team, row.away_team):
             continue
         home = row.home_team == utd
-        diff = (r["lh"][:, k] - r["la"][:, k]) * (1 if home else -1)
+        sgn = 1 if home else -1
+        diff = (r["lh"][:, k] - r["la"][:, k]) * sgn
+        base = (b["lh"][:, k] - b["la"][:, k]) * sgn
         lo, hi = np.quantile(diff, [(1 - lv) / 2, (1 + lv) / 2])
+        gf, ga = (r["gh"][:, k], r["ga"][:, k]) if home else (r["ga"][:, k], r["gh"][:, k])
+        pts = sim.points(gf, ga).astype(int)
         opp = row.away_team if home else row.home_team
         out.append({"opponent": names.get(opp, str(opp)), "opponent_tm_id": int(opp),
                     "venue": "home" if home else "away", "npxg_diff_mean": float(diff.mean()),
-                    "npxg_diff_interval": [float(lo), float(hi)], "interval": lv})
+                    "npxg_diff_interval": [float(lo), float(hi)], "interval": lv,
+                    "baseline_npxg_diff_mean": float(base.mean()),
+                    "p_win_draw_loss": [float(np.mean(pts == v)) for v in (3, 1, 0)],
+                    "expected_points": float(pts.mean()),
+                    "points_draws": "".join(map(str, pts[:n_keep]))})
     return out
 
 
@@ -165,7 +176,7 @@ def assemble(cfg: dict[str, Any], runs: dict[str, Any], md: dict[str, np.ndarray
                          "p_negative": float(np.mean(contrib < 0)),
                          "npxg_diff_per90": summarise_points(md["theta_p"], lv)},
         "manager_terms": {k: summarise_points(md[k], lv) for k in ("stripped", "baseline", "pochettino")},
-        "united_fixtures": united_fixtures(runs["pochettino"], fix, utd, names, lv[-1]),
+        "united_fixtures": united_fixtures(runs, fix, utd, names, lv[-1], fc["fixture_draws_kept"]),
         "detectability": detectability(cfg, md, int(((fix.home_team == utd) | (fix.away_team == utd)).sum())),
         "simulation": {"draws": len(contrib), "fixtures_simulated": len(fix), "teams": len(teams),
                        "shock_sd": st.shock_sd, "penalty_goals_per_team_match": pen_rate,

@@ -1,0 +1,20 @@
+{
+  "frozen_forecast": "2026-11-20.json",
+  "frozen_on": "2026-11-20",
+  "matches": [],
+  "effect": {
+    "matches": 0,
+    "mean": 0.03344429789985401,
+    "sd": 0.2272488542349962,
+    "80": [
+      -0.2577868270132221,
+      0.32467542281293005
+    ],
+    "p_positive": 0.5585012262845203,
+    "prior_mean": 0.03344429789985401,
+    "prior_sd": 0.22724885423499622,
+    "sigma": 0.9843877308025807,
+    "method": "normal update between refits (methods section 7)"
+  },
+  "note": "Actual npxG and chance-quality values come from FotMob and are kept local (not for republication); this file holds results and our own model outputs only."
+}

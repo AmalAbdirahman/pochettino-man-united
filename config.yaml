@@ -179,6 +179,22 @@ backtest:
   draws: 2000
   seed: 20261115
 
+# Style fit (prompt 5)
+style:
+  reference_league_season: ENG 2025-26   # natural-unit levels are shown for this league-season
+  distance_metrics: [shots_for, shots_against, npxg_per_shot_for, npxg_per_shot_against,
+                     setpiece_share_for, ppda, deep_for, deep_against]
+  weakness: [npxg_per_shot_against, setpiece_npxg_against, npxg_against]
+  min_matches_percentile: 76             # managers in the |effect| percentile need this many matches
+  interval: 0.8
+  seed: 20261121
+  sampling: {draws: 1000, tune: 1000, chains: 4, cores: 4, target_accept: 0.9, mode: NUMBA}
+  limits:
+    - "Understat team-match data only (archive ends 2026-04-18): no possession, field tilt or big chances,
+       and none of Carrick's 2026-27 matches."
+    - "Manager style effects are static (no drift, no tenure term), unlike the outcome model."
+    - "Style fit predicting results is a hypothesis that has not been back-tested: description only."
+
 # Tracker (prompt 7)
 tracker:
   publish_fotmob_values: false     # true would put FotMob-derived npxG and chance quality in docs/data

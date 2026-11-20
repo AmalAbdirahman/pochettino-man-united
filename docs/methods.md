@@ -153,6 +153,17 @@ Distance: D² = Δᵀ R⁻¹ Δ, with R the correlation matrix of style metrics,
 - Carrick's effect is estimated from a short spell, so Δ is uncertain.
 - Possession and field tilt cannot be filtered by game state with match-level data.
 
+### 4c. Implementation notes (version 2.4, prompt 5)
+
+- Data: Understat team-matches (big five, 2014-15 to 2026-04-18), one row per team per match. Each metric is standardised over all rows, so effects are in team-match sd units; they are never rescaled by their own spread.
+- One partially pooled PyMC fit per metric: league-season offset (N(0, 1)), club κ and manager θ non-centred with half-normal(0.5) scales, residual sd σ/√w. Ratio metrics (npxG per shot in level or one-goal states, set-piece share) are per-match ratios weighted by their denominator; PPDA is logged.
+- Metrics: shots for and against, npxG per shot for and against, set-piece share of npxG for, set-piece npxG against, npxG against, PPDA, deep completions for and against. Possession, field tilt and big chances are not in Understat, so they are not in the style model.
+- Δ draws pair the k-th draw of each metric's fit (the fits are independent). R is the pairwise correlation of the raw metrics over team-matches.
+- Percentile: D² of the posterior-mean Δ, compared with D² of the posterior-mean Δ for every change of manager at a club in the data. D² over draws is reported too, but it includes posterior noise and is larger.
+- Imposition strength: σ_θ² / (σ_θ² + σ_κ²) per metric (how much of style variation managers explain in general), and the percentile of |θ_P| among managers with at least 76 matches.
+- Natural-unit levels for United are λ(ENG 2025-26) + κ_U + θ, transformed back. "Now" uses the outgoing manager's θ and "under Pochettino" uses his.
+- Carrick has only 10 Understat matches (his 2026-27 matches are FotMob only), so his θ is shrunk towards zero and Δ is mostly Pochettino's own effect.
+
 ---
 
 ## 5. Forecast

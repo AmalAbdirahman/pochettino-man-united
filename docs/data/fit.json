@@ -1,0 +1,724 @@
+{
+  "model": "methods 4a; one partially pooled fit per metric on Understat team-matches",
+  "interval": 0.8,
+  "reference_league_season": "ENG 2025-26",
+  "matches_in_style_data": {
+    "Mauricio Pochettino": 299,
+    "Michael Carrick": 10
+  },
+  "metrics": {
+    "shots_for": {
+      "label": "Shots for per match",
+      "units_note": "natural units at United's club level, reference league-season",
+      "united_now": {
+        "mean": 13.43458768626236,
+        "interval": [
+          12.401293071598257,
+          14.477993262025468
+        ]
+      },
+      "united_under_pochettino": {
+        "mean": 14.526794737111784,
+        "interval": [
+          13.8376729142969,
+          15.223070640937568
+        ]
+      },
+      "change": {
+        "mean": 1.0922070508494248,
+        "interval": [
+          0.009622265256122552,
+          2.1861652754480083
+        ]
+      },
+      "delta_sd_units": {
+        "mean": 0.21237537056626854,
+        "interval": [
+          0.0018710116803097535,
+          0.42509124998899833
+        ],
+        "p_positive": 0.90175
+      },
+      "pochettino_effect_sd_units": {
+        "mean": 0.18216465950443728,
+        "interval": [
+          0.09564976903452334,
+          0.26972654447515826
+        ]
+      },
+      "outgoing_effect_sd_units": {
+        "mean": -0.03021071106183122,
+        "interval": [
+          -0.22368049794580547,
+          0.15847173063648862
+        ]
+      },
+      "manager_share_of_style_variation": 0.26030727199850606,
+      "pochettino_abs_effect_percentile": 0.8260869565217391,
+      "max_rhat": 1.0026791370054537,
+      "rows": 42382
+    },
+    "shots_against": {
+      "label": "Shots against per match",
+      "units_note": "natural units at United's club level, reference league-season",
+      "united_now": {
+        "mean": 12.376298057781584,
+        "interval": [
+          11.094099765933908,
+          13.631981080064588
+        ]
+      },
+      "united_under_pochettino": {
+        "mean": 11.413779266954167,
+        "interval": [
+          10.689888817589429,
+          12.143528851632876
+        ]
+      },
+      "change": {
+        "mean": -0.9625187908274163,
+        "interval": [
+          -2.2877240704910577,
+          0.38656158864267764
+        ]
+      },
+      "delta_sd_units": {
+        "mean": -0.18715799785397155,
+        "interval": [
+          -0.44483895873594076,
+          0.07516538239780346
+        ],
+        "p_positive": 0.178
+      },
+      "pochettino_effect_sd_units": {
+        "mean": -0.14003335226725278,
+        "interval": [
+          -0.2364100151632176,
+          -0.04702791970204241
+        ]
+      },
+      "outgoing_effect_sd_units": {
+        "mean": 0.04712464558671876,
+        "interval": [
+          -0.19429337839604752,
+          0.2876796770987705
+        ]
+      },
+      "manager_share_of_style_variation": 0.4762293714345257,
+      "pochettino_abs_effect_percentile": 0.5652173913043478,
+      "max_rhat": 1.0046693763661956,
+      "rows": 42382,
+      "p_improves": 0.822
+    },
+    "npxg_per_shot_for": {
+      "label": "npxG per shot for (level or one-goal states)",
+      "units_note": "natural units at United's club level, reference league-season",
+      "united_now": {
+        "mean": 0.11219905834199792,
+        "interval": [
+          0.10427072018312622,
+          0.12008579229275466
+        ]
+      },
+      "united_under_pochettino": {
+        "mean": 0.1131972677605654,
+        "interval": [
+          0.1070903336218538,
+          0.11936682107097224
+        ]
+      },
+      "change": {
+        "mean": 0.0009982094185674785,
+        "interval": [
+          -0.006736401793658233,
+          0.008990364346808622
+        ]
+      },
+      "delta_sd_units": {
+        "mean": 0.018850442563410282,
+        "interval": [
+          -0.127211938430357,
+          0.16977634511489162
+        ],
+        "p_positive": 0.5685
+      },
+      "pochettino_effect_sd_units": {
+        "mean": -0.00416827292424792,
+        "interval": [
+          -0.08217542215567952,
+          0.07331483132115918
+        ]
+      },
+      "outgoing_effect_sd_units": {
+        "mean": -0.0230187154876582,
+        "interval": [
+          -0.1520797715169578,
+          0.10641942849192725
+        ]
+      },
+      "manager_share_of_style_variation": 0.3024924608165458,
+      "pochettino_abs_effect_percentile": 0.027472527472527472,
+      "max_rhat": 1.001731644490644,
+      "rows": 41871
+    },
+    "npxg_per_shot_against": {
+      "label": "npxG per shot against (level or one-goal states)",
+      "units_note": "natural units at United's club level, reference league-season",
+      "united_now": {
+        "mean": 0.11358840728096849,
+        "interval": [
+          0.10534780873442097,
+          0.12188735282841287
+        ]
+      },
+      "united_under_pochettino": {
+        "mean": 0.11383889442537062,
+        "interval": [
+          0.10773213448064431,
+          0.12013334626554108
+        ]
+      },
+      "change": {
+        "mean": 0.00025048714440214413,
+        "interval": [
+          -0.00845732136393939,
+          0.008746625235284581
+        ]
+      },
+      "delta_sd_units": {
+        "mean": 0.004730263450330375,
+        "interval": [
+          -0.15971022477430705,
+          0.16517351324737226
+        ],
+        "p_positive": 0.51825
+      },
+      "pochettino_effect_sd_units": {
+        "mean": -0.04654873143161913,
+        "interval": [
+          -0.12815052200222798,
+          0.034664893906005266
+        ]
+      },
+      "outgoing_effect_sd_units": {
+        "mean": -0.0512789948819495,
+        "interval": [
+          -0.18936286059066343,
+          0.08983875620966188
+        ]
+      },
+      "manager_share_of_style_variation": 0.66702445754317,
+      "pochettino_abs_effect_percentile": 0.36065573770491804,
+      "max_rhat": 1.0017469121390008,
+      "rows": 41871,
+      "p_improves": 0.48175
+    },
+    "setpiece_share_for": {
+      "label": "Set-piece share of npxG for",
+      "units_note": "natural units at United's club level, reference league-season",
+      "united_now": {
+        "mean": 0.20381528196667223,
+        "interval": [
+          0.1688401353884345,
+          0.239406539355168
+        ]
+      },
+      "united_under_pochettino": {
+        "mean": 0.19062093051178672,
+        "interval": [
+          0.16750304112841205,
+          0.21350937620403107
+        ]
+      },
+      "change": {
+        "mean": -0.013194351454885461,
+        "interval": [
+          -0.04764073418553224,
+          0.021347899281648697
+        ]
+      },
+      "delta_sd_units": {
+        "mean": -0.06599171695336718,
+        "interval": [
+          -0.2382757391730808,
+          0.10677179031955543
+        ],
+        "p_positive": 0.3065
+      },
+      "pochettino_effect_sd_units": {
+        "mean": -0.07871659593254134,
+        "interval": [
+          -0.1549066404767662,
+          -0.004118504988395467
+        ]
+      },
+      "outgoing_effect_sd_units": {
+        "mean": -0.012724878979174147,
+        "interval": [
+          -0.1699157291059938,
+          0.14312337093197963
+        ]
+      },
+      "manager_share_of_style_variation": 0.41457481991229994,
+      "pochettino_abs_effect_percentile": 0.6413043478260869,
+      "max_rhat": 1.0032202674843727,
+      "rows": 42362
+    },
+    "setpiece_npxg_against": {
+      "label": "Set-piece npxG against per match",
+      "units_note": "natural units at United's club level, reference league-season",
+      "united_now": {
+        "mean": 0.37027975860942763,
+        "interval": [
+          0.33065944523522434,
+          0.41016556585153874
+        ]
+      },
+      "united_under_pochettino": {
+        "mean": 0.3488352349363288,
+        "interval": [
+          0.3141535037764454,
+          0.38317504456515433
+        ]
+      },
+      "change": {
+        "mean": -0.021444523673098848,
+        "interval": [
+          -0.05653372381894097,
+          0.013346854249748382
+        ]
+      },
+      "delta_sd_units": {
+        "mean": -0.06506564342456782,
+        "interval": [
+          -0.17153111775947696,
+          0.040496197196639126
+        ],
+        "p_positive": 0.21575
+      },
+      "pochettino_effect_sd_units": {
+        "mean": -0.06969389986389386,
+        "interval": [
+          -0.13667471418794297,
+          -0.004141173748410758
+        ]
+      },
+      "outgoing_effect_sd_units": {
+        "mean": -0.004628256439326038,
+        "interval": [
+          -0.08966303049157431,
+          0.07970989253247394
+        ]
+      },
+      "manager_share_of_style_variation": 0.2963416946611626,
+      "pochettino_abs_effect_percentile": 0.907608695652174,
+      "max_rhat": 1.0023639404664704,
+      "rows": 42382,
+      "p_improves": 0.78425
+    },
+    "npxg_against": {
+      "label": "npxG against per match",
+      "units_note": "natural units at United's club level, reference league-season",
+      "united_now": {
+        "mean": 1.3897839437456605,
+        "interval": [
+          1.2257941666170875,
+          1.5526541405437462
+        ]
+      },
+      "united_under_pochettino": {
+        "mean": 1.3344198155812703,
+        "interval": [
+          1.2265808389880812,
+          1.4417249443806255
+        ]
+      },
+      "change": {
+        "mean": -0.05536412816439024,
+        "interval": [
+          -0.22826455038448537,
+          0.11005913670695007
+        ]
+      },
+      "delta_sd_units": {
+        "mean": -0.06572025657861053,
+        "interval": [
+          -0.27096254048336044,
+          0.13064623146821996
+        ],
+        "p_positive": 0.343
+      },
+      "pochettino_effect_sd_units": {
+        "mean": -0.09754839605328641,
+        "interval": [
+          -0.18208297666022052,
+          -0.009943582319629364
+        ]
+      },
+      "outgoing_effect_sd_units": {
+        "mean": -0.03182813947467589,
+        "interval": [
+          -0.2092293876553914,
+          0.15189143445512854
+        ]
+      },
+      "manager_share_of_style_variation": 0.3461864038902259,
+      "pochettino_abs_effect_percentile": 0.532608695652174,
+      "max_rhat": 1.0027166610823224,
+      "rows": 42382,
+      "p_improves": 0.657
+    },
+    "ppda": {
+      "label": "PPDA (lower = more pressing)",
+      "units_note": "natural units at United's club level, reference league-season",
+      "united_now": {
+        "mean": 11.600122687099752,
+        "interval": [
+          10.16813990189857,
+          13.104957006990837
+        ]
+      },
+      "united_under_pochettino": {
+        "mean": 9.019533266201638,
+        "interval": [
+          8.411891022956109,
+          9.637740442722757
+        ]
+      },
+      "change": {
+        "mean": -2.580589420898117,
+        "interval": [
+          -4.121013404477891,
+          -1.094167874992483
+        ]
+      },
+      "delta_sd_units": {
+        "mean": -0.5133269714686483,
+        "interval": [
+          -0.7920200071900525,
+          -0.23434672676432058
+        ],
+        "p_positive": 0.00975
+      },
+      "pochettino_effect_sd_units": {
+        "mean": -0.33481054171704505,
+        "interval": [
+          -0.4295502501800599,
+          -0.24035318011807852
+        ]
+      },
+      "outgoing_effect_sd_units": {
+        "mean": 0.17851642975160326,
+        "interval": [
+          -0.08565953640424682,
+          0.4402935270733417
+        ]
+      },
+      "manager_share_of_style_variation": 0.5802371123202253,
+      "pochettino_abs_effect_percentile": 0.8206521739130435,
+      "max_rhat": 1.0026223329042405,
+      "rows": 42380
+    },
+    "deep_for": {
+      "label": "Deep completions for per match",
+      "units_note": "natural units at United's club level, reference league-season",
+      "united_now": {
+        "mean": 7.6304676070559445,
+        "interval": [
+          6.7323522292528795,
+          8.531275493863543
+        ]
+      },
+      "united_under_pochettino": {
+        "mean": 8.405336439098232,
+        "interval": [
+          7.832902025061458,
+          8.9715218683298
+        ]
+      },
+      "change": {
+        "mean": 0.774868832042288,
+        "interval": [
+          -0.15406995286425945,
+          1.7031575507756405
+        ]
+      },
+      "delta_sd_units": {
+        "mean": 0.18655337660489846,
+        "interval": [
+          -0.03709307788833168,
+          0.41004332455842635
+        ],
+        "p_positive": 0.8555
+      },
+      "pochettino_effect_sd_units": {
+        "mean": 0.10135847309595283,
+        "interval": [
+          0.014348138787294858,
+          0.19018860986122374
+        ]
+      },
+      "outgoing_effect_sd_units": {
+        "mean": -0.08519490350894564,
+        "interval": [
+          -0.29191418533480284,
+          0.11955612388649538
+        ]
+      },
+      "manager_share_of_style_variation": 0.21214238834487092,
+      "pochettino_abs_effect_percentile": 0.4673913043478261,
+      "max_rhat": 1.00204510293399,
+      "rows": 42380
+    },
+    "deep_against": {
+      "label": "Deep completions against per match",
+      "units_note": "natural units at United's club level, reference league-season",
+      "united_now": {
+        "mean": 6.572506041136555,
+        "interval": [
+          5.765949290734476,
+          7.378882213274946
+        ]
+      },
+      "united_under_pochettino": {
+        "mean": 5.6501561440989,
+        "interval": [
+          5.116411806067864,
+          6.1901235811152
+        ]
+      },
+      "change": {
+        "mean": -0.9223498970376557,
+        "interval": [
+          -1.745759209449705,
+          -0.1116115796788235
+        ]
+      },
+      "delta_sd_units": {
+        "mean": -0.22206014823185533,
+        "interval": [
+          -0.42029987759807985,
+          -0.026871021515232227
+        ],
+        "p_positive": 0.07225
+      },
+      "pochettino_effect_sd_units": {
+        "mean": -0.1841591742566922,
+        "interval": [
+          -0.26876841565911125,
+          -0.09626418912684681
+        ]
+      },
+      "outgoing_effect_sd_units": {
+        "mean": 0.03790097397516314,
+        "interval": [
+          -0.13569896458982034,
+          0.2124785611648978
+        ]
+      },
+      "manager_share_of_style_variation": 0.34738660043170105,
+      "pochettino_abs_effect_percentile": 0.8315217391304348,
+      "max_rhat": 1.003793808260914,
+      "rows": 42380,
+      "p_improves": 0.92775
+    }
+  },
+  "distance": {
+    "metrics": [
+      "shots_for",
+      "shots_against",
+      "npxg_per_shot_for",
+      "npxg_per_shot_against",
+      "setpiece_share_for",
+      "ppda",
+      "deep_for",
+      "deep_against"
+    ],
+    "d2_draws": {
+      "mean": 0.5912598182197893,
+      "median": 0.5357090025687457,
+      "interval": [
+        0.2776975978652957,
+        0.9713360881913896
+      ]
+    },
+    "d2_posterior_means": 0.2740341447186263,
+    "percentile_among_real_changes": 0.7016848364717542,
+    "real_changes": 1009,
+    "real_changes_median_d2": 0.18817055301892405,
+    "note": "D^2 over draws includes posterior noise and is larger than D^2 of the posterior means; the percentile compares posterior means with posterior means."
+  },
+  "weakness_check": {
+    "npxg_per_shot_against": {
+      "label": "npxG per shot against (level or one-goal states)",
+      "units_note": "natural units at United's club level, reference league-season",
+      "united_now": {
+        "mean": 0.11358840728096849,
+        "interval": [
+          0.10534780873442097,
+          0.12188735282841287
+        ]
+      },
+      "united_under_pochettino": {
+        "mean": 0.11383889442537062,
+        "interval": [
+          0.10773213448064431,
+          0.12013334626554108
+        ]
+      },
+      "change": {
+        "mean": 0.00025048714440214413,
+        "interval": [
+          -0.00845732136393939,
+          0.008746625235284581
+        ]
+      },
+      "delta_sd_units": {
+        "mean": 0.004730263450330375,
+        "interval": [
+          -0.15971022477430705,
+          0.16517351324737226
+        ],
+        "p_positive": 0.51825
+      },
+      "pochettino_effect_sd_units": {
+        "mean": -0.04654873143161913,
+        "interval": [
+          -0.12815052200222798,
+          0.034664893906005266
+        ]
+      },
+      "outgoing_effect_sd_units": {
+        "mean": -0.0512789948819495,
+        "interval": [
+          -0.18936286059066343,
+          0.08983875620966188
+        ]
+      },
+      "manager_share_of_style_variation": 0.66702445754317,
+      "pochettino_abs_effect_percentile": 0.36065573770491804,
+      "max_rhat": 1.0017469121390008,
+      "rows": 41871,
+      "p_improves": 0.48175
+    },
+    "setpiece_npxg_against": {
+      "label": "Set-piece npxG against per match",
+      "units_note": "natural units at United's club level, reference league-season",
+      "united_now": {
+        "mean": 0.37027975860942763,
+        "interval": [
+          0.33065944523522434,
+          0.41016556585153874
+        ]
+      },
+      "united_under_pochettino": {
+        "mean": 0.3488352349363288,
+        "interval": [
+          0.3141535037764454,
+          0.38317504456515433
+        ]
+      },
+      "change": {
+        "mean": -0.021444523673098848,
+        "interval": [
+          -0.05653372381894097,
+          0.013346854249748382
+        ]
+      },
+      "delta_sd_units": {
+        "mean": -0.06506564342456782,
+        "interval": [
+          -0.17153111775947696,
+          0.040496197196639126
+        ],
+        "p_positive": 0.21575
+      },
+      "pochettino_effect_sd_units": {
+        "mean": -0.06969389986389386,
+        "interval": [
+          -0.13667471418794297,
+          -0.004141173748410758
+        ]
+      },
+      "outgoing_effect_sd_units": {
+        "mean": -0.004628256439326038,
+        "interval": [
+          -0.08966303049157431,
+          0.07970989253247394
+        ]
+      },
+      "manager_share_of_style_variation": 0.2963416946611626,
+      "pochettino_abs_effect_percentile": 0.907608695652174,
+      "max_rhat": 1.0023639404664704,
+      "rows": 42382,
+      "p_improves": 0.78425
+    },
+    "npxg_against": {
+      "label": "npxG against per match",
+      "units_note": "natural units at United's club level, reference league-season",
+      "united_now": {
+        "mean": 1.3897839437456605,
+        "interval": [
+          1.2257941666170875,
+          1.5526541405437462
+        ]
+      },
+      "united_under_pochettino": {
+        "mean": 1.3344198155812703,
+        "interval": [
+          1.2265808389880812,
+          1.4417249443806255
+        ]
+      },
+      "change": {
+        "mean": -0.05536412816439024,
+        "interval": [
+          -0.22826455038448537,
+          0.11005913670695007
+        ]
+      },
+      "delta_sd_units": {
+        "mean": -0.06572025657861053,
+        "interval": [
+          -0.27096254048336044,
+          0.13064623146821996
+        ],
+        "p_positive": 0.343
+      },
+      "pochettino_effect_sd_units": {
+        "mean": -0.09754839605328641,
+        "interval": [
+          -0.18208297666022052,
+          -0.009943582319629364
+        ]
+      },
+      "outgoing_effect_sd_units": {
+        "mean": -0.03182813947467589,
+        "interval": [
+          -0.2092293876553914,
+          0.15189143445512854
+        ]
+      },
+      "manager_share_of_style_variation": 0.3461864038902259,
+      "pochettino_abs_effect_percentile": 0.532608695652174,
+      "max_rhat": 1.0027166610823224,
+      "rows": 42382,
+      "p_improves": 0.657
+    }
+  },
+  "limits": [
+    "Understat team-match data only (archive ends 2026-04-18): no possession, field tilt or big chances, and none of Carrick's 2026-27 matches.",
+    "Manager style effects are static (no drift, no tenure term), unlike the outcome model.",
+    "Style fit predicting results is a hypothesis that has not been back-tested: description only."
+  ],
+  "plain_english": [
+    "Predicted style change from Michael Carrick to Mauricio Pochettino: D^2 of the posterior means is 0.27, larger than 70% of 1009 real managerial changes in the data.",
+    "PPDA (lower = more pressing): 11.60 now, 9.02 predicted (change -2.58, 80% -4.12 to -1.09).",
+    "Deep completions against per match: 6.57 now, 5.65 predicted (change -0.92, 80% -1.75 to -0.11).",
+    "Shots for per match: 13.43 now, 14.53 predicted (change +1.09, 80% +0.01 to +2.19).",
+    "Weakness check, npxG per shot against (level or one-goal states): P(improves under him) = 0.48.",
+    "Weakness check, Set-piece npxG against per match: P(improves under him) = 0.78.",
+    "Weakness check, npxG against per match: P(improves under him) = 0.66.",
+    "Michael Carrick has only 10 matches in the style data, so his effect is shrunk towards an average manager and Delta is mostly Pochettino's own effect."
+  ]
+}

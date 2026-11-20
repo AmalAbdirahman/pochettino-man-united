@@ -124,6 +124,9 @@ def track(frozen: dict[str, Any], fm: pd.DataFrame, levels: list[float]) -> dict
         d["effect_mean"], d["effect_sd_now"], d["sigma"], [r["observed_effect"] for r in rows])}
     if rows:
         out["cumulative_points"] = points_band(fixtures, idx, sum(r["points"] for r in rows), levels)
+        pts = np.cumsum([r["points"] for r in rows])
+        out["cumulative_by_match"] = [points_band(fixtures, idx[:k], int(pts[k - 1]), levels)
+                                      for k in range(1, len(rows) + 1)]
         out["inside_interval_share"] = float(np.mean([r["inside_interval"] for r in rows]))
         out["chance_quality_conceded"] = {"before": chance_quality(before), "since": chance_quality(after)}
     return out

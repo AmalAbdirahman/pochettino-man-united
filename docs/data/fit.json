@@ -825,13 +825,13 @@
     "Style fit predicting results is a hypothesis that has not been back-tested: description only."
   ],
   "plain_english": [
-    "Predicted style change from Michael Carrick to Mauricio Pochettino: D^2 of the posterior means is 0.29, larger than 73% of 1046 real managerial changes in the data.",
+    "Predicted style change from Michael Carrick to Mauricio Pochettino: the distance D² between their estimated styles is 0.29, larger than 73% of 1046 real managerial changes in the data.",
     "PPDA (lower = more pressing): 11.60 now, 9.03 predicted (change -2.57, 80% -4.09 to -1.06).",
     "Deep completions against per match: 6.58 now, 5.64 predicted (change -0.94, 80% -1.78 to -0.12).",
     "Deep completions for per match: 7.64 now, 8.42 predicted (change +0.79, 80% -0.18 to +1.73).",
     "Weakness check, npxG per shot against (level or one-goal states): P(improves under him) = 0.48.",
     "Weakness check, Set-piece npxG against per match: P(improves under him) = 0.78.",
     "Weakness check, npxG against per match: P(improves under him) = 0.65.",
-    "Michael Carrick has 29 matches for shots and corners (football-data) but only 10 for the Understat metrics, so his effect there is shrunk towards an average manager and Delta is mostly Pochettino's own effect."
+    "Michael Carrick has 29 matches for shots and corners (football-data) but only 10 for the Understat metrics, so his effect there is shrunk towards an average manager, and the predicted change mostly reflects Pochettino's own habits."
   ]
 }

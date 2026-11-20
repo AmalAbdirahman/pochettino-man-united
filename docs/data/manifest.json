@@ -1,0 +1,11 @@
+{
+  "original_forecast": "forecasts/2026-11-20.json",
+  "revisions": [],
+  "data": {
+    "fit": "data/fit.json",
+    "tracker": "data/tracker.json",
+    "backtest": "data/backtest.json",
+    "model_summary": "data/model_summary.json"
+  },
+  "built_from_commit": "9255092"
+}

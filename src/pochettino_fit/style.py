@@ -136,7 +136,8 @@ def distance(fs: dict[str, Any], t: dict[str, pd.DataFrame], names: list[str], c
 
 def plain_english(res: dict[str, Any], cfg: dict[str, Any]) -> list[str]:
     fc, mets, dist = cfg["fit"], res["metrics"], res["distance"]
-    out = [f"Predicted style change from {fc['outgoing']} to {fc['manager']}: D^2 of the posterior means is "
+    out = [f"Predicted style change from {fc['outgoing']} to {fc['manager']}: "
+           "the distance D² between their estimated styles is "
            f"{dist['d2_posterior_means']:.2f}, larger than "
            f"{100 * dist['percentile_among_real_changes']:.0f}% "
            f"of {dist['real_changes']} real managerial changes in the data."]
@@ -152,7 +153,7 @@ def plain_english(res: dict[str, Any], cfg: dict[str, Any]) -> list[str]:
     n = {k: v[fc["outgoing"]] for k, v in res["matches_in_style_data"].items()}
     out.append(f"{fc['outgoing']} has {n['fd']} matches for shots and corners (football-data) but only "
                f"{n['understat']} for the Understat metrics, so his effect there is shrunk towards an "
-               "average manager and Delta is mostly Pochettino's own effect.")
+               "average manager, and the predicted change mostly reflects Pochettino's own habits.")
     return out
 
 

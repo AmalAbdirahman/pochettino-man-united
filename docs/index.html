@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pochettino at United</title>
+<meta name="description" content="A statistical model of Manchester United's underlying performance under Mauricio Pochettino: style fit, a forecast frozen before his first league match, and a public tracker.">
+<style>
+:root {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --text: #f0efec;
+  --text-2: #c3c2b7;
+  --muted: #898781;
+  --grid: #2c2c2a;
+  --axis: #383835;
+  --border: rgba(255, 255, 255, 0.10);
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --band: rgba(57, 135, 229, 0.18);
+  --band-2: rgba(57, 135, 229, 0.10);
+  --focus: #9ec5f4;
+  --font: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { background: var(--page); }
+body { margin: 0; background: var(--page); color: var(--text); font: 16px/1.55 var(--font); }
+a { color: var(--focus); }
+a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px;
+}
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+header { padding: 48px 0 24px; border-bottom: 1px solid var(--grid); }
+h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.15; margin: 0 0 12px; font-weight: 650; }
+.lede { color: var(--text-2); max-width: 46rem; margin: 0; }
+nav { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 0.95rem; }
+nav a { color: var(--text-2); text-decoration: none; }
+nav a:hover { color: var(--text); text-decoration: underline; }
+section { padding: 40px 0 8px; }
+h2 { font-size: 1.5rem; margin: 0 0 6px; font-weight: 650; }
+h3 { font-size: 1.05rem; margin: 28px 0 4px; font-weight: 600; }
+.sub { color: var(--text-2); margin: 0 0 16px; max-width: 46rem; }
+.note { color: var(--muted); font-size: 0.9rem; max-width: 46rem; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin: 12px 0; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 12px 0; }
+.tile { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+.tile .label { color: var(--text-2); font-size: 0.9rem; }
+.tile .value { font-size: 1.9rem; font-weight: 600; line-height: 1.2; margin: 4px 0 2px; }
+.tile .detail { color: var(--muted); font-size: 0.85rem; }
+.chart { width: 100%; position: relative; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--font); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--text-2); font-size: 0.85rem; margin: 0 0 8px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.key { display: inline-block; width: 14px; height: 10px; border-radius: 2px; }
+.key.line { height: 2px; border-radius: 1px; }
+.tip { position: fixed; z-index: 10; pointer-events: none; background: #262624; color: var(--text);
+  border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font-size: 0.85rem;
+  max-width: 280px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4); display: none; }
+.tip strong { display: block; font-size: 1rem; }
+.tip .t-sub { color: var(--text-2); }
+details { margin: 8px 0 0; }
+summary { cursor: pointer; color: var(--text-2); font-size: 0.92rem; padding: 4px 0; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; margin-top: 8px; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+th { color: var(--text-2); font-weight: 600; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+ul.plain { padding-left: 20px; max-width: 46rem; }
+ul.plain li { margin: 4px 0; }
+.empty { color: var(--text-2); border: 1px dashed var(--axis); border-radius: 12px; padding: 20px; text-align: center; }
+.badge { display: inline-block; font-size: 0.78rem; color: var(--text-2); border: 1px solid var(--axis);
+  border-radius: 999px; padding: 1px 8px; margin-left: 6px; vertical-align: middle; }
+footer { border-top: 1px solid var(--grid); margin-top: 40px; padding: 24px 0 48px; color: var(--muted); font-size: 0.85rem; }
+#load-error { display: none; color: var(--text); background: var(--surface); border: 1px solid var(--axis);
+  border-radius: 12px; padding: 16px; margin: 24px 0; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Pochettino at United</h1>
+    <p class="lede">A statistical model of Manchester United's underlying performance under their new head coach:
+      how his teams' habits fit this squad, a forecast <span id="frozen-lede">frozen before his first league match</span>,
+      and a tracker that compares every league match with that forecast, whatever it shows.</p>
+    <nav aria-label="Sections">
+      <a href="#fit">1. The fit</a><a href="#forecast">2. The forecast</a><a href="#tracker">3. The tracker</a>
+      <a href="#detect">4. How much the data can tell us</a><a href="#method">5. Method, limits and data</a>
+    </nav>
+  </header>
+
+  <div id="load-error" role="alert">The data files could not be loaded. Serve this folder over HTTP, for example
+    <code>python -m http.server 8000 --directory docs</code>, then open <code>http://localhost:8000</code>.</div>
+
+  <main>
+    <section id="fit" aria-labelledby="fit-h">
+      <h2 id="fit-h">1. The fit</h2>
+      <p class="sub" id="fit-lede"></p>
+
+      <h3>Predicted style change: Pochettino minus Carrick</h3>
+      <p class="note" id="fit-chart-note"></p>
+      <div class="card"><div class="chart" id="chart-style"></div>
+        <details><summary>Table view: United now and predicted, in natural units</summary>
+          <div class="table-wrap"><table id="table-style"></table></div></details>
+      </div>
+
+      <h3>Weakness check</h3>
+      <p class="note">United's weak points this season are chance quality conceded and set pieces. Probability that each improves under him, with the predicted change.</p>
+      <div class="tiles" id="tiles-weakness"></div>
+
+      <h3>His record: estimated effect by half-season</h3>
+      <p class="note" id="record-note"></p>
+      <div class="card">
+        <div class="legend" id="legend-record"></div>
+        <div class="chart" id="chart-record"></div>
+        <details><summary>Table view</summary><div class="table-wrap"><table id="table-record"></table></div></details>
+      </div>
+      <p class="note" id="fit-caveat"></p>
+    </section>
+
+    <section id="forecast" aria-labelledby="forecast-h">
+      <h2 id="forecast-h">2. The forecast <span class="badge" id="frozen-badge"></span></h2>
+      <p class="sub" id="forecast-lede"></p>
+      <div class="tiles" id="tiles-forecast"></div>
+
+      <h3>Final points: average new coach vs Pochettino</h3>
+      <p class="note" id="points-note"></p>
+      <div class="card">
+        <div class="legend" id="legend-points"></div>
+        <div class="chart" id="chart-points"></div>
+      </div>
+
+      <h3>Final league position</h3>
+      <p class="note">Share of simulated seasons ending in each position, Pochettino run.</p>
+      <div class="card"><div class="chart" id="chart-position"></div>
+        <details><summary>Table view: both runs</summary><div class="table-wrap"><table id="table-position"></table></div></details>
+      </div>
+
+      <details class="card"><summary>Every remaining United fixture (frozen expectations)</summary>
+        <div class="table-wrap"><table id="table-fixtures"></table></div></details>
+    </section>
+
+    <section id="tracker" aria-labelledby="tracker-h">
+      <h2 id="tracker-h">3. The tracker</h2>
+      <p class="sub">After each league match: points against the frozen band, the match against its frozen expectation, and an updated estimate of his effect. Misses are shown as prominently as hits.</p>
+      <div id="tracker-body"></div>
+    </section>
+
+    <section id="detect" aria-labelledby="detect-h">
+      <h2 id="detect-h">4. How much the data can tell us</h2>
+      <p class="sub" id="detect-lede"></p>
+      <div class="tiles" id="tiles-detect"></div>
+      <div class="card"><div class="table-wrap"><table id="table-detect"></table></div></div>
+      <p class="note" id="detect-note"></p>
+    </section>
+
+    <section id="method" aria-labelledby="method-h">
+      <h2 id="method-h">5. Method, limits and data</h2>
+      <h3>Method in brief</h3>
+      <ul class="plain">
+        <li>The unit is one league match, from the home side's view: non-penalty xG difference per 90 minutes at eleven against eleven.</li>
+        <li>One model estimates team strength, home advantage, each manager's effect (allowed to drift over time), a new-coach effect by tenure year, and recent finishing luck, all at once, with partial pooling. It is a statistical model, not AI.</li>
+        <li>The forecast separates a baseline (United with an average replacement coach, including regression of finishing luck and the usual new-coach effect) from Pochettino's estimated effect on top. Improvement the baseline already predicts is not credited to him.</li>
+        <li>Each remaining Premier League fixture is simulated for every team, thousands of times, from attack and defence strengths on non-penalty xG.</li>
+        <li id="backtest-line"></li>
+        <li>Style: the same club-plus-manager structure, one metric at a time, comparing his estimated habits with Carrick's.</li>
+      </ul>
+      <p class="note">Full maths: <a href="https://github.com/AmalAbdirahman/pochettino-man-united/blob/main/docs/methods.md">methods.md</a>. Code and data: <a href="https://github.com/AmalAbdirahman/pochettino-man-united">the repository</a>.</p>
+
+      <h3>Limits</h3>
+      <ul class="plain" id="limits">
+        <li>Public data only, league matches only. No cups or European games.</li>
+        <li>xG models differ by source; this uses Understat up to April 2026 and FotMob-based figures for 2026-27.</li>
+        <li>The model cannot see staff, injuries, the dressing room or January transfers.</li>
+      </ul>
+
+      <h3>Data and attribution</h3>
+      <ul class="plain">
+        <li>Understat shot data, via the pannadata archive (to 18 April 2026).</li>
+        <li>transfermarkt-datasets (CC0): league games, managers, squad values.</li>
+        <li>football-data.co.uk: results, shots and corners.</li>
+        <li>FotMob: United's 2026-27 match statistics, used locally only. Never republished; this page shows only model outputs derived from them.</li>
+        <li>Wikipedia (CC BY-SA 4.0): 2026-27 head coaches and United's squad.</li>
+        <li>ClubElo: league-average ratings, as a bridge between leagues.</li>
+      </ul>
+      <p class="note">Independent analysis. Not affiliated with any club, league or data provider.</p>
+    </section>
+  </main>
+
+  <footer id="footer"></footer>
+</div>
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+const NS = "http://www.w3.org/2000/svg";
+const $ = (id) => document.getElementById(id);
+const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+const fmt = (x, d = 1) => (x === null || x === undefined || Number.isNaN(x)) ? "–" : Number(x).toFixed(d);
+const sgn = (x, d = 2) => (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(d);
+const pct = (x) => Math.round(100 * x) + "%";
+const range = (a, d = 2, signed = false) => signed ? `${sgn(a[0], d)} to ${sgn(a[1], d)}` : `${fmt(a[0], d)} to ${fmt(a[1], d)}`;
+const dateText = (iso) => new Date(iso + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+
+function svgEl(tag, attrs = {}, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function text(parent, x, y, s, attrs = {}) {
+  const t = svgEl("text", { x, y, fill: css("--text-2"), "font-size": 12, ...attrs }, parent);
+  t.textContent = s;
+  return t;
+}
+function el(tag, txt, cls) {
+  const e = document.createElement(tag);
+  if (txt !== undefined) e.textContent = txt;
+  if (cls) e.className = cls;
+  return e;
+}
+function tile(parent, label, value, detail) {
+  const t = el("div", undefined, "tile");
+  t.append(el("div", label, "label"), el("div", value, "value"));
+  if (detail) t.append(el("div", detail, "detail"));
+  parent.appendChild(t);
+}
+function table(tbl, head, rows, numCols = []) {
+  tbl.replaceChildren();
+  const tr = el("tr");
+  head.forEach((h, i) => { const th = el("th", h); if (numCols.includes(i)) th.className = "num"; tr.append(th); });
+  const thead = el("thead"); thead.append(tr); tbl.append(thead);
+  const tb = el("tbody");
+  for (const r of rows) {
+    const row = el("tr");
+    r.forEach((c, i) => { const td = el("td", c); if (numCols.includes(i)) td.className = "num"; row.append(td); });
+    tb.append(row);
+  }
+  tbl.append(tb);
+}
+function legend(parent, items) {
+  parent.replaceChildren();
+  for (const [label, color, kind] of items) {
+    const s = el("span");
+    const k = el("span", undefined, "key" + (kind === "line" ? " line" : ""));
+    k.style.background = color;
+    s.append(k, document.createTextNode(label));
+    parent.append(s);
+  }
+}
+
+// ---------- tooltip: hover and keyboard focus show the same thing ----------
+const tip = $("tip");
+function showTip(evt, lines) {
+  tip.replaceChildren();
+  lines.forEach((l, i) => tip.append(el(i === 0 ? "strong" : "div", l, i === 0 ? "" : "t-sub")));
+  tip.style.display = "block";
+  let x, y;
+  if (evt.clientX !== undefined && evt.type.startsWith("pointer")) { x = evt.clientX; y = evt.clientY; }
+  else { const r = evt.target.getBoundingClientRect(); x = r.left + r.width / 2; y = r.top; }
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  tip.style.left = Math.min(window.innerWidth - w - 8, Math.max(8, x + 12)) + "px";
+  tip.style.top = Math.max(8, y - h - 12) + "px";
+}
+const hideTip = () => { tip.style.display = "none"; };
+function hit(parent, attrs, lines, label) {
+  const r = svgEl("rect", { ...attrs, fill: "transparent", tabindex: 0, role: "img", "aria-label": label || lines.join(". ") }, parent);
+  r.addEventListener("pointerenter", (e) => showTip(e, lines));
+  r.addEventListener("pointermove", (e) => showTip(e, lines));
+  r.addEventListener("pointerleave", hideTip);
+  r.addEventListener("focus", (e) => showTip(e, lines));
+  r.addEventListener("blur", hideTip);
+  return r;
+}
+function frame(id, height) {
+  const box = $(id);
+  box.replaceChildren();
+  const w = Math.max(300, box.clientWidth);
+  const svg = svgEl("svg", { viewBox: `0 0 ${w} ${height}`, width: w, height }, box);
+  return { svg, w, h: height };
+}
+// axis tick text: at most two decimals, trailing zeros dropped, true minus sign
+function tick(t, signed = true) {
+  const v = parseFloat(Math.abs(t).toFixed(2)).toString();
+  return t === 0 ? "0" : (t < 0 ? "−" : signed ? "+" : "") + v;
+}
+function niceTicks(lo, hi, n = 5) {
+  const step0 = (hi - lo) / n, mag = Math.pow(10, Math.floor(Math.log10(step0)));
+  const step = [1, 2, 2.5, 5, 10].map((m) => m * mag).find((s) => s >= step0);
+  const out = [];
+  for (let v = Math.ceil(lo / step) * step; v <= hi + 1e-9; v += step) out.push(+v.toFixed(10));
+  return out;
+}
+
+// ---------- 1. fit ----------
+function drawStyle(fit) {
+  const lv = fit.interval;
+  const rows = Object.entries(fit.metrics)
+    .map(([k, m]) => ({ k, m, d: m.delta_sd_units }))
+    .sort((a, b) => Math.abs(b.d.mean) - Math.abs(a.d.mean));
+  const narrow = $("chart-style").clientWidth < 560;
+  // narrow screens: label above each line, plot uses the full width
+  const left = narrow ? 8 : 270, right = narrow ? 8 : 24, rowH = narrow ? 46 : 34, top = 28;
+  const { svg, w } = frame("chart-style", top + rows.length * rowH + 28);
+  const lo = Math.min(...rows.map((r) => r.d.interval[0]), -0.1), hi = Math.max(...rows.map((r) => r.d.interval[1]), 0.1);
+  const x = (v) => left + (v - lo) / (hi - lo) * (w - left - right);
+  for (const t of niceTicks(lo, hi, narrow ? 4 : 6)) {
+    svgEl("line", { x1: x(t), x2: x(t), y1: top - 6, y2: top + rows.length * rowH, stroke: t === 0 ? css("--axis") : css("--grid"), "stroke-width": 1 }, svg);
+    text(svg, x(t), top + rows.length * rowH + 18, tick(t), { "text-anchor": "middle", fill: css("--muted"), "font-size": 11 });
+  }
+  text(svg, x(lo), 14, narrow ? "← lower" : "← lower under Pochettino", { fill: css("--muted"), "font-size": 11 });
+  text(svg, x(hi), 14, narrow ? "higher →" : "higher under Pochettino →", { fill: css("--muted"), "font-size": 11, "text-anchor": "end" });
+  rows.forEach((r, i) => {
+    const y = top + i * rowH + (narrow ? rowH - 12 : rowH / 2);
+    const label = r.m.label.replace(" (level or one-goal states)", "");
+    if (narrow) text(svg, left, y - 12, label, { fill: css("--text"), "font-size": 12 });
+    else text(svg, left - 12, y + 4, label, { "text-anchor": "end", fill: css("--text"), "font-size": 12.5 });
+    svgEl("line", { x1: x(r.d.interval[0]), x2: x(r.d.interval[1]), y1: y, y2: y, stroke: css("--series-1"), "stroke-width": 2, "stroke-linecap": "round" }, svg);
+    svgEl("circle", { cx: x(r.d.mean), cy: y, r: 5, fill: css("--series-1"), stroke: css("--surface"), "stroke-width": 2 }, svg);
+    const now = r.m.united_now.mean, nw = r.m.united_under_pochettino.mean, ch = r.m.change;
+    hit(svg, { x: 0, y: top + i * rowH, width: w, height: rowH }, [
+      `${sgn(r.d.mean)} sd (${pct(lv)}: ${range(r.d.interval, 2, true)})`,
+      r.m.label,
+      `United now ${fmt(now, 2)} → ${fmt(nw, 2)} predicted (change ${sgn(ch.mean)}, ${pct(lv)} ${range(ch.interval, 2, true)})`,
+      `Probability it rises: ${pct(r.d.p_positive)}`]);
+  });
+  table($("table-style"), ["Metric", "United now", "Under Pochettino", `Change (${pct(lv)} interval)`, "Change in sd units"],
+    rows.map((r) => [r.m.label, fmt(r.m.united_now.mean, 2), fmt(r.m.united_under_pochettino.mean, 2),
+      `${sgn(r.m.change.mean)} (${range(r.m.change.interval, 2, true)})`, sgn(r.d.mean)]), [1, 2, 3, 4]);
+}
+
+// half-season block b: season starting in floor(b / 2); even = July-December, odd = January-June
+const blockSeason = (b) => { const s = Math.floor(b / 2); return `${s}-${String(s + 1).slice(2)}`; };
+const blockLabel = (b) => `${blockSeason(b)}, ${b % 2 === 0 ? "July–December" : "January–June"}`;
+
+function drawRecord(summary, lv) {
+  const blocks = summary.base.pochettino.by_block;
+  const idx = (b) => b.block - blocks[0].block;
+  const n = idx(blocks[blocks.length - 1]) + 1;
+  const left = 44, right = 12, top = 12, plotH = 220;
+  const { svg, w } = frame("chart-record", top + plotH + 56);
+  const lo = Math.min(...blocks.map((b) => b.q05), -0.1), hi = Math.max(...blocks.map((b) => b.q95), 0.1);
+  const y = (v) => top + (hi - v) / (hi - lo) * plotH;
+  const step = (w - left - right) / n, x = (i) => left + (i + 0.5) * step;
+  for (const t of niceTicks(lo, hi, 5)) {
+    svgEl("line", { x1: left, x2: w - right, y1: y(t), y2: y(t), stroke: t === 0 ? css("--axis") : css("--grid") }, svg);
+    text(svg, left - 6, y(t) + 4, tick(t), { "text-anchor": "end", fill: css("--muted"), "font-size": 11 });
+  }
+  const groups = [];
+  blocks.forEach((b) => { const g = groups[groups.length - 1]; if (g && g.label === b.label) g.end = idx(b); else groups.push({ label: b.label, start: idx(b), end: idx(b) }); });
+  groups.forEach((g, gi) => {
+    const short = { "Tottenham Hotspur": "Spurs", "Paris Saint-Germain": "PSG", "Chelsea FC": "Chelsea", "United States": "USA" }[g.label] || g.label;
+    svgEl("line", { x1: x(g.start) - step * 0.4, x2: x(g.end) + step * 0.4, y1: top + plotH + 14, y2: top + plotH + 14, stroke: css("--axis") }, svg);
+    text(svg, (x(g.start) + x(g.end)) / 2, top + plotH + 30, short, { "text-anchor": "middle", "font-size": 11.5 });
+    const first = blocks.find((b) => idx(b) === g.start).block, last = blocks.find((b) => idx(b) === g.end).block;
+    const span = blockSeason(first) === blockSeason(last) ? blockSeason(first) : `${Math.floor(first / 2)}–${String(Math.floor(last / 2) + 1).slice(2)}`;
+    text(svg, (x(g.start) + x(g.end)) / 2, top + plotH + 45, span, { "text-anchor": "middle", fill: css("--muted"), "font-size": 10.5 });
+  });
+  for (const b of blocks) {
+    const cx = x(idx(b));
+    svgEl("line", { x1: cx, x2: cx, y1: y(b.q05), y2: y(b.q95), stroke: css("--series-1"), "stroke-opacity": 0.45, "stroke-width": 2, "stroke-linecap": "round" }, svg);
+    svgEl("line", { x1: cx, x2: cx, y1: y(b.q25), y2: y(b.q75), stroke: css("--series-1"), "stroke-width": 4, "stroke-linecap": "round" }, svg);
+    svgEl("circle", { cx, cy: y(b.mean), r: 4, fill: css("--series-1"), stroke: css("--surface"), "stroke-width": 2 }, svg);
+    hit(svg, { x: cx - Math.max(12, step / 2), y: top, width: Math.max(24, step), height: plotH }, [
+      `${sgn(b.mean)} npxG difference per 90`, `${b.label}, ${blockLabel(b.block)}`,
+      `50%: ${range([b.q25, b.q75], 2, true)}; 90%: ${range([b.q05, b.q95], 2, true)}`, `P(above average) ${pct(b.p_positive)}`]);
+  }
+  legend($("legend-record"), [["50% interval", css("--series-1"), "rect"], ["90% interval", "rgba(57,135,229,0.45)", "rect"]]);
+  table($("table-record"), ["Half-season", "Team", "Effect (mean)", "50% interval", "90% interval"],
+    blocks.map((b) => [blockLabel(b.block), b.label,
+      sgn(b.mean), range([b.q25, b.q75], 2, true), range([b.q05, b.q95], 2, true)]), [2, 3, 4]);
+  const th = summary.base.pochettino.theta_now, mu = summary.base.pochettino.mu;
+  $("record-note").textContent = `Non-penalty xG difference per 90 that the model attributes to him, relative to an average manager at the same club, in each half-season he managed. His projected effect now: ${sgn(th.mean)} (90% ${range([th.q05, th.q95], 2, true)}); his long-run level: ${sgn(mu.mean)}.`;
+}
+
+function fitSection(fit, summary) {
+  const pe = fit.plain_english;
+  $("fit-lede").textContent = pe[0];
+  $("fit-chart-note").textContent = `Each row is one style metric. The dot is the predicted change for United (his estimated effect minus Carrick's), in standard deviations of a team-match value; the line is the ${pct(fit.interval)} interval. Hover, tap or tab to a row for the values in natural units.`;
+  drawStyle(fit);
+  const wk = $("tiles-weakness"); wk.replaceChildren();
+  for (const [, m] of Object.entries(fit.weakness_check)) {
+    tile(wk, m.label.replace(" (level or one-goal states)", " (close game states)"), pct(m.p_improves),
+      `chance it improves. Change ${sgn(m.change.mean, 3)} (${pct(fit.interval)}: ${range(m.change.interval, 3, true)})`);
+  }
+  drawRecord(summary, fit.interval);
+  $("fit-caveat").textContent = pe[pe.length - 1];
+}
+
+// ---------- 2. forecast ----------
+function drawPoints(fc) {
+  const runs = [["Average new coach (baseline)", fc.baseline, css("--series-2")], ["Pochettino", fc.pochettino, css("--series-1")]];
+  const narrow = $("chart-points").clientWidth < 560;
+  const left = narrow ? 110 : 220, right = 24, rowH = 54, top = 10;
+  const { svg, w } = frame("chart-points", top + runs.length * rowH + 30);
+  const lo = Math.min(...runs.map((r) => r[1].final_points["80"][0])) - 4, hi = Math.max(...runs.map((r) => r[1].final_points["80"][1])) + 4;
+  const x = (v) => left + (v - lo) / (hi - lo) * (w - left - right);
+  for (const t of niceTicks(lo, hi, 6)) {
+    svgEl("line", { x1: x(t), x2: x(t), y1: top, y2: top + runs.length * rowH, stroke: css("--grid") }, svg);
+    text(svg, x(t), top + runs.length * rowH + 18, String(t), { "text-anchor": "middle", fill: css("--muted"), "font-size": 11 });
+  }
+  runs.forEach(([name, r, color], i) => {
+    const y = top + i * rowH + rowH / 2, fp = r.final_points;
+    text(svg, left - 12, y + 4, narrow ? name.replace(" (baseline)", "") : name, { "text-anchor": "end", fill: css("--text"), "font-size": 12.5 });
+    svgEl("rect", { x: x(fp["80"][0]), y: y - 5, width: x(fp["80"][1]) - x(fp["80"][0]), height: 10, rx: 4, fill: color, "fill-opacity": 0.35 }, svg);
+    svgEl("rect", { x: x(fp["50"][0]), y: y - 9, width: x(fp["50"][1]) - x(fp["50"][0]), height: 18, rx: 4, fill: color }, svg);
+    svgEl("line", { x1: x(fp.median), x2: x(fp.median), y1: y - 13, y2: y + 13, stroke: css("--text"), "stroke-width": 2 }, svg);
+    text(svg, x(fp.median), y - 17, `${fmt(fp.median, 0)}`, { "text-anchor": "middle", fill: css("--text"), "font-size": 12, "font-weight": 600 });
+    hit(svg, { x: 0, y: y - rowH / 2, width: w, height: rowH }, [
+      `${fmt(fp.median, 0)} points (median)`, name, `50%: ${range(fp["50"], 0)}; 80%: ${range(fp["80"], 0)}`,
+      `Rest of season: ${fmt(r.rest_of_season_points.median, 0)} (80% ${range(r.rest_of_season_points["80"], 0)})`]);
+  });
+  legend($("legend-points"), [["Pochettino", css("--series-1"), "rect"], ["Average new coach", css("--series-2"), "rect"], ["Median", css("--text"), "line"]]);
+}
+
+function drawPosition(fc) {
+  const pp = fc.pochettino.position_probabilities, pb = fc.baseline.position_probabilities;
+  const pos = Object.keys(pp).map(Number);
+  const left = 40, right = 8, top = 10, plotH = 180;
+  const { svg, w } = frame("chart-position", top + plotH + 40);
+  const hi = Math.max(...Object.values(pp)) * 1.1;
+  const y = (v) => top + plotH - v / hi * plotH;
+  const step = (w - left - right) / pos.length, bw = Math.min(24, step - 2);
+  for (const t of niceTicks(0, hi, 4)) {
+    svgEl("line", { x1: left, x2: w - right, y1: y(t), y2: y(t), stroke: t === 0 ? css("--axis") : css("--grid") }, svg);
+    text(svg, left - 6, y(t) + 4, Math.round(t * 100) + "%", { "text-anchor": "end", fill: css("--muted"), "font-size": 11 });
+  }
+  for (const p of pos) {
+    const cx = left + (p - 0.5) * step, v = pp[p], hgt = y(0) - y(v);
+    if (hgt > 0.5) {
+      const r = Math.min(4, hgt / 2, bw / 2);
+      svgEl("path", { d: `M${cx - bw / 2},${y(0)} V${y(v) + r} Q${cx - bw / 2},${y(v)} ${cx - bw / 2 + r},${y(v)} H${cx + bw / 2 - r} Q${cx + bw / 2},${y(v)} ${cx + bw / 2},${y(v) + r} V${y(0)} Z`, fill: css("--series-1") }, svg);
+    }
+    if (p === 1 || p % (step < 22 ? 2 : 1) === 0 || p === pos.length) text(svg, cx, y(0) + 16, String(p), { "text-anchor": "middle", fill: css("--muted"), "font-size": 11 });
+    hit(svg, { x: cx - step / 2, y: top, width: step, height: plotH }, [`${(100 * v).toFixed(1)}%`, `Position ${p}`, `Average new coach: ${(100 * pb[p]).toFixed(1)}%`]);
+  }
+  text(svg, left + (w - left - right) / 2, top + plotH + 34, "Final position", { "text-anchor": "middle", fill: css("--muted"), "font-size": 11 });
+  table($("table-position"), ["Position", "Pochettino", "Average new coach"], pos.map((p) => [String(p), (100 * pp[p]).toFixed(1) + "%", (100 * pb[p]).toFixed(1) + "%"]), [1, 2]);
+}
+
+function forecastSection(fc, path) {
+  const fr = dateText(fc.frozen_on);
+  $("frozen-badge").textContent = "Frozen " + fr;
+  $("frozen-lede").textContent = `frozen on ${fr}, before his first league match on ${dateText(fc.first_league_match)}`;
+  const lede = $("forecast-lede");
+  lede.replaceChildren(document.createTextNode(`Pre-registered on ${fr} with data to ${dateText(fc.data_cutoff)} (code at commit ${fc.git.commit.slice(0, 7)}). This file is never edited; any later version gets a new date and this one stays visible. `));
+  const a = el("a", "Read the frozen file"); a.href = path; lede.append(a, document.createTextNode("."));
+  const t = $("tiles-forecast"); t.replaceChildren();
+  const u = fc.united_now, p = fc.pochettino, c = fc.contribution;
+  tile(t, "United at the freeze", `${fmt(u.points, 0)} pts`, `from ${u.played} matches; ${u.remaining} to play`);
+  tile(t, "Final points, Pochettino run", fmt(p.final_points.median, 0), `80%: ${range(p.final_points["80"], 0)}`);
+  tile(t, "His contribution", `${sgn(c.points.mean, 1)} pts`, `vs an average new coach; 80%: ${range(c.points["80"], 0, true)}`);
+  tile(t, "Top half", pct(p.p_top_half), `average new coach: ${pct(fc.baseline.p_top_half)}`);
+  tile(t, "Bottom three", pct(p.p_bottom_three), `average new coach: ${pct(fc.baseline.p_bottom_three)}`);
+  $("points-note").textContent = `Thick bar: 50% of simulated seasons; thin bar: 80%; line: median. Both runs strip out the outgoing coaches' estimated effect and include the usual first-year new-coach effect; the Pochettino run adds his own estimated effect. ${fc.simulation.draws.toLocaleString("en-GB")} simulated seasons.`;
+  drawPoints(fc);
+  drawPosition(fc);
+  table($("table-fixtures"), ["Opponent", "Venue", "Win", "Draw", "Loss", "Expected points", "Expected npxG difference"],
+    fc.united_fixtures.slice().sort((a, b) => a.opponent.localeCompare(b.opponent) || a.venue.localeCompare(b.venue)).map((f) => [
+      f.opponent, f.venue, pct(f.p_win_draw_loss[0]), pct(f.p_win_draw_loss[1]), pct(f.p_win_draw_loss[2]), fmt(f.expected_points, 2), sgn(f.npxg_diff_mean)]), [2, 3, 4, 5, 6]);
+}
+
+// ---------- 3. tracker ----------
+function drawCumulative(tr, box) {
+  const cm = tr.cumulative_by_match, n = cm.length;
+  const left = 40, right = 16, top = 12, plotH = 200;
+  const { svg, w } = frame(box, top + plotH + 40);
+  const hi = Math.max(...cm.map((c) => Math.max(c["80"][1], c.actual))) + 1;
+  const x = (k) => left + (n === 1 ? (w - left - right) / 2 : (k / (n - 1)) * (w - left - right));
+  const y = (v) => top + plotH - v / hi * plotH;
+  for (const t of niceTicks(0, hi, 4)) {
+    svgEl("line", { x1: left, x2: w - right, y1: y(t), y2: y(t), stroke: t === 0 ? css("--axis") : css("--grid") }, svg);
+    text(svg, left - 6, y(t) + 4, String(t), { "text-anchor": "end", fill: css("--muted"), "font-size": 11 });
+  }
+  const band = (key, fill) => {
+    const up = cm.map((c, k) => `${x(k)},${y(c[key][1])}`), dn = cm.map((c, k) => `${x(k)},${y(c[key][0])}`).reverse();
+    svgEl("polygon", { points: up.concat(dn).join(" "), fill }, svg);
+  };
+  band("80", css("--band-2")); band("50", css("--band"));
+  svgEl("polyline", { points: cm.map((c, k) => `${x(k)},${y(c.forecast_median)}`).join(" "), fill: "none", stroke: css("--muted"), "stroke-width": 2 }, svg);
+  svgEl("polyline", { points: cm.map((c, k) => `${x(k)},${y(c.actual)}`).join(" "), fill: "none", stroke: css("--series-1"), "stroke-width": 2, "stroke-linejoin": "round" }, svg);
+  cm.forEach((c, k) => {
+    svgEl("circle", { cx: x(k), cy: y(c.actual), r: 4, fill: css("--series-1"), stroke: css("--surface"), "stroke-width": 2 }, svg);
+    text(svg, x(k), y(0) + 16, String(k + 1), { "text-anchor": "middle", fill: css("--muted"), "font-size": 11 });
+    const m = tr.matches[k];
+    hit(svg, { x: x(k) - 14, y: top, width: 28, height: plotH }, [`${c.actual} points after ${k + 1}`, `${m.opponent} (${m.venue}) ${m.goals_for}–${m.goals_against}`,
+      `Frozen 50%: ${range(c["50"], 0)}; 80%: ${range(c["80"], 0)}`, c.inside_80 ? "Inside the 80% band" : "Outside the 80% band"]);
+  });
+  text(svg, left + (w - left - right) / 2, top + plotH + 34, "League matches since the freeze", { "text-anchor": "middle", fill: css("--muted"), "font-size": 11 });
+}
+
+function trackerSection(tr, fc) {
+  const body = $("tracker-body"); body.replaceChildren();
+  const e = tr.effect;
+  if (!tr.matches.length) {
+    body.append(el("div", `No league matches since the freeze yet. The first is on ${dateText(fc.first_league_match)}. The tracker updates after every league match.`, "empty"));
+    const t = el("div", undefined, "tiles"); body.append(t);
+    tile(t, "His effect, before any match at United", `${sgn(e.mean)}`, `npxG difference per 90; 80%: ${range(e["80"], 2, true)}`);
+    tile(t, "Chance his effect is positive", pct(e.p_positive), "from his record before United");
+    return;
+  }
+  const c = tr.cumulative_points, t = el("div", undefined, "tiles"); body.append(t);
+  tile(t, "Points since the freeze", String(c.actual), `frozen 80% band: ${range(c["80"], 0)} (${c.inside_80 ? "inside" : "OUTSIDE"})`);
+  tile(t, "Matches inside their npxG interval", pct(tr.inside_interval_share), `${pct(tr.matches[0].interval)} intervals; expect about ${pct(tr.matches[0].interval)}`);
+  tile(t, "His effect, updated", sgn(e.mean), `80%: ${range(e["80"], 2, true)}; before United ${sgn(e.prior_mean)}`);
+  const card = el("div", undefined, "card"); body.append(card);
+  const lg = el("div", undefined, "legend"); card.append(lg);
+  legend(lg, [["Actual points", css("--series-1"), "line"], ["Frozen median", css("--muted"), "line"], ["Frozen 50% band", css("--band"), "rect"], ["Frozen 80% band", css("--band-2"), "rect"]]);
+  const box = el("div", undefined, "chart"); box.id = "chart-cumulative"; card.append(box);
+  drawCumulative(tr, "chart-cumulative");
+  const tw = el("div", undefined, "table-wrap"), tbl = el("table"); tw.append(tbl); card.append(tw);
+  table(tbl, ["#", "Opponent", "Score", "Points", "Expected points", "Frozen npxG expectation", "npxG check"],
+    tr.matches.map((m, i) => [String(i + 1), `${m.opponent} (${m.venue})`, `${m.goals_for}–${m.goals_against}`, String(m.points),
+      fmt(m.expected_points, 2), sgn(m.forecast_npxg_diff_mean), m.inside_interval ? "inside interval" : "MISS: outside interval"]), [0, 3, 4, 5]);
+  if (tr.note) body.append(el("p", tr.note, "note"));
+}
+
+// ---------- 4. detectability ----------
+function detectSection(fc) {
+  const d = fc.detectability, mn = d.matches_needed, sd = d.posterior_sd_after_n_matches;
+  const rest = fc.united_now.remaining;
+  $("detect-lede").textContent = `A single match is noisy: the match-to-match spread of npxG difference is about ${fmt(d.sigma, 2)} per 90, while plausible manager effects are a tenth of that. So this season will mostly show noise, and that is expected.`;
+  const t = $("tiles-detect"); t.replaceChildren();
+  tile(t, "Matches to detect an effect of 0.20", Math.round(mn["0.20"]).toLocaleString("en-GB"), "npxG per 90, at the usual 5% significance and 80% power");
+  tile(t, "Matches to detect an effect of 0.10", Math.round(mn["0.10"]).toLocaleString("en-GB"), `the rest of this season is ${rest} matches`);
+  tile(t, "Uncertainty after this season", `±${fmt(sd[String(rest)], 2)}`, `standard deviation of his effect; now ±${fmt(d.effect_sd_now, 2)}`);
+  table($("table-detect"), ["After this many matches", "Standard deviation of his effect"],
+    Object.entries(sd).map(([n, v]) => [n, fmt(v, 3)]), [0, 1]);
+  $("detect-note").textContent = d.note;
+}
+
+// ---------- 5. method ----------
+function methodSection(bt, fit, fc, manifest) {
+  const b = bt.summary;
+  $("backtest-line").textContent = `Back-test on ${b.cases} mid-season appointments in the big five leagues (2015-16 to 2024-25): the model's 80% points intervals contained the outcome in ${pct(b.best.coverage80)} of cases and its 50% intervals in ${pct(b.best.coverage50)}, against ${pct(b.naive.coverage80)} and ${pct(b.naive.coverage50)} for a results-only model. Manager terms were not part of the back-test (${b.not_tested}).`;
+  const ul = $("limits");
+  ul.querySelectorAll("li.gen").forEach((li) => li.remove());
+  for (const s of [...fit.limits, fc.squad_freeze]) ul.append(el("li", s, "gen"));
+  $("footer").textContent = `Built from commit ${manifest.built_from_commit}. Original forecast: ${manifest.original_forecast}${manifest.revisions.length ? "; dated revisions: " + manifest.revisions.join(", ") : "; no revisions"}.`;
+}
+
+// ---------- load ----------
+async function getJSON(p) { const r = await fetch(p, { cache: "no-cache" }); if (!r.ok) throw new Error(p + " " + r.status); return r.json(); }
+let DATA = null;
+function render() {
+  const { fit, summary, fc, tr, bt, manifest } = DATA;
+  fitSection(fit, summary);
+  forecastSection(fc, manifest.original_forecast);
+  trackerSection(tr, fc);
+  detectSection(fc);
+  methodSection(bt, fit, fc, manifest);
+}
+(async () => {
+  try {
+    const manifest = await getJSON("data/manifest.json");
+    const [fit, summary, fc, tr, bt] = await Promise.all([
+      getJSON(manifest.data.fit), getJSON(manifest.data.model_summary), getJSON(manifest.original_forecast),
+      getJSON(manifest.data.tracker), getJSON(manifest.data.backtest)]);
+    DATA = { fit, summary, fc, tr, bt, manifest };
+    render();
+    let tmr;
+    window.addEventListener("resize", () => { clearTimeout(tmr); tmr = setTimeout(render, 150); });
+  } catch (err) {
+    $("load-error").style.display = "block";
+    console.error(err);
+  }
+})();
+</script>
+</body>
+</html>

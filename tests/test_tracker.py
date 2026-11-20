@@ -63,6 +63,7 @@ def test_track_one_match() -> None:
     assert m["actual_npxg_diff"] == pytest.approx(-0.5) and m["inside_interval"]
     assert m["observed_effect"] == pytest.approx(0.1)
     assert out["cumulative_points"]["actual"] == 1 and out["cumulative_points"]["forecast_mean"] == 1.0
+    assert len(out["cumulative_by_match"]) == 1 and out["cumulative_by_match"][-1] == out["cumulative_points"]
     cq = out["chance_quality_conceded"]
     assert cq["before"]["npxg_per_shot_against"] == pytest.approx(2.1 / 20)
     assert cq["since"]["big_chances_against_per_match"] == 1.0

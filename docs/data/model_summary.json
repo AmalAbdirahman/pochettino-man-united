@@ -1244,7 +1244,33 @@
    },
    "runtime_s": 950.5
   },
-  "drop_chelsea": null
+  "drop_chelsea": {
+   "mu": {
+    "mean": 0.004516880118714499,
+    "q05": -0.08371816803927981,
+    "q25": -0.02586661502051998,
+    "median": 0.0006490344730852699,
+    "q75": 0.03157551053948369,
+    "q95": 0.10642831320432213,
+    "p_positive": 0.515
+   },
+   "theta_now": {
+    "mean": 0.02797569801171084,
+    "q05": -0.3373563583903823,
+    "q25": -0.1173373302826021,
+    "median": 0.028800656582644267,
+    "q75": 0.17832313451314058,
+    "q95": 0.37437555123686267,
+    "p_positive": 0.5535
+   },
+   "mu_rank_pct": 0.6909090909090909,
+   "diagnostics": {
+    "divergences": 29,
+    "max_rhat": 1.0232335738770864,
+    "min_ess_bulk": 162.9223956672983
+   },
+   "runtime_s": 193.7
+  }
  },
  "league_offsets": "not estimated: they cancel exactly in a within-league xG difference",
  "league_bridge_sensitivity": "not applicable for the same reason"

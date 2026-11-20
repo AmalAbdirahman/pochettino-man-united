@@ -317,7 +317,7 @@ Data to 2026-11-13; effects evaluated at 2026-11-18. Units: non-penalty xG diffe
 | no_usa | +0.00 (90% -0.10 to +0.10) | -0.01 (90% -0.42 to +0.43) | 84 | 1.015 |
 | drop_spurs | -0.01 (90% -0.12 to +0.08) | +0.02 (90% -0.37 to +0.39) | 76 | 1.010 |
 | drop_psg | +0.01 (90% -0.07 to +0.11) | +0.03 (90% -0.36 to +0.40) | 100 | 1.040 |
-| drop_chelsea | not run | | | |
+| drop_chelsea | +0.00 (90% -0.08 to +0.11) | +0.03 (90% -0.34 to +0.37) | 29 | 1.023 |
 
 ### Carrick and United
 

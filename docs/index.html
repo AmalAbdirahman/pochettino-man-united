@@ -145,6 +145,9 @@ footer { border-top: 1px solid var(--hair); margin-top: 56px; padding: 24px 0 48
         <div class="chart" id="chart-record"></div>
         <details><summary>Table view</summary><div class="table-wrap"><table id="table-record"></table></div></details>
       </div>
+      <h3>How much his estimate depends on each spell</h3>
+      <p class="note">His projected effect now, refitting the model without one spell at a time. If one spell drove the estimate, its row would move away from the full fit.</p>
+      <div class="card"><div class="table-wrap"><table id="table-variants"></table></div></div>
       <p class="note" id="fit-caveat"></p>
     </section>
 
@@ -414,6 +417,13 @@ function drawRecord(summary, lv) {
   table($("table-record"), ["Half-season", "Team", "Effect (mean)", "50% interval", "90% interval"],
     blocks.map((b) => [blockLabel(b.block), b.label,
       sgn(b.mean), range([b.q25, b.q75], 2, true), range([b.q05, b.q95], 2, true)]), [2, 3, 4]);
+  const names = { base: "All data", no_usa: "Without the USA", drop_spurs: "Without Spurs", drop_psg: "Without PSG", drop_chelsea: "Without Chelsea" };
+  const vr = Object.entries(summary.variants);
+  table($("table-variants"), ["Fit", "Effect now (mean)", "90% interval", "Long-run level", "Max R-hat"],
+    vr.map(([k, v]) => v === null || v.reason
+      ? [names[k] || k, "not fitted", v && v.reason ? v.reason : "", "", ""]
+      : [names[k] || k, sgn(v.theta_now.mean), range([v.theta_now.q05, v.theta_now.q95], 2, true), sgn(v.mu.mean), fmt(v.diagnostics.max_rhat, 3)]),
+    [1, 2, 3, 4]);
   const th = summary.base.pochettino.theta_now, mu = summary.base.pochettino.mu;
   $("record-note").textContent = `Non-penalty xG difference per 90 that the model attributes to him, relative to an average manager at the same club, in each half-season he managed. His projected effect now: ${sgn(th.mean)} (90% ${range([th.q05, th.q95], 2, true)}); his long-run level: ${sgn(mu.mean)}.`;
 }

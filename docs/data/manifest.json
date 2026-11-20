@@ -8,5 +8,6 @@
     "model_summary": "data/model_summary.json",
     "forecast_spread": "data/forecast_spread.json"
   },
-  "built_from_commit": "55d7fd9"
+  "built_from_commit": "62f4161",
+  "uncommitted_changes": false
 }

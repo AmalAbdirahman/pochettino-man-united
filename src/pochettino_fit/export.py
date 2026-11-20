@@ -13,7 +13,7 @@ from typing import Any
 
 from pochettino_fit.config import ROOT, load_config
 
-PAGE_DATA = ["fit.json", "tracker.json", "backtest.json", "model_summary.json"]
+PAGE_DATA = ["fit.json", "tracker.json", "backtest.json", "model_summary.json", "forecast_spread.json"]
 
 
 def manifest(forecasts: Path, data: Path) -> dict[str, Any]:

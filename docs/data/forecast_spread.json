@@ -1,0 +1,16 @@
+{
+  "source": "re-run of forecasts/2026-11-20.json, reproduced exactly in ['united_now', 'baseline', 'pochettino', 'contribution']",
+  "draws": 4000,
+  "baseline": {
+    "final_points_sd": 7.669004070770859,
+    "final_points_mean": 48.98875,
+    "rest_points_sd": 7.669004070770859,
+    "position_sd": 3.9490153123911793
+  },
+  "pochettino": {
+    "final_points_sd": 8.534998169302675,
+    "final_points_mean": 49.5425,
+    "rest_points_sd": 8.534998169302675,
+    "position_sd": 4.250455674101307
+  }
+}

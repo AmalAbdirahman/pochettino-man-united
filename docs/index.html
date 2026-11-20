@@ -162,6 +162,7 @@ footer { border-top: 1px solid var(--hair); margin-top: 56px; padding: 24px 0 48
 
       <h3>Final league position</h3>
       <p class="note" id="position-note"></p>
+      <p class="note" id="paradox-note"></p>
       <div class="card"><div class="chart" id="chart-position"></div>
         <details><summary>Table view: both runs</summary><div class="table-wrap"><table id="table-position"></table></div></details>
       </div>
@@ -509,6 +510,16 @@ function forecastSection(fc, path) {
       f.opponent, f.venue, pct(f.p_win_draw_loss[0]), pct(f.p_win_draw_loss[1]), pct(f.p_win_draw_loss[2]), fmt(f.expected_points, 2), sgn(f.npxg_diff_mean)]), [2, 3, 4, 5, 6]);
 }
 
+// Why bottom three is likelier in the Pochettino run although his median is higher: his uncertain
+// effect widens the spread of final points, so both tails grow.
+function paradoxNote(fc, sp) {
+  const p = fc.pochettino, b = fc.baseline, sb = sp.baseline.final_points_sd, spp = sp.pochettino.final_points_sd;
+  const more = p.p_bottom_three > b.p_bottom_three;
+  $("paradox-note").textContent = more
+    ? `Why bottom three is likelier with Pochettino (${pct(p.p_bottom_three)}) than with an average new coach (${pct(b.p_bottom_three)}) even though his median is higher: his effect is uncertain, and that uncertainty widens both tails. Final points have a standard deviation of ${fmt(spp, 1)} in his run against ${fmt(sb, 1)} for the average new coach, so a top-half finish (${pct(p.p_top_half)} vs ${pct(b.p_top_half)}) and a bottom-three finish both become more likely.`
+    : `Final points have a standard deviation of ${fmt(spp, 1)} in the Pochettino run against ${fmt(sb, 1)} for an average new coach.`;
+}
+
 // ---------- 3. tracker ----------
 function drawCumulative(tr, box) {
   const cm = tr.cumulative_by_match, n = cm.length;
@@ -597,9 +608,10 @@ function methodSection(bt, fit, fc, manifest) {
 async function getJSON(p) { const r = await fetch(p, { cache: "no-cache" }); if (!r.ok) throw new Error(p + " " + r.status); return r.json(); }
 let DATA = null;
 function render() {
-  const { fit, summary, fc, tr, bt, manifest } = DATA;
+  const { fit, summary, fc, tr, bt, manifest, spread } = DATA;
   fitSection(fit, summary);
   forecastSection(fc, manifest.original_forecast);
+  paradoxNote(fc, spread);
   trackerSection(tr, fc);
   detectSection(fc);
   methodSection(bt, fit, fc, manifest);
@@ -610,7 +622,8 @@ function render() {
     const [fit, summary, fc, tr, bt] = await Promise.all([
       getJSON(manifest.data.fit), getJSON(manifest.data.model_summary), getJSON(manifest.original_forecast),
       getJSON(manifest.data.tracker), getJSON(manifest.data.backtest)]);
-    DATA = { fit, summary, fc, tr, bt, manifest };
+    const spread = await getJSON(manifest.data.forecast_spread);
+    DATA = { fit, summary, fc, tr, bt, manifest, spread };
     render();
     let tmr;
     window.addEventListener("resize", () => { clearTimeout(tmr); tmr = setTimeout(render, 150); });

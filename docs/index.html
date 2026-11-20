@@ -6,75 +6,103 @@
 <title>Pochettino at United</title>
 <meta name="description" content="A statistical model of Manchester United's underlying performance under Mauricio Pochettino: style fit, a forecast frozen before his first league match, and a public tracker.">
 <style>
+/* Direction: an analyst's ledger at night. Warm graphite neutrals, one ink-blue accent, figures in mono.
+   Signature: the freeze seal (mono date and commit), used by the forecast and the tracker only. */
 :root {
   color-scheme: dark;
-  --page: #0d0d0d;
-  --surface: #1a1a19;
-  --text: #f0efec;
-  --text-2: #c3c2b7;
-  --muted: #898781;
-  --grid: #2c2c2a;
-  --axis: #383835;
-  --border: rgba(255, 255, 255, 0.10);
-  --series-1: #3987e5;
-  --series-2: #d95926;
-  --band: rgba(57, 135, 229, 0.18);
-  --band-2: rgba(57, 135, 229, 0.10);
+  --page: #161513;
+  --surface: #1c1a18;
+  --raised: #262421;
+  --text: #efe9de;
+  --text-2: #aaa398;
+  --muted: #8a847a;
+  --hair: rgba(239, 233, 222, 0.08);
+  --grid: rgba(239, 233, 222, 0.07);
+  --axis: rgba(239, 233, 222, 0.18);
+  --accent: #4b8fe2;
+  --accent-band: rgba(75, 143, 226, 0.22);
+  --accent-band-2: rgba(75, 143, 226, 0.11);
+  --neutral: #77716a;
+  --neutral-soft: rgba(143, 137, 127, 0.38);
+  --neutral-band: rgba(239, 233, 222, 0.10);
+  --neutral-band-2: rgba(239, 233, 222, 0.05);
   --focus: #9ec5f4;
   --font: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 * { box-sizing: border-box; }
 html { background: var(--page); }
-body { margin: 0; background: var(--page); color: var(--text); font: 16px/1.55 var(--font); }
-a { color: var(--focus); }
-a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+body { margin: 0; background: var(--page); color: var(--text); font: 15px/1.6 var(--font); }
+a { color: var(--focus); text-underline-offset: 2px; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
   outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px;
 }
 .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
-header { padding: 48px 0 24px; border-bottom: 1px solid var(--grid); }
-h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.15; margin: 0 0 12px; font-weight: 650; }
-.lede { color: var(--text-2); max-width: 46rem; margin: 0; }
-nav { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 0.95rem; }
-nav a { color: var(--text-2); text-decoration: none; }
-nav a:hover { color: var(--text); text-decoration: underline; }
-section { padding: 40px 0 8px; }
-h2 { font-size: 1.5rem; margin: 0 0 6px; font-weight: 650; }
-h3 { font-size: 1.05rem; margin: 28px 0 4px; font-weight: 600; }
-.sub { color: var(--text-2); margin: 0 0 16px; max-width: 46rem; }
-.note { color: var(--muted); font-size: 0.9rem; max-width: 46rem; }
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin: 12px 0; }
-.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 12px 0; }
-.tile { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
-.tile .label { color: var(--text-2); font-size: 0.9rem; }
-.tile .value { font-size: 1.9rem; font-weight: 600; line-height: 1.2; margin: 4px 0 2px; }
-.tile .detail { color: var(--muted); font-size: 0.85rem; }
+header { padding: 64px 0 32px; border-bottom: 1px solid var(--hair); }
+h1 { font-size: clamp(2rem, 6vw, 2.75rem); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 16px; font-weight: 500; }
+.lede { color: var(--text-2); font-size: 1.125rem; line-height: 1.6; max-width: 40rem; margin: 0; }
+nav { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 0.875rem; }
+nav a { color: var(--text-2); text-decoration: none; transition: color 150ms var(--ease); }
+nav a:hover { color: var(--text); }
+section { padding: 56px 0 8px; }
+h2 { font-size: 1.75rem; line-height: 1.2; margin: 0 0 8px; font-weight: 500; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
+h3 { font-size: 1.0625rem; margin: 40px 0 8px; font-weight: 500; }
+.sub { color: var(--text-2); margin: 0 0 20px; max-width: 40rem; }
+.note { color: var(--muted); font-size: 0.875rem; max-width: 40rem; margin: 0 0 12px; }
+.card { background: var(--surface); border: 1px solid var(--hair); border-radius: 12px; padding: 20px; margin: 12px 0; }
+.num, .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+/* seal: the signature detail */
+.seal { font-family: var(--mono); font-size: 12px; line-height: 16px; font-weight: 400; color: var(--text-2);
+  border: 1px solid var(--axis); border-radius: 4px; padding: 4px 8px; white-space: nowrap; }
+/* lead figure + ledger: one number leads, the rest are rows */
+.lead { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 12px; margin: 12px 0; }
+.lead-fig { background: var(--surface); border: 1px solid var(--hair); border-radius: 12px; padding: 20px;
+  display: flex; flex-direction: column; justify-content: center; }
+.lead-fig .label { color: var(--text-2); font-size: 0.875rem; }
+.lead-fig .value { font-size: 3.5rem; line-height: 1; font-weight: 500; letter-spacing: -0.02em; margin: 12px 0 8px; }
+.lead-fig .detail { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.ledger { background: var(--surface); border: 1px solid var(--hair); border-radius: 12px; padding: 4px 20px; margin: 0; }
+.ledger .row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 12px 0; border-bottom: 1px solid var(--hair); }
+.ledger .row:last-child { border-bottom: 0; }
+.ledger dt { color: var(--text); font-size: 0.875rem; }
+.ledger dd { margin: 0; text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 1.125rem; }
+.ledger .why { grid-column: 1 / -1; color: var(--muted); font-size: 12px; font-family: var(--mono); }
 .chart { width: 100%; position: relative; }
 .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
 .chart text { font-family: var(--font); }
-.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--text-2); font-size: 0.85rem; margin: 0 0 8px; }
-.legend span { display: inline-flex; align-items: center; gap: 6px; }
-.key { display: inline-block; width: 14px; height: 10px; border-radius: 2px; }
+.chart text.tk { font-family: var(--mono); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--text-2); font-size: 0.8125rem; margin: 0 0 12px; }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.key { display: inline-block; width: 12px; height: 8px; border-radius: 2px; }
 .key.line { height: 2px; border-radius: 1px; }
-.tip { position: fixed; z-index: 10; pointer-events: none; background: #262624; color: var(--text);
-  border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font-size: 0.85rem;
-  max-width: 280px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4); display: none; }
-.tip strong { display: block; font-size: 1rem; }
+.tip { position: fixed; z-index: 10; pointer-events: none; background: var(--raised); color: var(--text);
+  border: 1px solid var(--hair); border-radius: 8px; padding: 8px 12px; font-size: 0.8125rem;
+  max-width: 280px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35); display: none; }
+.tip strong { display: block; font-size: 1rem; font-weight: 500; font-family: var(--mono); }
 .tip .t-sub { color: var(--text-2); }
-details { margin: 8px 0 0; }
-summary { cursor: pointer; color: var(--text-2); font-size: 0.92rem; padding: 4px 0; }
+details { margin: 12px 0 0; }
+summary { cursor: pointer; color: var(--text-2); font-size: 0.875rem; padding: 4px 0; transition: color 150ms var(--ease); }
+summary:hover { color: var(--text); }
 .table-wrap { overflow-x: auto; }
-table { border-collapse: collapse; width: 100%; font-size: 0.88rem; margin-top: 8px; }
-th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--grid); vertical-align: top; }
-th { color: var(--text-2); font-weight: 600; }
-td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-ul.plain { padding-left: 20px; max-width: 46rem; }
+table { border-collapse: collapse; width: 100%; font-size: 0.875rem; margin-top: 8px; }
+th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--hair); vertical-align: top; }
+th { color: var(--text-2); font-weight: 500; }
+td.num, th.num { text-align: right; white-space: nowrap; }
+th.num { font-family: var(--font); }
+td.miss { color: var(--text); }
+ul.plain { padding-left: 20px; max-width: 40rem; margin: 0; }
 ul.plain li { margin: 4px 0; }
-.empty { color: var(--text-2); border: 1px dashed var(--axis); border-radius: 12px; padding: 20px; text-align: center; }
-.badge { display: inline-block; font-size: 0.78rem; color: var(--text-2); border: 1px solid var(--axis);
-  border-radius: 999px; padding: 1px 8px; margin-left: 6px; vertical-align: middle; }
-footer { border-top: 1px solid var(--grid); margin-top: 40px; padding: 24px 0 48px; color: var(--muted); font-size: 0.85rem; }
+.empty { color: var(--text-2); border: 1px dashed var(--axis); border-radius: 12px; padding: 24px; text-align: center; margin: 12px 0; }
+footer { border-top: 1px solid var(--hair); margin-top: 56px; padding: 24px 0 48px; color: var(--muted); font-size: 12px; font-family: var(--mono); }
 #load-error { display: none; color: var(--text); background: var(--surface); border: 1px solid var(--axis);
   border-radius: 12px; padding: 16px; margin: 24px 0; }
+@media (max-width: 640px) {
+  header { padding: 48px 0 24px; }
+  section { padding-top: 48px; }
+  .lead { grid-template-columns: 1fr; }
+  .lead-fig .value { font-size: 2.75rem; }
+}
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 </head>
@@ -101,14 +129,14 @@ footer { border-top: 1px solid var(--grid); margin-top: 40px; padding: 24px 0 48
 
       <h3>Predicted style change: Pochettino minus Carrick</h3>
       <p class="note" id="fit-chart-note"></p>
-      <div class="card"><div class="chart" id="chart-style"></div>
+      <div class="card"><div class="legend" id="legend-style"></div><div class="chart" id="chart-style"></div>
         <details><summary>Table view: United now and predicted, in natural units</summary>
           <div class="table-wrap"><table id="table-style"></table></div></details>
       </div>
 
       <h3>Weakness check</h3>
       <p class="note">United's weak points this season are chance quality conceded and set pieces. Probability that each improves under him, with the predicted change.</p>
-      <div class="tiles" id="tiles-weakness"></div>
+      <div id="weakness"></div>
 
       <h3>His record: estimated effect by half-season</h3>
       <p class="note" id="record-note"></p>
@@ -121,9 +149,9 @@ footer { border-top: 1px solid var(--grid); margin-top: 40px; padding: 24px 0 48
     </section>
 
     <section id="forecast" aria-labelledby="forecast-h">
-      <h2 id="forecast-h">2. The forecast <span class="badge" id="frozen-badge"></span></h2>
+      <h2 id="forecast-h">2. The forecast <span class="seal" id="forecast-seal"></span></h2>
       <p class="sub" id="forecast-lede"></p>
-      <div class="tiles" id="tiles-forecast"></div>
+      <div class="lead" id="lead-forecast"></div>
 
       <h3>Final points: average new coach vs Pochettino</h3>
       <p class="note" id="points-note"></p>
@@ -133,7 +161,7 @@ footer { border-top: 1px solid var(--grid); margin-top: 40px; padding: 24px 0 48
       </div>
 
       <h3>Final league position</h3>
-      <p class="note">Share of simulated seasons ending in each position, Pochettino run.</p>
+      <p class="note" id="position-note"></p>
       <div class="card"><div class="chart" id="chart-position"></div>
         <details><summary>Table view: both runs</summary><div class="table-wrap"><table id="table-position"></table></div></details>
       </div>
@@ -143,7 +171,7 @@ footer { border-top: 1px solid var(--grid); margin-top: 40px; padding: 24px 0 48
     </section>
 
     <section id="tracker" aria-labelledby="tracker-h">
-      <h2 id="tracker-h">3. The tracker</h2>
+      <h2 id="tracker-h">3. The tracker <span class="seal" id="tracker-seal"></span></h2>
       <p class="sub">After each league match: points against the frozen band, the match against its frozen expectation, and an updated estimate of his effect. Misses are shown as prominently as hits.</p>
       <div id="tracker-body"></div>
     </section>
@@ -151,8 +179,7 @@ footer { border-top: 1px solid var(--grid); margin-top: 40px; padding: 24px 0 48
     <section id="detect" aria-labelledby="detect-h">
       <h2 id="detect-h">4. How much the data can tell us</h2>
       <p class="sub" id="detect-lede"></p>
-      <div class="tiles" id="tiles-detect"></div>
-      <div class="card"><div class="table-wrap"><table id="table-detect"></table></div></div>
+      <div class="lead" id="lead-detect"></div>
       <p class="note" id="detect-note"></p>
     </section>
 
@@ -221,12 +248,24 @@ function el(tag, txt, cls) {
   if (cls) e.className = cls;
   return e;
 }
-function tile(parent, label, value, detail) {
-  const t = el("div", undefined, "tile");
-  t.append(el("div", label, "label"), el("div", value, "value"));
-  if (detail) t.append(el("div", detail, "detail"));
-  parent.appendChild(t);
+// one figure leads; everything else is a ledger row (label, value, and a muted line of context)
+function leadFig(parent, label, value, detail) {
+  const f = el("div", undefined, "lead-fig");
+  f.append(el("div", label, "label"), el("div", value, "value"));
+  if (detail) f.append(el("div", detail, "detail"));
+  parent.append(f);
 }
+function ledger(parent, rows) {
+  const dl = el("dl", undefined, "ledger");
+  for (const [label, value, why] of rows) {
+    const r = el("div", undefined, "row");
+    r.append(el("dt", label), el("dd", value));
+    if (why) r.append(el("div", why, "why"));
+    dl.append(r);
+  }
+  parent.append(dl);
+}
+const seal = (fc) => `frozen ${fc.frozen_on} · ${fc.git.commit.slice(0, 7)}`;
 function table(tbl, head, rows, numCols = []) {
   tbl.replaceChildren();
   const tr = el("tr");
@@ -308,7 +347,7 @@ function drawStyle(fit) {
   const x = (v) => left + (v - lo) / (hi - lo) * (w - left - right);
   for (const t of niceTicks(lo, hi, narrow ? 4 : 6)) {
     svgEl("line", { x1: x(t), x2: x(t), y1: top - 6, y2: top + rows.length * rowH, stroke: t === 0 ? css("--axis") : css("--grid"), "stroke-width": 1 }, svg);
-    text(svg, x(t), top + rows.length * rowH + 18, tick(t), { "text-anchor": "middle", fill: css("--muted"), "font-size": 11 });
+    text(svg, x(t), top + rows.length * rowH + 18, tick(t), { "text-anchor": "middle", fill: css("--muted"), "font-size": 11, class: "tk" });
   }
   text(svg, x(lo), 14, narrow ? "← lower" : "← lower under Pochettino", { fill: css("--muted"), "font-size": 11 });
   text(svg, x(hi), 14, narrow ? "higher →" : "higher under Pochettino →", { fill: css("--muted"), "font-size": 11, "text-anchor": "end" });
@@ -317,8 +356,9 @@ function drawStyle(fit) {
     const label = r.m.label.replace(" (level or one-goal states)", "");
     if (narrow) text(svg, left, y - 12, label, { fill: css("--text"), "font-size": 12 });
     else text(svg, left - 12, y + 4, label, { "text-anchor": "end", fill: css("--text"), "font-size": 12.5 });
-    svgEl("line", { x1: x(r.d.interval[0]), x2: x(r.d.interval[1]), y1: y, y2: y, stroke: css("--series-1"), "stroke-width": 2, "stroke-linecap": "round" }, svg);
-    svgEl("circle", { cx: x(r.d.mean), cy: y, r: 5, fill: css("--series-1"), stroke: css("--surface"), "stroke-width": 2 }, svg);
+    const clear = r.d.interval[0] > 0 || r.d.interval[1] < 0, col = clear ? css("--accent") : css("--neutral");
+    svgEl("line", { x1: x(r.d.interval[0]), x2: x(r.d.interval[1]), y1: y, y2: y, stroke: col, "stroke-width": 2, "stroke-linecap": "round" }, svg);
+    svgEl("circle", { cx: x(r.d.mean), cy: y, r: 5, fill: col, stroke: css("--surface"), "stroke-width": 2 }, svg);
     const now = r.m.united_now.mean, nw = r.m.united_under_pochettino.mean, ch = r.m.change;
     hit(svg, { x: 0, y: top + i * rowH, width: w, height: rowH }, [
       `${sgn(r.d.mean)} sd (${pct(lv)}: ${range(r.d.interval, 2, true)})`,
@@ -326,6 +366,7 @@ function drawStyle(fit) {
       `United now ${fmt(now, 2)} → ${fmt(nw, 2)} predicted (change ${sgn(ch.mean)}, ${pct(lv)} ${range(ch.interval, 2, true)})`,
       `Probability it rises: ${pct(r.d.p_positive)}`]);
   });
+  legend($("legend-style"), [[`Clear change (${pct(lv)} interval excludes zero)`, css("--accent"), "rect"], ["Could be no change", css("--neutral"), "rect"]]);
   table($("table-style"), ["Metric", "United now", "Under Pochettino", `Change (${pct(lv)} interval)`, "Change in sd units"],
     rows.map((r) => [r.m.label, fmt(r.m.united_now.mean, 2), fmt(r.m.united_under_pochettino.mean, 2),
       `${sgn(r.m.change.mean)} (${range(r.m.change.interval, 2, true)})`, sgn(r.d.mean)]), [1, 2, 3, 4]);
@@ -346,7 +387,7 @@ function drawRecord(summary, lv) {
   const step = (w - left - right) / n, x = (i) => left + (i + 0.5) * step;
   for (const t of niceTicks(lo, hi, 5)) {
     svgEl("line", { x1: left, x2: w - right, y1: y(t), y2: y(t), stroke: t === 0 ? css("--axis") : css("--grid") }, svg);
-    text(svg, left - 6, y(t) + 4, tick(t), { "text-anchor": "end", fill: css("--muted"), "font-size": 11 });
+    text(svg, left - 6, y(t) + 4, tick(t), { "text-anchor": "end", fill: css("--muted"), "font-size": 11, class: "tk" });
   }
   const groups = [];
   blocks.forEach((b) => { const g = groups[groups.length - 1]; if (g && g.label === b.label) g.end = idx(b); else groups.push({ label: b.label, start: idx(b), end: idx(b) }); });
@@ -356,18 +397,19 @@ function drawRecord(summary, lv) {
     text(svg, (x(g.start) + x(g.end)) / 2, top + plotH + 30, short, { "text-anchor": "middle", "font-size": 11.5 });
     const first = blocks.find((b) => idx(b) === g.start).block, last = blocks.find((b) => idx(b) === g.end).block;
     const span = blockSeason(first) === blockSeason(last) ? blockSeason(first) : `${Math.floor(first / 2)}–${String(Math.floor(last / 2) + 1).slice(2)}`;
-    text(svg, (x(g.start) + x(g.end)) / 2, top + plotH + 45, span, { "text-anchor": "middle", fill: css("--muted"), "font-size": 10.5 });
+    const room = (x(g.end) - x(g.start)) + step * 0.8;
+    if (room >= 56 || groups.length === 1) text(svg, (x(g.start) + x(g.end)) / 2, top + plotH + 45, span, { "text-anchor": "middle", fill: css("--muted"), "font-size": 10.5 });
   });
   for (const b of blocks) {
     const cx = x(idx(b));
-    svgEl("line", { x1: cx, x2: cx, y1: y(b.q05), y2: y(b.q95), stroke: css("--series-1"), "stroke-opacity": 0.45, "stroke-width": 2, "stroke-linecap": "round" }, svg);
-    svgEl("line", { x1: cx, x2: cx, y1: y(b.q25), y2: y(b.q75), stroke: css("--series-1"), "stroke-width": 4, "stroke-linecap": "round" }, svg);
-    svgEl("circle", { cx, cy: y(b.mean), r: 4, fill: css("--series-1"), stroke: css("--surface"), "stroke-width": 2 }, svg);
+    svgEl("line", { x1: cx, x2: cx, y1: y(b.q05), y2: y(b.q95), stroke: css("--neutral-soft"), "stroke-width": 2, "stroke-linecap": "round" }, svg);
+    svgEl("line", { x1: cx, x2: cx, y1: y(b.q25), y2: y(b.q75), stroke: css("--neutral"), "stroke-width": 4, "stroke-linecap": "round" }, svg);
+    svgEl("circle", { cx, cy: y(b.mean), r: 4, fill: css("--text"), stroke: css("--surface"), "stroke-width": 2 }, svg);
     hit(svg, { x: cx - Math.max(12, step / 2), y: top, width: Math.max(24, step), height: plotH }, [
       `${sgn(b.mean)} npxG difference per 90`, `${b.label}, ${blockLabel(b.block)}`,
       `50%: ${range([b.q25, b.q75], 2, true)}; 90%: ${range([b.q05, b.q95], 2, true)}`, `P(above average) ${pct(b.p_positive)}`]);
   }
-  legend($("legend-record"), [["50% interval", css("--series-1"), "rect"], ["90% interval", "rgba(57,135,229,0.45)", "rect"]]);
+  legend($("legend-record"), [["Estimate", css("--text"), "rect"], ["50% interval", css("--neutral"), "rect"], ["90% interval", css("--neutral-soft"), "rect"]]);
   table($("table-record"), ["Half-season", "Team", "Effect (mean)", "50% interval", "90% interval"],
     blocks.map((b) => [blockLabel(b.block), b.label,
       sgn(b.mean), range([b.q25, b.q75], 2, true), range([b.q05, b.q95], 2, true)]), [2, 3, 4]);
@@ -380,44 +422,46 @@ function fitSection(fit, summary) {
   $("fit-lede").textContent = pe[0];
   $("fit-chart-note").textContent = `Each row is one style metric. The dot is the predicted change for United (his estimated effect minus Carrick's), in standard deviations of a team-match value; the line is the ${pct(fit.interval)} interval. Hover, tap or tab to a row for the values in natural units.`;
   drawStyle(fit);
-  const wk = $("tiles-weakness"); wk.replaceChildren();
-  for (const [, m] of Object.entries(fit.weakness_check)) {
-    tile(wk, m.label.replace(" (level or one-goal states)", " (close game states)"), pct(m.p_improves),
-      `chance it improves. Change ${sgn(m.change.mean, 3)} (${pct(fit.interval)}: ${range(m.change.interval, 3, true)})`);
-  }
+  const wk = $("weakness"); wk.replaceChildren();
+  ledger(wk, Object.values(fit.weakness_check).map((m) => [
+    m.label.replace(" (level or one-goal states)", " (close game states)"), pct(m.p_improves),
+    `chance it improves · change ${sgn(m.change.mean, 3)}, ${pct(fit.interval)} ${range(m.change.interval, 3, true)}`]));
   drawRecord(summary, fit.interval);
   $("fit-caveat").textContent = pe[pe.length - 1];
 }
 
 // ---------- 2. forecast ----------
 function drawPoints(fc) {
-  const runs = [["Average new coach (baseline)", fc.baseline, css("--series-2")], ["Pochettino", fc.pochettino, css("--series-1")]];
+  const runs = [["Average new coach", fc.baseline, css("--neutral")], ["Pochettino", fc.pochettino, css("--accent")]];
   const narrow = $("chart-points").clientWidth < 560;
-  const left = narrow ? 110 : 220, right = 24, rowH = 54, top = 10;
-  const { svg, w } = frame("chart-points", top + runs.length * rowH + 30);
+  const left = narrow ? 8 : 168, right = 16, rowH = narrow ? 88 : 80, top = 8;
+  const { svg, w } = frame("chart-points", top + runs.length * rowH + 32);
   const lo = Math.min(...runs.map((r) => r[1].final_points["80"][0])) - 4, hi = Math.max(...runs.map((r) => r[1].final_points["80"][1])) + 4;
   const x = (v) => left + (v - lo) / (hi - lo) * (w - left - right);
   for (const t of niceTicks(lo, hi, 6)) {
     svgEl("line", { x1: x(t), x2: x(t), y1: top, y2: top + runs.length * rowH, stroke: css("--grid") }, svg);
-    text(svg, x(t), top + runs.length * rowH + 18, String(t), { "text-anchor": "middle", fill: css("--muted"), "font-size": 11 });
+    text(svg, x(t), top + runs.length * rowH + 18, String(t), { "text-anchor": "middle", fill: css("--muted"), "font-size": 11, class: "tk" });
   }
   runs.forEach(([name, r, color], i) => {
-    const y = top + i * rowH + rowH / 2, fp = r.final_points;
-    text(svg, left - 12, y + 4, narrow ? name.replace(" (baseline)", "") : name, { "text-anchor": "end", fill: css("--text"), "font-size": 12.5 });
-    svgEl("rect", { x: x(fp["80"][0]), y: y - 5, width: x(fp["80"][1]) - x(fp["80"][0]), height: 10, rx: 4, fill: color, "fill-opacity": 0.35 }, svg);
-    svgEl("rect", { x: x(fp["50"][0]), y: y - 9, width: x(fp["50"][1]) - x(fp["50"][0]), height: 18, rx: 4, fill: color }, svg);
-    svgEl("line", { x1: x(fp.median), x2: x(fp.median), y1: y - 13, y2: y + 13, stroke: css("--text"), "stroke-width": 2 }, svg);
-    text(svg, x(fp.median), y - 17, `${fmt(fp.median, 0)}`, { "text-anchor": "middle", fill: css("--text"), "font-size": 12, "font-weight": 600 });
+    const y = top + i * rowH + (narrow ? rowH - 28 : rowH / 2 + 8), fp = r.final_points;
+    if (narrow) text(svg, left, y - 30, name, { fill: css("--text"), "font-size": 13 });
+    else text(svg, left - 16, y + 5, name, { "text-anchor": "end", fill: css("--text"), "font-size": 14 });
+    svgEl("rect", { x: x(fp["80"][0]), y: y - 6, width: x(fp["80"][1]) - x(fp["80"][0]), height: 12, rx: 4, fill: color, "fill-opacity": 0.32 }, svg);
+    svgEl("rect", { x: x(fp["50"][0]), y: y - 12, width: x(fp["50"][1]) - x(fp["50"][0]), height: 24, rx: 4, fill: color }, svg);
+    svgEl("line", { x1: x(fp.median), x2: x(fp.median), y1: y - 16, y2: y + 16, stroke: css("--text"), "stroke-width": 2 }, svg);
+    text(svg, x(fp.median), y - 22, `${fmt(fp.median, 0)}`, { "text-anchor": "middle", fill: css("--text"), "font-size": 14, "font-weight": 500, class: "tk" });
+    for (const [v, anchor] of [[fp["80"][0], "end"], [fp["80"][1], "start"]])
+      text(svg, x(v) + (anchor === "end" ? -6 : 6), y + 4, fmt(v, 0), { "text-anchor": anchor, fill: css("--muted"), "font-size": 11, class: "tk" });
     hit(svg, { x: 0, y: y - rowH / 2, width: w, height: rowH }, [
       `${fmt(fp.median, 0)} points (median)`, name, `50%: ${range(fp["50"], 0)}; 80%: ${range(fp["80"], 0)}`,
       `Rest of season: ${fmt(r.rest_of_season_points.median, 0)} (80% ${range(r.rest_of_season_points["80"], 0)})`]);
   });
-  legend($("legend-points"), [["Pochettino", css("--series-1"), "rect"], ["Average new coach", css("--series-2"), "rect"], ["Median", css("--text"), "line"]]);
+  legend($("legend-points"), [["Pochettino", css("--accent"), "rect"], ["Average new coach", css("--neutral"), "rect"], ["Median", css("--text"), "line"]]);
 }
 
 function drawPosition(fc) {
   const pp = fc.pochettino.position_probabilities, pb = fc.baseline.position_probabilities;
-  const pos = Object.keys(pp).map(Number);
+  const pos = Object.keys(pp).map(Number), med = fc.pochettino.median_position;
   const left = 40, right = 8, top = 10, plotH = 180;
   const { svg, w } = frame("chart-position", top + plotH + 40);
   const hi = Math.max(...Object.values(pp)) * 1.1;
@@ -425,15 +469,15 @@ function drawPosition(fc) {
   const step = (w - left - right) / pos.length, bw = Math.min(24, step - 2);
   for (const t of niceTicks(0, hi, 4)) {
     svgEl("line", { x1: left, x2: w - right, y1: y(t), y2: y(t), stroke: t === 0 ? css("--axis") : css("--grid") }, svg);
-    text(svg, left - 6, y(t) + 4, Math.round(t * 100) + "%", { "text-anchor": "end", fill: css("--muted"), "font-size": 11 });
+    text(svg, left - 6, y(t) + 4, Math.round(t * 100) + "%", { "text-anchor": "end", fill: css("--muted"), "font-size": 11, class: "tk" });
   }
   for (const p of pos) {
     const cx = left + (p - 0.5) * step, v = pp[p], hgt = y(0) - y(v);
     if (hgt > 0.5) {
       const r = Math.min(4, hgt / 2, bw / 2);
-      svgEl("path", { d: `M${cx - bw / 2},${y(0)} V${y(v) + r} Q${cx - bw / 2},${y(v)} ${cx - bw / 2 + r},${y(v)} H${cx + bw / 2 - r} Q${cx + bw / 2},${y(v)} ${cx + bw / 2},${y(v) + r} V${y(0)} Z`, fill: css("--series-1") }, svg);
+      svgEl("path", { d: `M${cx - bw / 2},${y(0)} V${y(v) + r} Q${cx - bw / 2},${y(v)} ${cx - bw / 2 + r},${y(v)} H${cx + bw / 2 - r} Q${cx + bw / 2},${y(v)} ${cx + bw / 2},${y(v) + r} V${y(0)} Z`, fill: p === med ? css("--accent") : css("--neutral") }, svg);
     }
-    if (p === 1 || p % (step < 22 ? 2 : 1) === 0 || p === pos.length) text(svg, cx, y(0) + 16, String(p), { "text-anchor": "middle", fill: css("--muted"), "font-size": 11 });
+    if (p === 1 || p % (step < 22 ? 2 : 1) === 0 || p === pos.length) text(svg, cx, y(0) + 16, String(p), { "text-anchor": "middle", fill: css("--muted"), "font-size": 11, class: "tk" });
     hit(svg, { x: cx - step / 2, y: top, width: step, height: plotH }, [`${(100 * v).toFixed(1)}%`, `Position ${p}`, `Average new coach: ${(100 * pb[p]).toFixed(1)}%`]);
   }
   text(svg, left + (w - left - right) / 2, top + plotH + 34, "Final position", { "text-anchor": "middle", fill: css("--muted"), "font-size": 11 });
@@ -442,18 +486,21 @@ function drawPosition(fc) {
 
 function forecastSection(fc, path) {
   const fr = dateText(fc.frozen_on);
-  $("frozen-badge").textContent = "Frozen " + fr;
+  $("forecast-seal").textContent = seal(fc);
   $("frozen-lede").textContent = `frozen on ${fr}, before his first league match on ${dateText(fc.first_league_match)}`;
   const lede = $("forecast-lede");
-  lede.replaceChildren(document.createTextNode(`Pre-registered on ${fr} with data to ${dateText(fc.data_cutoff)} (code at commit ${fc.git.commit.slice(0, 7)}). This file is never edited; any later version gets a new date and this one stays visible. `));
+  lede.replaceChildren(document.createTextNode(`Pre-registered on ${fr} with data to ${dateText(fc.data_cutoff)}. This file is never edited; any later version gets a new date and this one stays visible. `));
   const a = el("a", "Read the frozen file"); a.href = path; lede.append(a, document.createTextNode("."));
-  const t = $("tiles-forecast"); t.replaceChildren();
+  const t = $("lead-forecast"); t.replaceChildren();
   const u = fc.united_now, p = fc.pochettino, c = fc.contribution;
-  tile(t, "United at the freeze", `${fmt(u.points, 0)} pts`, `from ${u.played} matches; ${u.remaining} to play`);
-  tile(t, "Final points, Pochettino run", fmt(p.final_points.median, 0), `80%: ${range(p.final_points["80"], 0)}`);
-  tile(t, "His contribution", `${sgn(c.points.mean, 1)} pts`, `vs an average new coach; 80%: ${range(c.points["80"], 0, true)}`);
-  tile(t, "Top half", pct(p.p_top_half), `average new coach: ${pct(fc.baseline.p_top_half)}`);
-  tile(t, "Bottom three", pct(p.p_bottom_three), `average new coach: ${pct(fc.baseline.p_bottom_three)}`);
+  leadFig(t, "Final points, Pochettino run", fmt(p.final_points.median, 0),
+    `80% ${range(p.final_points["80"], 0)} · average new coach ${fmt(fc.baseline.final_points.median, 0)}`);
+  ledger(t, [
+    ["United at the freeze", `${fmt(u.points, 0)} pts`, `${u.played} played, ${u.remaining} to play`],
+    ["His contribution", `${sgn(c.points.mean, 1)} pts`, `vs an average new coach, 80% ${range(c.points["80"], 0, true)}`],
+    ["Top half", pct(p.p_top_half), `average new coach ${pct(fc.baseline.p_top_half)}`],
+    ["Bottom three", pct(p.p_bottom_three), `average new coach ${pct(fc.baseline.p_bottom_three)}`]]);
+  $("position-note").textContent = `Share of simulated seasons ending in each position, Pochettino run. Highlighted: the median position, ${fmt(p.median_position, 0)}.`;
   $("points-note").textContent = `Thick bar: 50% of simulated seasons; thin bar: 80%; line: median. Both runs strip out the outgoing coaches' estimated effect and include the usual first-year new-coach effect; the Pochettino run adds his own estimated effect. ${fc.simulation.draws.toLocaleString("en-GB")} simulated seasons.`;
   drawPoints(fc);
   drawPosition(fc);
@@ -472,18 +519,18 @@ function drawCumulative(tr, box) {
   const y = (v) => top + plotH - v / hi * plotH;
   for (const t of niceTicks(0, hi, 4)) {
     svgEl("line", { x1: left, x2: w - right, y1: y(t), y2: y(t), stroke: t === 0 ? css("--axis") : css("--grid") }, svg);
-    text(svg, left - 6, y(t) + 4, String(t), { "text-anchor": "end", fill: css("--muted"), "font-size": 11 });
+    text(svg, left - 6, y(t) + 4, String(t), { "text-anchor": "end", fill: css("--muted"), "font-size": 11, class: "tk" });
   }
   const band = (key, fill) => {
     const up = cm.map((c, k) => `${x(k)},${y(c[key][1])}`), dn = cm.map((c, k) => `${x(k)},${y(c[key][0])}`).reverse();
     svgEl("polygon", { points: up.concat(dn).join(" "), fill }, svg);
   };
-  band("80", css("--band-2")); band("50", css("--band"));
+  band("80", css("--neutral-band-2")); band("50", css("--neutral-band"));
   svgEl("polyline", { points: cm.map((c, k) => `${x(k)},${y(c.forecast_median)}`).join(" "), fill: "none", stroke: css("--muted"), "stroke-width": 2 }, svg);
-  svgEl("polyline", { points: cm.map((c, k) => `${x(k)},${y(c.actual)}`).join(" "), fill: "none", stroke: css("--series-1"), "stroke-width": 2, "stroke-linejoin": "round" }, svg);
+  svgEl("polyline", { points: cm.map((c, k) => `${x(k)},${y(c.actual)}`).join(" "), fill: "none", stroke: css("--accent"), "stroke-width": 2, "stroke-linejoin": "round" }, svg);
   cm.forEach((c, k) => {
-    svgEl("circle", { cx: x(k), cy: y(c.actual), r: 4, fill: css("--series-1"), stroke: css("--surface"), "stroke-width": 2 }, svg);
-    text(svg, x(k), y(0) + 16, String(k + 1), { "text-anchor": "middle", fill: css("--muted"), "font-size": 11 });
+    svgEl("circle", { cx: x(k), cy: y(c.actual), r: 4, fill: css("--accent"), stroke: css("--surface"), "stroke-width": 2 }, svg);
+    text(svg, x(k), y(0) + 16, String(k + 1), { "text-anchor": "middle", fill: css("--muted"), "font-size": 11, class: "tk" });
     const m = tr.matches[k];
     hit(svg, { x: x(k) - 14, y: top, width: 28, height: plotH }, [`${c.actual} points after ${k + 1}`, `${m.opponent} (${m.venue}) ${m.goals_for}–${m.goals_against}`,
       `Frozen 50%: ${range(c["50"], 0)}; 80%: ${range(c["80"], 0)}`, c.inside_80 ? "Inside the 80% band" : "Outside the 80% band"]);
@@ -494,26 +541,30 @@ function drawCumulative(tr, box) {
 function trackerSection(tr, fc) {
   const body = $("tracker-body"); body.replaceChildren();
   const e = tr.effect;
+  $("tracker-seal").textContent = "vs " + seal(fc);
   if (!tr.matches.length) {
     body.append(el("div", `No league matches since the freeze yet. The first is on ${dateText(fc.first_league_match)}. The tracker updates after every league match.`, "empty"));
-    const t = el("div", undefined, "tiles"); body.append(t);
-    tile(t, "His effect, before any match at United", `${sgn(e.mean)}`, `npxG difference per 90; 80%: ${range(e["80"], 2, true)}`);
-    tile(t, "Chance his effect is positive", pct(e.p_positive), "from his record before United");
+    ledger(body, [
+      ["His effect, before any match at United", sgn(e.mean), `npxG difference per 90, 80% ${range(e["80"], 2, true)}`],
+      ["Chance his effect is positive", pct(e.p_positive), "from his record before United"]]);
     return;
   }
-  const c = tr.cumulative_points, t = el("div", undefined, "tiles"); body.append(t);
-  tile(t, "Points since the freeze", String(c.actual), `frozen 80% band: ${range(c["80"], 0)} (${c.inside_80 ? "inside" : "OUTSIDE"})`);
-  tile(t, "Matches inside their npxG interval", pct(tr.inside_interval_share), `${pct(tr.matches[0].interval)} intervals; expect about ${pct(tr.matches[0].interval)}`);
-  tile(t, "His effect, updated", sgn(e.mean), `80%: ${range(e["80"], 2, true)}; before United ${sgn(e.prior_mean)}`);
+  const c = tr.cumulative_points, t = el("div", undefined, "lead"); body.append(t);
+  leadFig(t, "Points since the freeze", String(c.actual),
+    `frozen 80% band ${range(c["80"], 0)} · ${c.inside_80 ? "inside the band" : "outside the band, a miss"}`);
+  ledger(t, [
+    ["Matches inside their npxG interval", pct(tr.inside_interval_share), `${pct(tr.matches[0].interval)} intervals, so expect about ${pct(tr.matches[0].interval)}`],
+    ["His effect, updated", sgn(e.mean), `80% ${range(e["80"], 2, true)}, before United ${sgn(e.prior_mean)}`],
+    ["Chance his effect is positive", pct(e.p_positive), "after the matches so far"]]);
   const card = el("div", undefined, "card"); body.append(card);
   const lg = el("div", undefined, "legend"); card.append(lg);
-  legend(lg, [["Actual points", css("--series-1"), "line"], ["Frozen median", css("--muted"), "line"], ["Frozen 50% band", css("--band"), "rect"], ["Frozen 80% band", css("--band-2"), "rect"]]);
+  legend(lg, [["Actual points", css("--accent"), "line"], ["Frozen median", css("--muted"), "line"], ["Frozen 50% band", css("--neutral-band"), "rect"], ["Frozen 80% band", css("--neutral-band-2"), "rect"]]);
   const box = el("div", undefined, "chart"); box.id = "chart-cumulative"; card.append(box);
   drawCumulative(tr, "chart-cumulative");
   const tw = el("div", undefined, "table-wrap"), tbl = el("table"); tw.append(tbl); card.append(tw);
   table(tbl, ["#", "Opponent", "Score", "Points", "Expected points", "Frozen npxG expectation", "npxG check"],
     tr.matches.map((m, i) => [String(i + 1), `${m.opponent} (${m.venue})`, `${m.goals_for}–${m.goals_against}`, String(m.points),
-      fmt(m.expected_points, 2), sgn(m.forecast_npxg_diff_mean), m.inside_interval ? "inside interval" : "MISS: outside interval"]), [0, 3, 4, 5]);
+      fmt(m.expected_points, 2), sgn(m.forecast_npxg_diff_mean), m.inside_interval ? "Inside interval" : "Miss, outside interval"]), [0, 3, 4, 5]);
   if (tr.note) body.append(el("p", tr.note, "note"));
 }
 
@@ -522,12 +573,13 @@ function detectSection(fc) {
   const d = fc.detectability, mn = d.matches_needed, sd = d.posterior_sd_after_n_matches;
   const rest = fc.united_now.remaining;
   $("detect-lede").textContent = `A single match is noisy: the match-to-match spread of npxG difference is about ${fmt(d.sigma, 2)} per 90, while plausible manager effects are a tenth of that. So this season will mostly show noise, and that is expected.`;
-  const t = $("tiles-detect"); t.replaceChildren();
-  tile(t, "Matches to detect an effect of 0.20", Math.round(mn["0.20"]).toLocaleString("en-GB"), "npxG per 90, at the usual 5% significance and 80% power");
-  tile(t, "Matches to detect an effect of 0.10", Math.round(mn["0.10"]).toLocaleString("en-GB"), `the rest of this season is ${rest} matches`);
-  tile(t, "Uncertainty after this season", `±${fmt(sd[String(rest)], 2)}`, `standard deviation of his effect; now ±${fmt(d.effect_sd_now, 2)}`);
-  table($("table-detect"), ["After this many matches", "Standard deviation of his effect"],
-    Object.entries(sd).map(([n, v]) => [n, fmt(v, 3)]), [0, 1]);
+  const t = $("lead-detect"); t.replaceChildren();
+  leadFig(t, "Matches needed to tell an effect of 0.10 from zero", Math.round(mn["0.10"]).toLocaleString("en-GB"),
+    `npxG per 90 · the rest of this season is ${rest} matches`);
+  ledger(t, [
+    ["Matches needed for an effect of 0.20", Math.round(mn["0.20"]).toLocaleString("en-GB"), "5% significance, 80% power"],
+    ["Uncertainty in his effect now", `±${fmt(d.effect_sd_now, 2)}`, "standard deviation, npxG per 90"],
+    ...Object.entries(sd).map(([n, v]) => [`After ${n} more matches${Number(n) === rest ? " (end of this season)" : ""}`, `±${fmt(v, 2)}`, ""])]);
   $("detect-note").textContent = d.note;
 }
 
